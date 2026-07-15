@@ -1,0 +1,78 @@
+version = "1.9.20"
+updated = "2024-04-04"
+name = "ActionUIData"
+inherits = "Control"
+script_path = "res://ui/ActionSelector/ActionUIData/ActionUIData.gd"
+scene_path = "res://ui/ActionSelector/ActionUIData/ActionUIData.tscn"
+desc = ""
+category = "Custom UI"
+
+[signals.data_changed]
+desc = "Emitted when the player changes selections made in this [[class]] scene. See [[meth _ready]]\n\nThe game listens to this signal and restarts the prediction when it is emitted.\n"
+
+[properties.display_offset]
+type = "Vector2"
+value = "Vector2()"
+desc = "Unused."
+
+[properties.facing]
+type = "int"
+value = "-1"
+desc = "Unused, use [[meth set_facing]] and [[meth get_facing]] instead"
+
+[properties.action_buttons]
+type = "Node"
+value = "null"
+desc = "Direct reference to the Action Menu"
+
+[properties.state]
+type = "CharacterState"
+value = "null"
+desc = ""
+
+[properties.fighter]
+type = "Fighter"
+value = "null"
+desc = "Direct reference to the [[class Fighter]] object this [[class]] belongs to."
+
+[methods._ready]
+type = "void"
+desc = "Called when this node and it's child nodes are \"ready\". See [[meth Node._ready]].\nConnects the data_changed signal of all child nodes to this nodes [[sig data_changed]] signal.\n"
+
+[methods.on_opponent_button_selected]
+type = "void"
+desc = "Called by the Action Menu when the player selects a state for the opponent prediction, while the state that owns this [[class]] is selected. ``button`` is a direct reference to the [[class]] selected.\n\n[b]The method is empty by default and should be overridden to have any effect.[/b]\n"
+
+    [methods.on_opponent_button_selected.params.button]
+    type = "Node"
+
+[methods.on_button_selected]
+type = "void"
+desc = "Called by the Action Menu when the player selects the state that owns this [[class]].\n\n[b]The method is empty by default and should be overridden to have any effect.[/b]\n"
+
+[methods.on_data_changed]
+type = "void"
+desc = ""
+
+[methods.get_data]
+type = "Dictionary"
+desc = "Called by the Action Menu when the player has locked in their selection, or when the prediction resets after [[sig data_changed]] is emitted.\n\nThe returned [[class Dictionary]] is provided to the state that owns this [[class]] and is available in it's script via it's [[prop StateInterface.data]] variable during the states execution.\n\nBy default, depending on how many child nodes this [[class]] contains, the data returned is either the data from the child nodes [[]] function directly if there is only one child, or if there are two or more children it will be a [[class Dictionary]] of each child nodes [[]] values organized by child nodes names.\n\n[code lang=\"gdscript\"]\n# Example for one 8Way child\ndata[\"x\"] # or data.x\ndata[\"y\"] # or data.y\n\n# Example for an 8Way named \"Direction\" and a Slider named \"Distance\"\ndata[\"Direction\"][\"x\"] # or data.Direction.x\\ndata[\"Direction\"][\"y\"] # or data.Direction.y\ndata[\"Distance\"][\"x\"] # or data.Distance.x\n[/code]\n"
+
+[methods.set_facing]
+type = "void"
+desc = "Called by the Action Menu at the start of each turn, providing the facing int (1 if right, -1 if left) of the [[class Fighter]].  Calls the [[meth set_facing]] function of all child nodes that have it."
+
+    [methods.set_facing.params.facing]
+    type = "int"
+
+[methods.get_facing]
+type = "int"
+desc = "Returns the value of the [[meth get_facing]] function of the first child node that has it."
+
+[methods.init]
+type = "void"
+desc = "Calls the [[meth init]] function of all child nodes that have it."
+
+[methods.fighter_update]
+type = "void"
+desc = "Called by the Action Menu at the start of each turn, and when another state is selected that isn't the one that owns this [[class]].\n\n[b]The method is empty by default and should be overridden to have any effect.[/b]\n"

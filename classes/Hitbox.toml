@@ -1,0 +1,785 @@
+version = "1.9.20"
+name = "Hitbox"
+inherits = "CollisionBox"
+script_path = "res://mechanics/Hitbox.gd"
+desc = ""
+category = "Hitboxes"
+
+[signals.hit_something]
+desc = ""
+
+    [signals.hit_something.params.obj]
+    type = "Variant"
+    value = ""
+    desc = ""
+    _order = 0
+
+    [signals.hit_something.params.hitbox]
+    type = "Variant"
+    value = ""
+    desc = ""
+    _order = 1
+
+[signals.got_parried]
+desc = ""
+
+[constants.COMBO_PUSHBACK_COEFFICIENT]
+type = "fixed"
+value = "\"0.4\""
+desc = ""
+
+[constants.COMBO_SAME_MOVE_KNOCKBACK_INCREASE_AMOUNT_GROUNDED]
+type = "fixed"
+value = "\"1.25\""
+desc = ""
+
+[constants.COMBO_SAME_MOVE_KNOCKBACK_INCREASE_AMOUNT_AERIAL]
+type = "fixed"
+value = "\"1.05\""
+desc = ""
+
+[constants.COMBO_SAME_MOVE_HITSTUN_DECREASE_AMOUNT]
+type = "int"
+value = "1"
+desc = ""
+
+[constants.DEFAULT_HIT_PARTICLE]
+type = "PackedScene"
+value = "preload(\"res://fx/HitEffect1.tscn\")"
+desc = ""
+
+[constants.MAX_KNOCKBACK]
+type = "fixed"
+value = "\"30\""
+desc = ""
+
+[properties.HIT_PARTICLE]
+_ref = "class-hitbox-property-hhit-particle"
+type = "PackedScene"
+value = "preload(\"res://fx/HitEffect1.tscn\")"
+desc = ""
+
+[properties.activated]
+export = true
+type = "bool"
+value = "true"
+desc = ""
+
+[properties._c_Damage]
+export = true
+desc = ""
+type = "void"
+
+[properties.damage]
+export = true
+type = "int"
+value = "0"
+desc = ""
+
+[properties.damage_in_combo]
+export = true
+type = "int"
+value = "- 1"
+desc = ""
+
+[properties.minimum_damage]
+export = true
+type = "int"
+value = "0"
+desc = ""
+
+[properties.chip_damage_modifier]
+export = true
+type = "fixed"
+value = "\"1.0\""
+desc = ""
+
+[properties._c_Hit_Properties]
+export = true
+desc = ""
+type = "void"
+
+[properties.hitbox_type]
+export = true
+type = "HitboxType"
+value = "HitboxType.Normal"
+desc = ""
+
+[properties.hitstun_ticks]
+export = true
+type = "int"
+value = "30"
+desc = ""
+
+[properties.combo_hitstun_ticks]
+export = true
+type = "int"
+value = "- 1"
+desc = ""
+
+[properties.hitlag_ticks]
+export = true
+type = "int"
+value = "4"
+desc = ""
+
+[properties.victim_hitlag]
+export = true
+type = "int"
+value = "- 1"
+desc = ""
+
+[properties.damage_proration]
+export = true
+type = "int"
+value = "0"
+desc = ""
+
+[properties.scale_combo]
+export = true
+type = "bool"
+value = "true"
+desc = ""
+
+[properties.combo_scaling_amount]
+export = true
+type = "int"
+value = "1"
+desc = ""
+
+[properties.cancellable]
+export = true
+type = "bool"
+value = "true"
+desc = ""
+
+[properties.increment_combo]
+export = true
+type = "bool"
+value = "true"
+desc = ""
+
+[properties.hits_otg]
+export = true
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.hits_vs_standing]
+export = true
+type = "bool"
+value = "true"
+desc = ""
+
+[properties.hits_vs_grounded]
+export = true
+type = "bool"
+value = "true"
+desc = ""
+
+[properties.hits_vs_aerial]
+export = true
+type = "bool"
+value = "true"
+desc = ""
+
+[properties.can_counter_hit]
+export = true
+type = "bool"
+value = "true"
+desc = ""
+
+[properties.di_modifier]
+export = true
+type = "fixed"
+value = "\"1.0\""
+desc = ""
+
+[properties.sdi_modifier]
+export = true
+type = "fixed"
+value = "\"1.0\""
+desc = ""
+
+[properties.meter_gain_modifier]
+export = true
+type = "fixed"
+value = "\"1.0\""
+desc = ""
+
+[properties.parry_meter_gain]
+export = true
+type = "int"
+value = "- 1"
+desc = ""
+
+[properties.ignore_armor]
+export = true
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.followup_state]
+export = true
+type = "String"
+value = "\"\""
+desc = ""
+
+[properties.force_grounded]
+export = true
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.can_clash]
+export = true
+type = "bool"
+value = "true"
+desc = ""
+
+[properties.hits_vs_dizzy]
+export = true
+type = "bool"
+value = "true"
+desc = ""
+
+[properties.beats_grab]
+export = true
+type = "bool"
+value = "true"
+desc = ""
+
+[properties.hits_projectiles]
+export = true
+type = "bool"
+value = "true"
+desc = ""
+
+[properties.ignore_projectile_armor]
+export = true
+type = "bool"
+value = "false"
+desc = ""
+
+[properties._c_Block_Properties]
+export = true
+desc = ""
+type = "void"
+
+[properties.guard_break]
+export = true
+type = "bool"
+value = "false"
+desc = "If [code]true[/code], this hitbox will bypass the opponents block unless they [b]Perfect Parry[/b]."
+
+[properties.block_punishable]
+export = true
+type = "bool"
+value = "false"
+desc = "If [code]false[/code], hitting the opponent while they are soft blocking [i](without a [b]Perfect Parry[/b])[/i] will cause the player to gain their next interrupt turn on their opponents next turn. This generally means that if [code]true[/code], the player will not get a turn when hitting the opponents block.\n\nHas no effect if [[prop block_cancel_allowed]] is [code]false[/code], or if the parent [[prop CharacterState.interruptible_on_opponent_turn]] is [code]true[/code].\n"
+
+[properties.block_cancel_allowed]
+export = true
+type = "bool"
+value = "true"
+desc = "If [code]true[/code], hitting the opponent while they are blocking will grant them an interrupt turn. Note that if the opponent [b]Perfect Parries[/b], they will gain an interrupt turn regardless of what value this is set to."
+
+[properties.plus_frames]
+export = true
+type = "int"
+value = "0"
+desc = "The amount of ticks the start of the opponents next state will be delayed for after hitting them while they are soft blocking [i](without a [b]Perfect Parry[/b])[/i].\n\nNegative values will cause the attacker to be delayed instead.\n\n[i][b]Tip:[/b] values should generally range from -1 to +4 depending on speed, size, and other aspects, while projectiles hitboxes should generally be +2. You can always check the base roster for \"balancing advice\"[/i]\"\n"
+
+[properties.hit_height]
+export = true
+type = "Hitbox.HitHeight"
+value = "HitHeight.Mid"
+desc = "The height the opponent must select during for a block in order to Perfect Parry this hitbox. [i](Note that the opponent must also select the tick they are getting hit in order to [b]Perfect Parry[/b])[/i]\n\nA height of Mid counts as height of High.\n"
+
+[properties._c_Grouping]
+export = true
+desc = ""
+type = "void"
+
+[properties.priority]
+export = true
+type = "int"
+value = "0"
+desc = ""
+
+[properties.group]
+export = true
+type = "int"
+value = "0"
+desc = ""
+
+[properties._c_Fx]
+export = true
+desc = ""
+type = "void"
+
+[properties.screenshake_amount]
+export = true
+type = "int"
+value = "4"
+desc = ""
+
+[properties.screenshake_frames]
+export = true
+type = "int"
+value = "- 1"
+desc = ""
+
+[properties.hit_particle]
+export = true
+type = "PackedScene"
+desc = ""
+
+[properties.replace_hit_particle]
+export = true
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.camera_bump_dir]
+export = true
+type = "Vector2"
+value = "Vector2()"
+desc = ""
+
+[properties.whiff_particle]
+export = true
+type = "PackedScene"
+desc = ""
+
+[properties.bump_on_whiff]
+export = true
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.rumble]
+export = true
+type = "bool"
+value = "true"
+desc = ""
+
+[properties._c_Sfx]
+export = true
+desc = ""
+type = "void"
+
+[properties.whiff_sound]
+export = true
+type = "AudioStream"
+value = "preload(\"res://sound/common/whiff1.wav\")"
+desc = ""
+
+[properties.hit_sound]
+export = true
+type = "AudioStream"
+value = "preload(\"res://sound/common/hit1.wav\")"
+desc = ""
+
+[properties.hit_bass_sound]
+export = true
+type = "AudioStream"
+value = "preload(\"res://sound/common/hit_bass.wav\")"
+desc = ""
+
+[properties.whiff_sound_volume]
+export = true
+type = "float"
+value = "- 8.0"
+desc = ""
+
+[properties.hit_sound_volume]
+export = true
+type = "float"
+value = "- 5.0"
+desc = ""
+
+[properties.bass_on_whiff]
+export = true
+type = "bool"
+value = "false"
+desc = ""
+
+[properties._c_Knockback]
+export = true
+desc = ""
+type = "void"
+
+[properties.dir_x]
+export = true
+type = "String"
+value = "\"1.0\""
+desc = ""
+
+[properties.dir_y]
+export = true
+type = "String"
+value = "\"-1.0\""
+desc = ""
+
+[properties.knockback]
+export = true
+type = "String"
+value = "\"10.0\""
+desc = ""
+
+[properties.launch_reversible]
+export = true
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.vacuum]
+export = true
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.send_away_from_center]
+export = true
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.block_pushback_modifier]
+export = true
+type = "String"
+value = "\"1.0\""
+desc = ""
+
+[properties.pushback_x]
+export = true
+type = "String"
+value = "\"1.0\""
+desc = ""
+
+[properties._c_Knockback_Type]
+export = true
+desc = ""
+type = "void"
+
+[properties.grounded_hit_state]
+export = true
+type = "String"
+value = "\"HurtGrounded\""
+desc = ""
+
+[properties.aerial_hit_state]
+export = true
+type = "String"
+value = "\"HurtAerial\""
+desc = ""
+
+[properties.minimum_grounded_frames]
+export = true
+type = "int"
+value = "- 1"
+desc = ""
+
+[properties.knockdown]
+export = true
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.knockdown_extends_hitstun]
+export = true
+type = "bool"
+value = "true"
+desc = ""
+
+[properties.hard_knockdown]
+export = true
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.disable_collision]
+export = true
+type = "bool"
+value = "true"
+desc = ""
+
+[properties.air_ground_bounce]
+export = true
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.ground_bounce]
+export = true
+type = "bool"
+value = "true"
+desc = ""
+
+[properties.ground_bounce_knockback_modifier]
+export = true
+type = "fixed"
+value = "\"1.0\""
+desc = ""
+
+[properties.wall_slam]
+export = true
+type = "bool"
+value = "false"
+desc = ""
+
+[properties._c_Frame_Data]
+export = true
+desc = ""
+type = "void"
+
+[properties.start_tick]
+export = true
+type = "int"
+value = "0"
+desc = ""
+
+[properties.active_ticks]
+export = true
+type = "int"
+value = "5"
+desc = ""
+
+[properties.always_on]
+export = true
+type = "bool"
+value = "false"
+desc = ""
+
+[properties._c_Loop_Data]
+export = true
+desc = ""
+type = "void"
+
+[properties.looping]
+export = true
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.loop_active_ticks]
+export = true
+type = "int"
+value = "2"
+desc = ""
+
+[properties.loop_inactive_ticks]
+export = true
+type = "int"
+value = "2"
+desc = ""
+
+[properties.tick]
+type = "int"
+value = "1"
+desc = ""
+
+[properties.host]
+type = "BaseObj"
+desc = ""
+
+[properties.active]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.enabled]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.spawn_particle_effect]
+type = "bool"
+value = "true"
+desc = ""
+
+[properties.throw]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.played_whiff_sound]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.grouped_hitboxes]
+type = "Array"
+value = "[]"
+desc = ""
+
+[properties.hit_objects]
+type = "Array"
+value = "[]"
+desc = ""
+
+[properties.whiff_sound_player]
+type = "VariableSound2D"
+desc = ""
+
+[properties.hit_sound_player]
+type = "VariableSound2D"
+desc = ""
+
+[properties.hit_bass_sound_player]
+type = "VariableSound2D"
+desc = ""
+
+[properties.native]
+type = "NativeMethods"
+desc = ""
+
+[properties.property_list]
+type = "PoolStringArray"
+desc = ""
+
+[methods.copy_to]
+desc = ""
+type = "void"
+
+    [methods.copy_to.params.hitbox]
+    type = "CollisionBox"
+    value = ""
+    desc = ""
+
+[methods.is_projectile]
+type = "bool"
+desc = ""
+
+[methods.setup_audio]
+desc = ""
+type = "void"
+
+[methods.play_whiff_sound]
+desc = ""
+type = "void"
+
+[methods.activate]
+desc = ""
+type = "void"
+
+[methods.deactivate]
+desc = ""
+type = "void"
+
+[methods.to_data]
+type = "HitboxData"
+desc = ""
+
+[methods.is_counter_hit]
+type = "bool"
+desc = ""
+
+[methods.spawn_whiff_particle]
+desc = ""
+type = "void"
+
+[methods.spawn_particle]
+desc = ""
+type = "void"
+
+    [methods.spawn_particle.params.particle]
+    type = "Variant"
+    value = ""
+    desc = ""
+    _order = 0
+
+    [methods.spawn_particle.params.obj]
+    type = "Variant"
+    value = ""
+    desc = ""
+    _order = 1
+
+    [methods.spawn_particle.params.dir]
+    type = "Variant"
+    value = ""
+    desc = ""
+    _order = 2
+
+[methods.init]
+desc = ""
+type = "void"
+
+[methods.update_property_list]
+desc = ""
+type = "void"
+
+[methods.get_real_knockback]
+type = "fixed"
+desc = ""
+
+[methods.get_real_hitstun]
+type = "int"
+desc = ""
+
+[methods.otg_check]
+type = "bool"
+desc = ""
+
+    [methods.otg_check.params.obj]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.save_hit_object]
+desc = ""
+type = "void"
+
+    [methods.save_hit_object.params.obj]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.already_hit_object]
+type = "bool"
+desc = ""
+
+    [methods.already_hit_object.params.obj]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.hit]
+desc = ""
+type = "void"
+
+    [methods.hit.params.obj]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.get_facing_int]
+type = "int"
+desc = ""
+
+[methods.get_angle_float]
+type = "float"
+desc = ""
+
+    [methods.get_angle_float.params.facing]
+    type = "bool"
+    value = "false"
+    desc = ""
+
+[methods.get_dir_float]
+type = "Vector2"
+desc = ""
+
+    [methods.get_dir_float.params.facing]
+    type = "bool"
+    value = "false"
+    desc = ""
+
+[methods.can_draw_box]
+type = "bool"
+desc = ""
+
+[methods.tick]
+desc = ""
+type = "void"

@@ -1,0 +1,533 @@
+version = "1.9.20"
+updated = "2024-04-04"
+name = "Utils"
+inherits = ""
+script_path = "res://framework/utils.gd"
+category = "Utilities"
+
+[constants.cardinal_dirs]
+type = "Array"
+value = "[Vector2(1, 0), Vector2(0, 1), Vector2( - 1, 0), Vector2(0, - 1)]"
+
+[constants.diagonal_dirs]
+type = "Array"
+value = "[Vector2(1, 1), Vector2(1, - 1), Vector2( - 1, - 1), Vector2( - 1, 1)]"
+
+[constants.dirs]
+type = "Array"
+value = "[Vector2(1, 0), Vector2(0, 1), Vector2( - 1, 0), Vector2(0, - 1), Vector2(1, 1), Vector2(1, - 1), Vector2( - 1, - 1), Vector2( - 1, 1)]"
+
+[methods.filter_filename]
+type = "String"
+
+    [methods.filter_filename.params.text]
+    type = "String"
+
+[methods.int_abs]
+type = "int"
+
+    [methods.int_abs.params.n]
+    type = "int"
+
+[methods.get_copiable_properties]
+type = "Array"
+
+    [methods.get_copiable_properties.params.node]
+    type = "Node"
+
+[methods.int_sign]
+type = "int"
+
+    [methods.int_sign.params.int]
+    type = "int"
+
+[methods.int_sign2]
+type = "int"
+
+    [methods.int_sign2.params.n]
+    type = "int"
+
+[methods.frames]
+type = "float"
+
+    [methods.frames.params.n]
+    type = "Variant"
+    _order = 0
+
+    [methods.frames.params.fps]
+    type = "int"
+    value = "60"
+    _order = 1
+
+[methods.split_lines]
+type = "Array"
+
+    [methods.split_lines.params.string]
+    type = "string"
+
+[methods.int_clamp]
+type = "int"
+
+    [methods.int_clamp.params.n]
+    type = "int"
+    _order = 0
+
+    [methods.int_clamp.params.min_]
+    type = "int"
+    _order = 1
+
+    [methods.int_clamp.params.max_]
+    type = "int"
+    _order = 2
+
+[methods.int_min]
+type = "int"
+
+    [methods.int_min.params.n1]
+    type = "int"
+    _order = 0
+
+    [methods.int_min.params.n2]
+    type = "int"
+    _order = 1
+
+[methods.starts_with]
+type = "bool"
+
+    [methods.starts_with.params.string]
+    type = "String"
+    _order = 0
+
+    [methods.starts_with.params.pattern]
+    type = "String"
+    _order = 1
+
+[methods.map]
+type = "float"
+
+    [methods.map.params.value]
+    type = "float"
+    _order = 0
+
+    [methods.map.params.istart]
+    type = "float"
+    _order = 1
+
+    [methods.map.params.istop]
+    type = "float"
+    _order = 2
+
+    [methods.map.params.ostart]
+    type = "float"
+    _order = 3
+
+    [methods.map.params.ostop]
+    type = "float"
+    _order = 4
+
+[methods.map_int]
+type = "int"
+
+    [methods.map_int.params.value]
+    type = "int"
+    _order = 0
+
+    [methods.map_int.params.istart]
+    type = "int"
+    _order = 1
+
+    [methods.map_int.params.istop]
+    type = "int"
+    _order = 2
+
+    [methods.map_int.params.ostart]
+    type = "int"
+    _order = 3
+
+    [methods.map_int.params.ostop]
+    type = "int"
+    _order = 4
+
+[methods.tree_set_all_process]
+type = "void"
+
+    [methods.tree_set_all_process.params.p_node]
+    type = "Node"
+    _order = 0
+
+    [methods.tree_set_all_process.params.p_active]
+    type = "bool"
+    _order = 1
+
+    [methods.tree_set_all_process.params.p_self_too]
+    type = "bool"
+    value = "false"
+    _order = 2
+
+[methods.snap]
+type = "float"
+
+    [methods.snap.params.value]
+    type = "float"
+    _order = 0
+
+    [methods.snap.params.step]
+    type = "float"
+    _order = 1
+
+[methods.approach]
+type = "float"
+
+    [methods.approach.params.a]
+    type = "float"
+    _order = 0
+
+    [methods.approach.params.b]
+    type = "float"
+    _order = 1
+
+    [methods.approach.params.amount]
+    type = "float"
+    _order = 2
+
+[methods.int_lerp]
+type = "int"
+
+    [methods.int_lerp.params.a]
+    type = "int"
+    _order = 0
+
+    [methods.int_lerp.params.b]
+    type = "int"
+    _order = 1
+
+    [methods.int_lerp.params.f]
+    type = "int"
+    _order = 2
+
+[methods.get_closest_node]
+type = "Node2D"
+
+    [methods.get_closest_node.params.node]
+    type = "Node2D"
+    _order = 0
+
+    [methods.get_closest_node.params.node_list]
+    type = "Array"
+    _order = 1
+
+[methods.get_first_player]
+type = "Node"
+
+    [methods.get_first_player.params.node]
+    type = "Node"
+
+[methods.ang2vec]
+type = "Vector2"
+
+    [methods.ang2vec.params.angle]
+    type = "float"
+
+[methods.get_angle_from_to]
+type = "float"
+
+    [methods.get_angle_from_to.params.node]
+    type = "Node"
+    _order = 0
+
+    [methods.get_angle_from_to.params.position]
+    type = "Vector2"
+    _order = 1
+
+[methods.angle_diff]
+type = "float"
+
+    [methods.angle_diff.params.from]
+    type = "float"
+    _order = 0
+
+    [methods.angle_diff.params.to]
+    type = "float"
+    _order = 1
+
+[methods.comma_sep]
+type = "String"
+
+[methods.float_time]
+type = "float"
+
+[methods.wave]
+type = "float"
+
+    [methods.wave.params.from]
+    _order = 0
+
+    [methods.wave.params.to]
+    _order = 1
+
+    [methods.wave.params.duration]
+    _order = 2
+
+    [methods.wave.params.offset]
+    type = "int"
+    value = "1"
+    _order = 3
+
+[methods.pulse]
+type = "bool"
+
+    [methods.pulse.params.duration]
+    type = "float"
+    value = "1.0"
+    _order = 0
+
+    [methods.pulse.param.width]
+    type = "float"
+    value = "0.5"
+    _order = 1
+
+[methods.remove_duplicates]
+type = "Array"
+
+    [methods.remove_duplicates.params.array]
+    type = "Array"
+
+[methods.is_in_circle]
+type = "bool"
+
+    [methods.is_in_circle.params.point]
+    type = "Vector2"
+    _order = 0
+
+    [methods.is_in_circle.params.circle_center]
+    type = "Vector2"
+    _order = 1
+
+    [methods.is_in_circle.params.circle_radius]
+    type = "Vector2"
+    _order = 2
+
+[methods.veci_distance_to]
+type = "Vector2"
+
+    [methods.veci_distance_to.params.start]
+    type = "Vector2"
+    _order = 0
+
+    [methods.veci_distance_to.params.end]
+    type = "Vector2"
+    _order = 1
+
+[methods.veci_to_vec]
+type = "Vector2"
+
+[methods.veci_to_vec2.params.veci]
+type = "Vector2"
+
+[methods.sin_0_1]
+type = "float"
+
+    [methods.sin_0_1.params.value]
+    type = "float"
+
+[methods.veci_length]
+type = "Vector2"
+
+    [methods.veci_length.params.v]
+    type = "Vector2"
+
+[methods.clamp_cell]
+type = "Vector2"
+
+    [methods.clamp_cell.params.cell]
+    type = "Vector2"
+    _order = 0
+
+    [methods.clamp_cell.params.map]
+    type = "Array2D"
+    _order = 1
+
+[methods.stepify]
+type = "float"
+
+    [methods.stepify.params.s]
+    _order = 0
+
+    [methods.stepify.params.step]
+    _order = 1
+
+[methods.line]
+type = "Array"
+
+    [methods.line.params.start]
+    type = "Vector2"
+    _order = 0
+
+    [methods.line.params.end]
+    type = "Vector2"
+    _order = 1
+
+[methods.random_triangle_point]
+type = "float"
+
+    [methods.random_triangle_point.params.a]
+    _order = 0
+
+    [methods.random_triangle_point.params.b]
+    _order = 1
+
+    [methods.random_triangle_point.params.c]
+    _order = 2
+
+[methods.triangle_area]
+type = "float"
+
+    [methods.triangle_area.params.a]
+    _order = 0
+
+    [methods.triangle_area.params.b]
+    _order = 1
+
+    [methods.triangle_area.params.c]
+    _order = 2
+
+[methods.get_polygon_bounding_box]
+type = "Rect2"
+
+    [methods.get_polygon_bounding_box.params.polygon]
+    type = "PoolVector2Array"
+
+[methods.distance_to_line_segment]
+type = "float"
+
+    [methods.distance_to_line_segment.params.xy1]
+    type = "Vector2"
+    _order = 0
+
+    [methods.distance_to_line_segment.params.xy2]
+    type = "Vector2"
+    _order = 1
+
+    [methods.distance_to_line_segment.params.xy3]
+    type = "Vector2"
+    _order = 2
+
+[methods.spring]
+type = "Array"
+
+    [methods.spring.params.x]
+    type = "float"
+    _order = 0
+
+    [methods.spring.params.v]
+    type = "float"
+    _order = 1
+
+    [methods.spring.params.xt]
+    type = "float"
+    _order = 2
+
+    [methods.spring.params.zeta]
+    type = "float"
+    _order = 3
+
+    [methods.spring.params.omega]
+    type = "float"
+    _order = 4
+
+    [methods.spring.params.h]
+    type = "float"
+    _order = 5
+
+[methods.compare]
+type = "bool"
+
+    [methods.compare.params.val1]
+    _order = 0
+
+    [methods.compare.params.val2]
+    _order = 1
+
+[methods.pass_signal_along]
+type = "void"
+
+    [methods.pass_signal_along.params.from]
+    type = "Node"
+    _order = 0
+
+    [methods.pass_signal_along.params.to]
+    type = "Node"
+    _order = 1
+
+    [methods.pass_signal_along.params.signal_name]
+    type = "String"
+    _order = 2
+
+    [methods.pass_signal_along.params.to_signal_name]
+    type = "String"
+    value = "\"\""
+    _order = 3
+
+[methods.vector_spring]
+type = "Array"
+
+    [methods.vector_spring.params.vec]
+    type = "Vector2"
+    _order = 0
+
+    [methods.vector_spring.params.vel]
+    type = "Vector2"
+    _order = 1
+
+    [methods.vector_spring.params.target]
+    type = "Vector2"
+    _order = 2
+
+    [methods.vector_spring.params.zeta]
+    type = "float"
+    _order = 3
+
+    [methods.vector_spring.params.omega]
+    type = "float"
+    _order = 4
+
+    [methods.vector_spring.params.h]
+    type = "float"
+    _order = 5
+
+[methods.fixed_vec2_string]
+type = "Dictionary"
+
+    [methods.fixed_vec2_string.params.x]
+    type = "string"
+    _order = 0
+
+    [methods.fixed_vec2_string.params.y]
+    type = "string"
+    _order = 1
+
+[methods.is_mouse_in_control]
+type = "bool"
+
+    [methods.is_mouse_in_control.params.control]
+    type = "control"
+
+[methods.number_from_string]
+type = "int"
+
+    [methods.number_from_string.params.string]
+    type = "String"
+
+[methods.get_files_in_folder]
+type = "Array"
+
+    [methods.get_files_in_folder.params.folder]
+    type = "String"
+    order = 0
+    _order = 0
+
+    [methods.get_files_in_folder.params.extension]
+    type = "String"
+    value = "\"\""
+    order = 1
+    _order = 1

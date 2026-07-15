@@ -1,0 +1,2298 @@
+version = "1.9.20"
+updated = "2024-04-04"
+name = "Fighter"
+inherits = "BaseObj"
+script_path = "res://characters/BaseChar.gd"
+scene_path = "res://characters/BaseChar.tscn"
+desc = ""
+category = "Game Objects"
+
+[signals.action_selected]
+desc = ""
+
+    [signals.action_selected.params.action]
+    type = "Variant"
+    value = ""
+    desc = ""
+    _order = 0
+
+    [signals.action_selected.params.data]
+    type = "Variant"
+    value = ""
+    desc = ""
+    _order = 1
+
+[signals.super_started]
+desc = ""
+
+    [signals.super_started.params.freeze_ticks]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[signals.parried]
+desc = ""
+
+[signals.got_parried]
+desc = ""
+
+[signals.undo]
+desc = ""
+
+[signals.forfeit]
+desc = ""
+
+[signals.clashed]
+desc = ""
+
+[signals.blocked_melee_attack]
+desc = ""
+
+[signals.blocked_melee_attack_at_frame]
+desc = ""
+
+    [signals.blocked_melee_attack_at_frame.params.frame]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[signals.predicted]
+desc = ""
+
+[constants.MAX_STALES]
+type = "int"
+value = "15"
+desc = ""
+
+[constants.MIN_STALE_MODIFIER]
+type = "fixed"
+value = "\"0.2\""
+desc = ""
+
+[constants.WALL_SLAM_DAMAGE]
+type = "fixed"
+value = "\"0.75\""
+desc = ""
+
+[constants.DI_SNAP_DISTANCE]
+type = "fixed"
+value = "\"0.01\""
+desc = ""
+
+[constants.DAMAGE_SUPER_GAIN_DIVISOR]
+type = "int"
+value = "1"
+desc = ""
+
+[constants.DAMAGE_TAKEN_SUPER_GAIN_DIVISOR]
+type = "int"
+value = "3"
+desc = ""
+
+[constants.HITLAG_COLLISION_TICKS]
+type = "int"
+value = "4"
+desc = ""
+
+[constants.PROJECTILE_PERFECT_PARRY_WINDOW]
+type = "int"
+value = "3"
+desc = ""
+
+[constants.BURST_ON_DAMAGE_AMOUNT]
+type = "int"
+value = "5"
+desc = ""
+
+[constants.AUTO_PARRY_TICKS]
+type = "int"
+value = "20"
+desc = ""
+
+[constants.SADNESS_IMMUNITY_TICKS]
+type = "int"
+value = "60"
+desc = ""
+
+[constants.VISUAL_GUTS_RATIO]
+type = "float"
+value = "1.5"
+desc = ""
+
+[constants.MAX_WALL_SLAMS]
+type = "int"
+value = "3"
+desc = ""
+
+[constants.COUNTER_HIT_ADDITIONAL_HITLAG_FRAMES]
+type = "int"
+value = "3"
+desc = ""
+
+[constants.MAX_GROUNDED_HITS]
+type = "int"
+value = "7"
+desc = ""
+
+[constants.PREDICTION_CORRECT_SUPER_GAIN]
+type = "int"
+value = "30"
+desc = ""
+
+[constants.INCORRECT_PREDICTION_LAG]
+type = "int"
+value = "7"
+desc = ""
+
+[constants.PARRY_CHIP_DIVISOR]
+type = "int"
+value = "3"
+desc = ""
+
+[constants.PUSH_BLOCK_CHIP_MODIFIER]
+type = "fixed"
+value = "\"0.33\""
+desc = ""
+
+[constants.PARRY_KNOCKBACK_DIVISOR]
+type = "fixed"
+value = "\"3\""
+desc = ""
+
+[constants.PARRY_COMBO_SCALING]
+type = "fixed"
+value = "\"0.85\""
+desc = ""
+
+[constants.PARRY_GROUNDED_KNOCKBACK_DIVISOR]
+type = "fixed"
+value = "\"1.5\""
+desc = ""
+
+[constants.PUSH_BLOCK_FORCE]
+type = "fixed"
+value = "\"-10\""
+desc = ""
+
+[constants.PUSH_BLOCK_DIST]
+type = "fixed"
+value = "\"220\""
+desc = ""
+
+[constants.PUSH_BLOCK_ADVANTAGE_PENALTY]
+type = "int"
+value = "0"
+desc = ""
+
+[constants.AIR_BLOCK_PUSHBACK_MODIFIER]
+type = "fixed"
+value = "\"0.35\""
+desc = ""
+
+[constants.WAKEUP_THROW_IMMUNITY_TICKS]
+type = "int"
+value = "3"
+desc = ""
+
+[constants.BASE_PLUS_FRAMES]
+type = "int"
+value = "0"
+desc = ""
+
+[constants.VS_AERIAL_ADDITIONAL_PLUS_FRAMES]
+type = "int"
+value = "2"
+desc = ""
+
+[constants.WRONG_HIT_HEIGHT_ADDITIONAL_PLUS_FRAMES]
+type = "int"
+value = "2"
+desc = ""
+
+[constants.DISTANCE_EXTRA_SADNESS]
+type = "fixed"
+value = "\"180\""
+desc = ""
+
+[constants.MIN_DIST_SADNESS]
+type = "fixed"
+value = "\"128\""
+desc = ""
+
+[constants.MISSED_BRACE_DAMAGE_MULTIPLIER]
+type = "fixed"
+value = "\"1.0\""
+desc = ""
+
+[constants.SUCCESSFUL_BRACE_HITSTUN_MODIFIER]
+type = "fixed"
+value = "\"0.35\""
+desc = ""
+
+[constants.SUCCESSFUL_BRACE_DI_MODIFIER]
+type = "fixed"
+value = "\"1.5\""
+desc = ""
+
+[constants.P1_COLOR]
+type = "Color"
+value = "Color(\"aca2ff\")"
+desc = ""
+
+[constants.P2_COLOR]
+type = "Color"
+value = "Color(\"ff7a81\")"
+desc = ""
+
+[constants.GUTS_REDUCTIONS]
+type = "Dictionary"
+value = "{ \"1.0\":\"1.0\" }"
+desc = ""
+
+[constants.GUTS_REDUCTIONS_OLD]
+type = "Dictionary"
+value = "{ \"1\":\"1\", \"0.70\":\"0.90\", \"0.60\":\"0.80\", \"0.50\":\"0.70\", \"0.40\":\"0.60\", \"0.30\":\"0.55\", \"0.20\":\"0.52\", \"0.10\":\"0.50\" }"
+desc = ""
+
+[constants.MAX_GUTS]
+type = "int"
+value = "10"
+desc = ""
+
+[constants.MAX_BURSTS]
+type = "int"
+value = "1"
+desc = ""
+
+[constants.BURST_BUILD_SPEED]
+type = "int"
+value = "4"
+desc = ""
+
+[constants.MAX_BURST_METER]
+type = "int"
+value = "1500"
+desc = ""
+
+[constants.START_BURSTS]
+type = "int"
+value = "1"
+desc = ""
+
+[constants.MAX_SUPER_METER]
+type = "int"
+value = "125"
+desc = ""
+
+[constants.MAX_SUPERS]
+type = "int"
+value = "9"
+desc = ""
+
+[constants.VEL_SUPER_GAIN_DIVISOR]
+type = "int"
+value = "4"
+desc = ""
+
+[constants.AERIAL_VELOCITY_SUPER_GAIN_MODIFIER]
+type = "fixed"
+value = "\"0.5\""
+desc = ""
+
+[constants.NUDGE_DISTANCE]
+type = "int"
+value = "20"
+desc = ""
+
+[constants.PARRY_METER]
+type = "int"
+value = "50"
+desc = ""
+
+[constants.METER_GAIN_MODIFIER]
+type = "fixed"
+value = "\"0.85\""
+desc = ""
+
+[constants.CLASH_MOVE_BACK]
+type = "int"
+value = "3"
+desc = ""
+
+[constants.MIN_PENALTY]
+type = "int"
+value = "- 20"
+desc = ""
+
+[constants.MAX_PENALTY]
+type = "int"
+value = "75"
+desc = ""
+
+[constants.PENALTY_MIN_DISPLAY]
+type = "int"
+value = "50"
+desc = ""
+
+[constants.PENALTY_TICKS]
+type = "int"
+value = "120"
+desc = ""
+
+[properties.MAX_HEALTH]
+type = "int"
+value = "1500"
+desc = ""
+
+[properties.HOLD_RESTARTS]
+type = "Array"
+value = "[ \"Wait\", \"Fall\", \"DashForward\", \"ParryHigh\", \"BlockHigh\", \"ParryLow\", \"ParryAir\" ]"
+desc = ""
+
+[properties.HOLD_FORCE_STATES]
+type = "Dictionary"
+value = "{ \"ParrySuper\":\"ParryHigh\", \"DashBackward\":\"Wait\" }"
+desc = ""
+
+[properties.num_air_movements]
+export = true
+type = "int"
+value = "2"
+desc = ""
+
+[properties.lose_one_air_option_in_neutral]
+export = true
+type = "bool"
+value = "true"
+desc = ""
+
+[properties.use_air_option_bar]
+export = true
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.air_option_bar_max]
+export = true
+type = "int"
+value = "100"
+desc = ""
+
+[properties.air_option_bar]
+export = true
+type = "int"
+value = "0"
+desc = ""
+
+[properties.air_option_bar_name]
+export = true
+type = "String"
+value = "\"Air Options\""
+desc = ""
+
+[properties.character_portrait]
+export = true
+type = "Texture"
+desc = ""
+
+[properties.character_portrait2]
+export = true
+type = "Texture"
+desc = ""
+
+[properties.you_label]
+onready = true
+type = "Node"
+value = "$YouLabel"
+desc = ""
+
+[properties.actionable_label]
+onready = true
+type = "Node"
+value = "$ActionableLabel"
+desc = ""
+
+[properties.quitter_label]
+onready = true
+type = "Node"
+value = "$\"%QuitterLabel\""
+desc = ""
+
+[properties.velocity_label_container]
+onready = true
+type = "Node"
+value = "$VelocityLabelContainer"
+desc = ""
+
+[properties.grounded_indicator]
+onready = true
+type = "Node"
+value = "$GroundedIndicator"
+desc = ""
+
+[properties.block_frame_label]
+onready = true
+type = "Node"
+value = "$BlockFrameLabel"
+desc = ""
+
+[properties.hit_frame_label]
+onready = true
+type = "Node"
+value = "$HitFrameLabel"
+desc = ""
+
+[properties.input_state]
+type = "InputState"
+value = "InputState.new()"
+desc = ""
+
+[properties.color]
+type = "Color"
+value = "Color.white"
+desc = ""
+
+[properties.style_extra_color_1]
+type = "Variant"
+value = "extra_color_1"
+desc = ""
+
+[properties.style_extra_color_2]
+type = "Variant"
+value = "extra_color_2"
+desc = ""
+
+[properties.player_info_scene]
+export = true
+type = "PackedScene"
+desc = ""
+
+[properties.player_extra_params_scene]
+export = true
+type = "PackedScene"
+desc = ""
+
+[properties.damage_taken_modifier]
+export = true
+type = "fixed"
+value = "\"1.0\""
+desc = ""
+
+[properties.knockback_taken_modifier]
+export = true
+type = "fixed"
+value = "\"1.0\""
+desc = ""
+
+[properties.di_modifier]
+export = true
+type = "fixed"
+value = "\"1.0\""
+desc = ""
+
+[properties.num_feints]
+export = true
+type = "int"
+value = "2"
+desc = ""
+
+[properties.use_extra_color_1]
+export = true
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.extra_color_1]
+export = true
+type = "Color"
+value = "Color(\"ff00ff\")"
+desc = ""
+
+[properties.use_extra_color_2]
+export = true
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.extra_color_2]
+export = true
+type = "Color"
+value = "Color(\"ff00ff\")"
+desc = ""
+
+[properties.global_damage_modifier]
+type = "fixed"
+value = "\"1.0\""
+desc = ""
+
+[properties.global_hitstun_modifier]
+type = "fixed"
+value = "\"1.0\""
+desc = ""
+
+[properties.global_hitstop_modifier]
+type = "fixed"
+value = "\"1.0\""
+desc = ""
+
+[properties.min_di_scaling]
+type = "fixed"
+value = "\"1.0\""
+desc = ""
+
+[properties.max_di_scaling]
+type = "fixed"
+value = "\"6.0\""
+desc = ""
+
+[properties.di_combo_limit]
+type = "int"
+value = "15"
+desc = ""
+
+[properties.ghost_blocked_melee_attack]
+type = "int"
+value = "- 1"
+desc = ""
+
+[properties.ghost_got_hit]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.opponent]
+type = "Variant"
+desc = ""
+
+[properties.actions]
+type = "int"
+value = "0"
+desc = ""
+
+[properties.visible_combo_count]
+type = "int"
+value = "0"
+desc = ""
+
+[properties.queued_action]
+type = "Variant"
+value = "null"
+desc = ""
+
+[properties.queued_data]
+type = "Variant"
+value = "null"
+desc = ""
+
+[properties.queued_extra]
+type = "Variant"
+value = "null"
+desc = ""
+
+[properties.buffered_input]
+type = "Dictionary"
+value = "{}"
+desc = ""
+
+[properties.last_input]
+type = "Dictionary"
+value = "{}"
+desc = ""
+
+[properties.previous_input]
+type = "Dictionary"
+value = "{}"
+desc = ""
+
+[properties.use_buffer]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.hit_out_of_brace]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.braced_attack]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.brace_effect_applied_yet]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.dummy_interruptable]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.game_over]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.forfeit]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.will_forfeit]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.applied_style]
+type = "Variant"
+value = "null"
+desc = ""
+
+[properties.is_color_active]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.is_aura_active]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.is_style_active]
+type = "Variant"
+value = "null"
+desc = ""
+
+[properties.touching_wall]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.was_my_turn]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.touch_of_death]
+type = "bool"
+value = "true"
+desc = ""
+
+[properties.ivy_effect]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.ivy_effect_t]
+type = "float"
+value = "0.0"
+desc = ""
+
+[properties.colliding_with_opponent]
+type = "bool"
+value = "true"
+desc = ""
+
+[properties.air_movements_left]
+type = "int"
+value = "0"
+desc = ""
+
+[properties.action_cancels]
+type = "Dictionary"
+value = "{}"
+desc = ""
+
+[properties.ghost_ready_tick]
+type = "Variant"
+value = "null"
+desc = ""
+
+[properties.ghost_ready_set]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.got_parried]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.got_blocked]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.block_used_air_movement]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.di_enabled]
+type = "bool"
+value = "true"
+desc = ""
+
+[properties.turbo_mode]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.extremely_turbo_mode]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.infinite_resources]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.one_hit_ko]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.burst_enabled]
+type = "bool"
+value = "true"
+desc = ""
+
+[properties.always_perfect_parry]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.blocked_last_hit]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.blocked_last_turn]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.sadness_enabled]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.last_turn_block]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.trail_hp]
+type = "int"
+value = "MAX_HEALTH"
+desc = ""
+
+[properties.hp]
+type = "int"
+value = "0"
+desc = ""
+
+[properties.super_meter]
+type = "int"
+value = "0"
+desc = ""
+
+[properties.supers_available]
+type = "int"
+value = "0"
+desc = ""
+
+[properties.combo_proration]
+type = "int"
+value = "0"
+desc = ""
+
+[properties.last_parry_tick]
+type = "int"
+value = "0"
+desc = ""
+
+[properties.parried_last_state]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.initiative_effect]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.clipping_wall]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.burst_meter]
+type = "int"
+value = "0"
+desc = ""
+
+[properties.bursts_available]
+type = "int"
+value = "0"
+desc = ""
+
+[properties.turn_frames]
+type = "int"
+value = "0"
+desc = ""
+
+[properties.busy_interrupt]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.any_available_actions]
+type = "bool"
+value = "true"
+desc = ""
+
+[properties.refresh_prediction]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.burst_cancel_combo]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.parry_chip_divisor]
+type = "Variant"
+value = "PARRY_CHIP_DIVISOR"
+desc = ""
+
+[properties.parry_knockback_divisor]
+type = "Variant"
+value = "PARRY_KNOCKBACK_DIVISOR"
+desc = ""
+
+[properties.moved_forward]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.buffer_moved_forward]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.moved_backward]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.buffer_moved_backward]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.blocked_hitbox_plus_frames]
+type = "int"
+value = "0"
+desc = ""
+
+[properties.had_sadness]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.state_changed]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.on_the_ground]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.nudge_amount]
+type = "fixed"
+value = "\"1.0\""
+desc = ""
+
+[properties.used_air_dodge]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.used_buffer]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.has_hyper_armor]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.has_projectile_armor]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.hit_during_armor]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.projectile_hit_cancelling]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.melee_attack_combo_scaling_applied]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.wall_slams]
+type = "int"
+value = "0"
+desc = ""
+
+[properties.counterhit_this_turn]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.guard_broken_this_turn]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.last_pos]
+type = "Variant"
+value = "null"
+desc = ""
+
+[properties.penalty]
+type = "int"
+value = "0"
+desc = ""
+
+[properties.penalty_buffer]
+type = "int"
+value = "0"
+desc = ""
+
+[properties.penalty_ticks]
+type = "int"
+value = "0"
+desc = ""
+
+[properties.blockstun_ticks]
+type = "int"
+value = "0"
+desc = ""
+
+[properties.sadness_immunity_ticks]
+type = "int"
+value = "0"
+desc = ""
+
+[properties.emote_tween]
+type = "SceneTreeTween"
+desc = ""
+
+[properties.feints]
+type = "int"
+value = "2"
+desc = ""
+
+[properties.feinted_last]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.feint_parriable]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.grounded_last_frame]
+type = "bool"
+value = "true"
+desc = ""
+
+[properties.ghost_was_in_air]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.ghost_wrong_block]
+type = "String"
+value = "\"\""
+desc = ""
+
+[properties.current_nudge]
+type = "Dictionary"
+value = "{ \"x\":\"0\", \"y\":\"0\" }"
+desc = ""
+
+[properties.current_di]
+type = "Dictionary"
+value = "{ \"x\":\"0\", \"y\":\"0\" }"
+desc = ""
+
+[properties.last_vel]
+type = "Dictionary"
+value = "{ \"x\":\"0\", \"y\":\"0\" }"
+desc = ""
+
+[properties.last_aerial_vel]
+type = "Dictionary"
+value = "{ \"x\":\"0\", \"y\":\"0\" }"
+desc = ""
+
+[properties.combo_moves_used]
+type = "Dictionary"
+value = "{}"
+desc = ""
+
+[properties.reverse_state]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.ghost_reverse]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.nudge_distance_left]
+type = "int"
+value = "0"
+desc = ""
+
+[properties.can_nudge]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.parried]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.busy]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.initiative]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.aura_particle]
+type = "Variant"
+value = "null"
+desc = ""
+
+[properties.in_blockstring]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.brace_enabled]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.parry_combo]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.feinting]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.clashing]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.last_action]
+type = "int"
+value = "0"
+desc = ""
+
+[properties.stance]
+type = "String"
+value = "\"Normal\""
+desc = ""
+
+[properties.parried_hitboxes]
+type = "Array"
+value = "[]"
+desc = ""
+
+[properties.grounded_hits_taken]
+type = "int"
+value = "0"
+desc = ""
+
+[properties.throw_pos_x]
+type = "int"
+value = "16"
+desc = ""
+
+[properties.throw_pos_y]
+type = "int"
+value = "- 5"
+desc = ""
+
+[properties.combo_supers]
+type = "int"
+value = "0"
+desc = ""
+
+[properties.combo_damage]
+type = "int"
+value = "0"
+desc = ""
+
+[properties.hitlag_applied]
+type = "int"
+value = "0"
+desc = ""
+
+[properties.forfeit_ticks]
+type = "int"
+value = "0"
+desc = ""
+
+[properties.minus_frames]
+type = "int"
+value = "0"
+desc = ""
+
+[properties.hitstun_decay_combo_count]
+type = "int"
+value = "0"
+desc = ""
+
+[properties.lowest_tick]
+type = "int"
+value = "0"
+desc = ""
+
+[properties.wakeup_throw_immunity_ticks]
+type = "int"
+value = "0"
+desc = ""
+
+[methods.clash]
+desc = ""
+type = "void"
+
+[methods.get_visual_hp]
+type = "Variant"
+desc = ""
+
+[methods.init]
+desc = ""
+type = "void"
+
+    [methods.init.params.pos]
+    type = "Variant"
+    value = "null"
+    desc = ""
+
+[methods.is_ivy]
+type = "bool"
+desc = ""
+
+[methods.apply_style]
+type = "Variant"
+desc = ""
+
+    [methods.apply_style.params.style]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.reset_color]
+desc = ""
+type = "void"
+
+[methods.reset_aura]
+desc = ""
+type = "void"
+
+[methods.reset_style]
+desc = ""
+type = "void"
+
+[methods.reapply_style]
+desc = ""
+type = "void"
+
+[methods.start_super]
+desc = ""
+type = "void"
+
+    [methods.start_super.params.freeze_ticks]
+    type = "int"
+    value = "0"
+    desc = ""
+
+[methods.change_stance_to]
+desc = ""
+type = "void"
+
+    [methods.change_stance_to.params.stance]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.show_you_label]
+desc = ""
+type = "void"
+
+[methods.is_you]
+type = "Variant"
+desc = ""
+
+    [methods.is_you.params.default]
+    type = "bool"
+    value = "true"
+    desc = ""
+
+[methods.unlock_achievement]
+type = "Variant"
+desc = ""
+
+    [methods.unlock_achievement.params.achievement_name]
+    type = "Variant"
+    value = ""
+    desc = ""
+    _order = 0
+
+    [methods.unlock_achievement.params.multiplayer_only]
+    type = "bool"
+    value = "false"
+    desc = ""
+    _order = 1
+
+[methods.can_unlock_achievements]
+type = "bool"
+desc = ""
+
+[methods._ready]
+desc = ""
+type = "void"
+
+[methods.on_state_changed]
+desc = ""
+type = "void"
+
+    [methods.on_state_changed.params.states_stack]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.on_got_hit]
+desc = ""
+type = "void"
+
+[methods.on_got_hit_by_fighter]
+desc = ""
+type = "void"
+
+[methods.on_got_hit_by_projectile]
+desc = ""
+type = "void"
+
+[methods.gain_burst_meter]
+type = "Variant"
+desc = ""
+
+    [methods.gain_burst_meter.params.amount]
+    type = "Variant"
+    value = "null"
+    desc = ""
+
+[methods.copy_to]
+desc = "See [[method BaseObj.copy_to|BaseObj's copy_to]] description"
+type = "void"
+
+    [methods.copy_to.params.f]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.gain_burst]
+desc = ""
+type = "void"
+
+[methods.load_last_input_into_buffer]
+desc = ""
+type = "void"
+
+[methods.use_buffer]
+desc = ""
+type = "void"
+
+[methods.use_burst]
+desc = ""
+type = "void"
+
+[methods.use_burst_meter]
+desc = ""
+type = "void"
+
+    [methods.use_burst_meter.params.amount]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.get_total_super_meter]
+type = "Variant"
+desc = ""
+
+[methods.use_super_bar]
+type = "Variant"
+desc = ""
+
+[methods.use_super_meter]
+type = "Variant"
+desc = ""
+
+    [methods.use_super_meter.params.amount]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.stack_move_in_combo]
+desc = ""
+type = "void"
+
+    [methods.stack_move_in_combo.params.move_name]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.meter_gain_modified]
+type = "int"
+desc = ""
+
+    [methods.meter_gain_modified.params.amount]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.gain_super_meter]
+type = "Variant"
+desc = ""
+
+    [methods.gain_super_meter.params.amount]
+    type = "Variant"
+    value = ""
+    desc = ""
+    _order = 0
+
+    [methods.gain_super_meter.params.stale_amount]
+    type = "fixed"
+    value = "\"1.0\""
+    desc = ""
+    _order = 1
+
+[methods.gain_super_meter_raw]
+desc = ""
+type = "void"
+
+    [methods.gain_super_meter_raw.params.amount]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.drain_super_meter]
+type = "Variant"
+desc = ""
+
+    [methods.drain_super_meter.params.amount]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.spawn_object]
+type = "Variant"
+desc = ""
+
+    [methods.spawn_object.params.projectile]
+    type = "PackedScene"
+    value = ""
+    desc = ""
+    _order = 0
+
+    [methods.spawn_object.params.pos_x]
+    type = "int"
+    value = ""
+    desc = ""
+    _order = 1
+
+    [methods.spawn_object.params.pos_y]
+    type = "int"
+    value = ""
+    desc = ""
+    _order = 2
+
+    [methods.spawn_object.params.relative]
+    type = "bool"
+    value = "true"
+    desc = ""
+    _order = 3
+
+    [methods.spawn_object.params.data]
+    type = "Variant"
+    value = "null"
+    desc = ""
+    _order = 4
+
+    [methods.spawn_object.params.local]
+    type = "bool"
+    value = "true"
+    desc = ""
+    _order = 5
+
+[methods.combo_stale_meter]
+type = "Variant"
+desc = ""
+
+    [methods.combo_stale_meter.params.meter]
+    type = "int"
+    value = ""
+    desc = ""
+
+[methods.update_data]
+desc = ""
+type = "void"
+
+[methods.emote]
+type = "Variant"
+desc = ""
+
+    [methods.emote.params.message]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.set_emote_visible]
+type = "Variant"
+desc = ""
+
+    [methods.set_emote_visible.params.amount]
+    type = "float"
+    value = ""
+    desc = ""
+
+[methods.get_playback_input]
+type = "Variant"
+desc = ""
+
+[methods.get_global_throw_pos]
+type = "Variant"
+desc = ""
+
+[methods.emit_hit_by_signal]
+type = "Variant"
+desc = ""
+
+    [methods.emit_hit_by_signal.params.hitbox]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.reset_combo]
+desc = ""
+type = "void"
+
+[methods.create_speed_after_image]
+type = "Variant"
+desc = ""
+
+    [methods.create_speed_after_image.params.color]
+    type = "Color"
+    value = "Color.white"
+    desc = ""
+    _order = 0
+
+    [methods.create_speed_after_image.params.lifetime]
+    type = "float"
+    value = "0.2"
+    desc = ""
+    _order = 1
+
+[methods.create_speed_after_image_from_style]
+desc = ""
+type = "void"
+
+    [methods.create_speed_after_image_from_style.params.which]
+    type = "int"
+    value = "2"
+    desc = ""
+
+[methods._create_speed_after_image]
+desc = ""
+type = "void"
+
+    [methods._create_speed_after_image.params.color]
+    type = "Color"
+    value = "Color.white"
+    desc = ""
+    _order = 0
+
+    [methods._create_speed_after_image.params.lifetime]
+    type = "float"
+    value = "0.2"
+    desc = ""
+    _order = 1
+
+[methods.incr_combo]
+desc = ""
+type = "void"
+
+    [methods.incr_combo.params.scale]
+    type = "bool"
+    value = "true"
+    desc = ""
+    _order = 0
+
+    [methods.incr_combo.params.projectile]
+    type = "bool"
+    value = "false"
+    desc = ""
+    _order = 1
+
+    [methods.incr_combo.params.force]
+    type = "bool"
+    value = "false"
+    desc = ""
+    _order = 2
+
+    [methods.incr_combo.params.combo_scale_amount]
+    type = "int"
+    value = "1"
+    desc = ""
+    _order = 3
+
+[methods.is_colliding_with_opponent]
+type = "Variant"
+desc = ""
+
+[methods.on_state_started]
+desc = ""
+type = "void"
+
+    [methods.on_state_started.params.state]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.thrown_by]
+desc = ""
+type = "void"
+
+    [methods.thrown_by.params.hitbox]
+    type = "ThrowBox"
+    value = ""
+    desc = ""
+
+[methods.on_grabbed]
+desc = ""
+type = "void"
+
+[methods.hitbox_from_name]
+type = "Variant"
+desc = ""
+
+    [methods.hitbox_from_name.params.hitbox_name]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods._process]
+desc = ""
+type = "void"
+
+    [methods._process.params.delta]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.debug_text]
+desc = ""
+type = "void"
+
+[methods.has_armor]
+type = "Variant"
+desc = ""
+
+[methods.has_autoblock_armor]
+type = "bool"
+desc = ""
+
+[methods.has_projectile_armor]
+type = "Variant"
+desc = ""
+
+[methods.increment_opponent_combo]
+desc = ""
+type = "void"
+
+    [methods.increment_opponent_combo.params.hitbox]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.apply_hitlag]
+desc = ""
+type = "void"
+
+    [methods.apply_hitlag.params.hitbox]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.launched_by]
+desc = ""
+type = "void"
+
+    [methods.launched_by.params.hitbox]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.on_launched]
+desc = ""
+type = "void"
+
+[methods.on_roll_started]
+desc = ""
+type = "void"
+
+[methods.can_counter_hitbox]
+type = "bool"
+desc = ""
+
+    [methods.can_counter_hitbox.params.hitbox]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.is_bracing]
+type = "Variant"
+desc = ""
+
+[methods.prediction_effect]
+desc = ""
+type = "void"
+
+[methods.counter_hitbox]
+desc = ""
+type = "void"
+
+    [methods.counter_hitbox.params.hitbox]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.hit_by]
+type = "thrown_by"
+desc = ""
+
+    [methods.hit_by.params.hitbox]
+    type = "Variant"
+    value = ""
+    desc = ""
+    _order = 0
+
+    [methods.hit_by.params.force_hit]
+    type = "bool"
+    value = "false"
+    desc = ""
+    _order = 1
+
+[methods.block_hitbox]
+type = "Variant"
+desc = ""
+
+    [methods.block_hitbox.params.hitbox]
+    type = "Variant"
+    value = ""
+    desc = ""
+    _order = 0
+
+    [methods.block_hitbox.params.force_parry]
+    type = "bool"
+    value = "false"
+    desc = ""
+    _order = 1
+
+    [methods.block_hitbox.params.force_block]
+    type = "bool"
+    value = "false"
+    desc = ""
+    _order = 2
+
+    [methods.block_hitbox.params.ignore_guard_break]
+    type = "bool"
+    value = "false"
+    desc = ""
+    _order = 3
+
+    [methods.block_hitbox.params.autoblock_armor]
+    type = "bool"
+    value = "false"
+    desc = ""
+    _order = 4
+
+[methods.projectile_free_cancel]
+type = "Variant"
+desc = ""
+
+[methods.on_blocked_something]
+desc = ""
+type = "void"
+
+[methods.set_block_stun]
+desc = ""
+type = "void"
+
+    [methods.set_block_stun.params.total_plus_frames]
+    type = "Variant"
+    value = ""
+    desc = ""
+    _order = 0
+
+    [methods.set_block_stun.params.block_hitlag]
+    type = "Variant"
+    value = "null"
+    desc = ""
+    _order = 1
+
+[methods.parry_effect]
+desc = ""
+type = "void"
+
+    [methods.parry_effect.params.location]
+    type = "Variant"
+    value = ""
+    desc = ""
+    _order = 0
+
+    [methods.parry_effect.params.absolute]
+    type = "bool"
+    value = "false"
+    desc = ""
+    _order = 1
+
+[methods.set_throw_position]
+desc = ""
+type = "void"
+
+    [methods.set_throw_position.params.x]
+    type = "int"
+    value = ""
+    desc = ""
+    _order = 0
+
+    [methods.set_throw_position.params.y]
+    type = "int"
+    value = ""
+    desc = ""
+    _order = 1
+
+[methods.get_penalty_damage_modifier]
+type = "fixed"
+desc = ""
+
+[methods.take_damage]
+type = "Variant"
+desc = ""
+
+    [methods.take_damage.params.damage]
+    type = "int"
+    value = ""
+    desc = ""
+    _order = 0
+
+    [methods.take_damage.params.minimum]
+    type = "int"
+    value = "0"
+    desc = ""
+    _order = 1
+
+    [methods.take_damage.params.meter_gain_modifier]
+    type = "fixed"
+    value = "\"1.0\""
+    desc = ""
+    _order = 2
+
+    [methods.take_damage.params.combo_scaling_offset]
+    type = "int"
+    value = "0"
+    desc = ""
+    _order = 3
+
+    [methods.take_damage.params.damage_taken_meter_gain_modifier]
+    type = "fixed"
+    value = "\"1.0\""
+    desc = ""
+    _order = 4
+
+[methods.get_guts]
+type = "Variant"
+desc = ""
+
+[methods.get_combo_stale]
+type = "Variant"
+desc = ""
+
+    [methods.get_combo_stale.params.count]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.guts_stale_damage]
+type = "Variant"
+desc = ""
+
+    [methods.guts_stale_damage.params.damage]
+    type = "int"
+    value = ""
+    desc = ""
+
+[methods.combo_stale_damage]
+type = "Variant"
+desc = ""
+
+    [methods.combo_stale_damage.params.damage]
+    type = "int"
+    value = ""
+    desc = ""
+    _order = 0
+
+    [methods.combo_stale_damage.params.combo_scaling_offset]
+    type = "int"
+    value = "0"
+    desc = ""
+    _order = 1
+
+[methods.can_perfect_parry]
+type = "bool"
+desc = ""
+
+[methods.can_parry_hitbox]
+type = "bool"
+desc = ""
+
+    [methods.can_parry_hitbox.params.hitbox]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.set_color]
+desc = ""
+type = "void"
+
+    [methods.set_color.params.color]
+    type = "Variant"
+    value = ""
+    desc = ""
+    _order = 0
+
+    [methods.set_color.params.extra_color_1]
+    type = "Variant"
+    value = "null"
+    desc = ""
+    _order = 1
+
+    [methods.set_color.params.extra_color_2]
+    type = "Variant"
+    value = "null"
+    desc = ""
+    _order = 2
+
+[methods.release_opponent]
+desc = ""
+type = "void"
+
+[methods.on_attack_blocked]
+desc = ""
+type = "void"
+
+[methods.get_di_scaling]
+type = "fixed"
+desc = ""
+
+    [methods.get_di_scaling.params.brace]
+    type = "bool"
+    value = "true"
+    desc = ""
+
+[methods.can_guard_break]
+type = "bool"
+desc = ""
+
+[methods.get_scaled_di]
+type = "Variant"
+desc = ""
+
+    [methods.get_scaled_di.params.di]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.consume_feint]
+type = "Variant"
+desc = ""
+
+[methods.process_extra]
+desc = ""
+type = "void"
+
+    [methods.process_extra.params.extra]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.super_effect]
+desc = ""
+type = "void"
+
+    [methods.super_effect.params.freeze_ticks]
+    type = "int"
+    value = "0"
+    desc = ""
+
+[methods.use_air_movement]
+type = "Variant"
+desc = ""
+
+[methods.refresh_air_movements]
+type = "Variant"
+desc = ""
+
+[methods.refresh_feints]
+desc = ""
+type = "void"
+
+[methods.clean_parried_hitboxes]
+type = "Variant"
+desc = ""
+
+[methods.get_opponent_dir]
+type = "Variant"
+desc = ""
+
+[methods.get_dir_vec]
+type = "Dictionary"
+desc = ""
+
+    [methods.get_dir_vec.params.pos]
+    type = "Variant"
+    value = ""
+    desc = ""
+    _order = 0
+
+    [methods.get_dir_vec.params.normalized]
+    type = "bool"
+    value = "true"
+    desc = ""
+    _order = 1
+
+[methods.get_opponent_dir_vec]
+type = "Dictionary"
+desc = ""
+
+    [methods.get_opponent_dir_vec.params.normalized]
+    type = "bool"
+    value = "true"
+    desc = ""
+
+[methods.get_opponent]
+type = "Variant"
+desc = ""
+
+[methods.update_property_list]
+desc = ""
+type = "void"
+
+[methods.get_advantage]
+type = "bool"
+desc = ""
+
+[methods.check_initiative]
+type = "bool"
+desc = ""
+
+[methods.was_moving_forward]
+type = "Variant"
+desc = ""
+
+[methods.was_moving_backward]
+type = "Variant"
+desc = ""
+
+[methods.set_lowest_tick]
+desc = ""
+type = "void"
+
+    [methods.set_lowest_tick.params.tick]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.update_advantage]
+desc = ""
+type = "void"
+
+[methods.on_state_initiative_start]
+desc = ""
+type = "void"
+
+[methods.clear_buffer]
+desc = ""
+type = "void"
+
+[methods.process_continue]
+type = "bool"
+desc = ""
+
+[methods.tick_before]
+type = "Variant"
+desc = ""
+
+[methods.process_action]
+desc = ""
+type = "void"
+
+    [methods.process_action.params.queued_action]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.touching_which_wall]
+type = "Variant"
+desc = ""
+
+[methods.turn_end_effects]
+desc = ""
+type = "void"
+
+[methods.turn_start_effects]
+desc = ""
+type = "void"
+
+[methods.toggle_quit_graphic]
+desc = ""
+type = "void"
+
+    [methods.toggle_quit_graphic.params.on]
+    type = "Variant"
+    value = "null"
+    desc = ""
+
+[methods.get_sadness_distance_penalty]
+type = "int"
+desc = ""
+
+[methods.can_be_thrown]
+type = "Variant"
+desc = ""
+
+[methods.tick]
+desc = ""
+type = "void"
+
+[methods.landing_effect]
+desc = ""
+type = "void"
+
+[methods.get_move_dir]
+type = "Variant"
+desc = ""
+
+[methods.get_opponent_distance]
+type = "obj_distance"
+desc = ""
+
+[methods.can_block_cancel]
+type = "bool"
+desc = ""
+
+[methods.add_penalty]
+type = "Variant"
+desc = ""
+
+    [methods.add_penalty.params.amount]
+    type = "Variant"
+    value = ""
+    desc = ""
+    _order = 0
+
+    [methods.add_penalty.params.ignore_min_distance]
+    type = "bool"
+    value = "false"
+    desc = ""
+    _order = 1
+
+[methods.has_super_meter]
+type = "Variant"
+desc = ""
+
+[methods.reset_penalty]
+desc = ""
+type = "void"
+
+[methods.is_in_hurt_state]
+type = "Variant"
+desc = ""
+
+    [methods.is_in_hurt_state.params.count_all]
+    type = "bool"
+    value = "true"
+    desc = ""
+
+[methods.set_ghost_colors]
+desc = ""
+type = "void"
+
+[methods.set_facing]
+desc = ""
+type = "void"
+
+    [methods.set_facing.params.facing]
+    type = "int"
+    value = ""
+    desc = ""
+    _order = 0
+
+    [methods.set_facing.params.force]
+    type = "bool"
+    value = "false"
+    desc = ""
+    _order = 1
+
+[methods.update_facing]
+desc = ""
+type = "void"
+
+[methods.on_state_interruptable]
+desc = ""
+type = "void"
+
+    [methods.on_state_interruptable.params.state]
+    type = "Variant"
+    value = "null"
+    desc = ""
+
+[methods.on_state_hit_cancellable]
+desc = ""
+type = "void"
+
+    [methods.on_state_hit_cancellable.params.projectile]
+    type = "bool"
+    value = "false"
+    desc = ""
+    _order = 0
+
+    [methods.on_state_hit_cancellable.params.state]
+    type = "Variant"
+    value = "null"
+    desc = ""
+    _order = 1
+
+[methods.get_fighter]
+type = "Variant"
+desc = ""
+
+[methods.on_action_selected]
+desc = ""
+type = "void"
+
+    [methods.on_action_selected.params.action]
+    type = "Variant"
+    value = ""
+    desc = ""
+    _order = 0
+
+    [methods.on_action_selected.params.data]
+    type = "Variant"
+    value = ""
+    desc = ""
+    _order = 1
+
+    [methods.on_action_selected.params.extra]
+    type = "Variant"
+    value = ""
+    desc = ""
+    _order = 2
+
+[methods.drain_air_option_bar]
+type = "Variant"
+desc = ""
+
+    [methods.drain_air_option_bar.params.amount]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.gain_free_cancel]
+desc = ""
+type = "void"
+
+    [methods.gain_free_cancel.params.amount]
+    type = "int"
+    value = "1"
+    desc = ""
+
+[methods.gain_air_option_bar]
+desc = ""
+type = "void"
+
+    [methods.gain_air_option_bar.params.amount]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.get_state_hash]
+type = "hash"
+desc = ""
+
+[methods.start_sadness_immunity]
+desc = ""
+type = "void"
+
+[methods.should_free_cancel_allow_grounded_and_aerial_states]
+type = "bool"
+desc = ""
+
+[methods.start_wakeup_throw_immunity]
+desc = ""
+type = "void"
+
+[methods.forfeit]
+desc = ""
+type = "void"
+
+[methods.on_blocked_melee_attack]
+desc = ""
+type = "void"
+
+[methods._draw]
+desc = ""
+type = "void"

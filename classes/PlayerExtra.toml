@@ -1,0 +1,59 @@
+version = "1.9.20"
+name = "PlayerExtra"
+inherits = "HBoxContainer"
+script_path = "res://ui/ActionSelector/PlayerExtra.gd"
+desc = ""
+category = "Custom UI"
+
+[signals.data_changed]
+desc = ""
+
+[properties.fighter]
+type = "Fighter"
+desc = ""
+
+[properties.player_id]
+type = "Variant"
+desc = ""
+
+[properties.selected_move]
+type = "Variant"
+desc = ""
+
+[methods._ready]
+desc = ""
+type = "void"
+
+[methods.on_data_changed]
+desc = ""
+type = "void"
+
+[methods.set_fighter]
+desc = ""
+type = "void"
+
+    [methods.set_fighter.params.fighter]
+    type = "Fighter"
+    value = ""
+    desc = ""
+
+[methods.get_extra]
+type = "Variant"
+desc = ""
+
+[methods.show_options]
+type = "Variant"
+desc = ""
+
+[methods.reset]
+desc = ""
+type = "void"
+
+[methods.update_selected_move]
+desc = ""
+type = "void"
+
+    [methods.update_selected_move.params.move_state]
+    type = "Variant"
+    value = ""
+    desc = ""

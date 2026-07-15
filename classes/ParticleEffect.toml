@@ -1,0 +1,116 @@
+version = "1.9.20"
+name = "ParticleEffect"
+inherits = "Node2D"
+script_path = "res://fx/ParticleEffect.gd"
+scene_path = "res://fx/ParticleEffect.tscn"
+desc = ""
+category = "Particles"
+
+[constants.FPS]
+type = "int"
+value = "60"
+desc = ""
+
+[properties.free]
+export = true
+type = "bool"
+value = "true"
+desc = ""
+
+[properties.one_shot]
+export = true
+type = "bool"
+value = "true"
+desc = ""
+
+[properties.lifetime]
+export = true
+type = "float"
+value = "1.0"
+desc = ""
+
+[properties.start_enabled]
+export = true
+type = "bool"
+value = "true"
+desc = ""
+
+[properties.emitting]
+type = "bool"
+value = "true"
+desc = ""
+
+[properties.enabled]
+type = "bool"
+value = "true"
+desc = ""
+
+[properties.tick]
+type = "int"
+value = "0"
+desc = ""
+
+[properties.sounds_played]
+type = "Dictionary"
+value = "{}"
+desc = ""
+
+[properties.tick_timer]
+onready = true
+type = "Node"
+value = "$Timer"
+desc = ""
+
+[methods._ready]
+desc = ""
+type = "void"
+
+[methods.update_dir]
+desc = ""
+type = "void"
+
+[methods.on_update_timer_timeout]
+desc = ""
+type = "void"
+
+[methods.set_speed_scale]
+desc = ""
+type = "void"
+
+    [methods.set_speed_scale.params.speed]
+    type = "float"
+    value = ""
+    desc = ""
+
+[methods.on_tick_timer_timeout]
+desc = ""
+type = "void"
+
+[methods.start_emitting]
+desc = ""
+type = "void"
+
+[methods.start]
+desc = ""
+type = "void"
+
+[methods.stop_emitting]
+desc = ""
+type = "void"
+
+[methods.tick]
+desc = ""
+type = "void"
+
+[methods.get_enabled]
+type = "bool"
+desc = ""
+
+[methods.set_enabled]
+desc = ""
+type = "void"
+
+    [methods.set_enabled.params.on]
+    type = "bool"
+    value = ""
+    desc = ""

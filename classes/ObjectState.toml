@@ -1,0 +1,804 @@
+version = "1.9.20"
+name = "ObjectState"
+inherits = "StateInterface"
+script_path = "res://ObjectState.gd"
+desc = ""
+category = "States"
+
+[signals.state_started]
+desc = ""
+
+[signals.state_ended]
+desc = ""
+
+[properties._c_Physics]
+export = true
+type = "int"
+value = "0"
+desc = ""
+
+[properties.apply_forces]
+export = true
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.apply_fric]
+export = true
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.apply_grav]
+export = true
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.reset_momentum]
+export = true
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.reset_x_momentum]
+export = true
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.reset_y_momentum]
+export = true
+type = "bool"
+value = "false"
+desc = ""
+
+[properties._c_Custom_Physics]
+export = true
+type = "int"
+value = "0"
+desc = ""
+
+[properties.apply_custom_x_fric]
+export = true
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.apply_custom_y_fric]
+export = true
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.apply_custom_grav]
+export = true
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.apply_forces_no_limit]
+export = true
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.custom_x_fric]
+export = true
+type = "fixed"
+value = "\"0.0\""
+desc = ""
+
+[properties.custom_y_fric]
+export = true
+type = "fixed"
+value = "\"0.0\""
+desc = ""
+
+[properties.custom_grav]
+export = true
+type = "fixed"
+value = "\"0.0\""
+desc = ""
+
+[properties.custom_grav_max_fall_speed]
+export = true
+type = "fixed"
+value = "\"0.0\""
+desc = ""
+
+[properties.apply_custom_limits]
+export = true
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.custom_max_air_speed]
+export = true
+type = "fixed"
+value = "\"15.0\""
+desc = ""
+
+[properties.custom_max_ground_speed]
+export = true
+type = "fixed"
+value = "\"10.0\""
+desc = ""
+
+[properties._c_Animation_and_Length]
+export = true
+type = "int"
+value = "0"
+desc = ""
+
+[properties.fallback_state]
+export = true
+type = "String"
+value = "\"Wait\""
+desc = ""
+
+[properties.sprite_animation]
+export = true
+type = "String"
+value = "\"\""
+desc = ""
+
+[properties.anim_length]
+export = true
+type = "int"
+value = "1"
+desc = ""
+
+[properties.sprite_anim_length]
+export = true
+type = "int"
+value = "- 1"
+desc = ""
+
+[properties.ticks_per_frame]
+export = true
+type = "int"
+value = "1"
+desc = ""
+
+[properties.loop_animation]
+export = true
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.animation_loop_start]
+export = true
+type = "int"
+value = "0"
+desc = ""
+
+[properties.absolute_loop]
+export = true
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.endless]
+export = true
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.disable_at_end]
+export = true
+type = "bool"
+value = "false"
+desc = ""
+
+[properties._c_Static_Force]
+export = true
+type = "int"
+value = "0"
+desc = ""
+
+[properties.force_dir_x]
+export = true
+type = "fixed"
+value = "\"0.0\""
+desc = ""
+
+[properties.force_dir_y]
+export = true
+type = "fixed"
+value = "\"0.0\""
+desc = ""
+
+[properties.force_speed]
+export = true
+type = "fixed"
+value = "\"0.0\""
+desc = ""
+
+[properties.force_tick]
+export = true
+type = "int"
+value = "0"
+desc = ""
+
+[properties._c_Enter_Static_Force]
+export = true
+type = "int"
+value = "0"
+desc = ""
+
+[properties.enter_force_dir_x]
+export = true
+type = "fixed"
+value = "\"0.0\""
+desc = ""
+
+[properties.enter_force_dir_y]
+export = true
+type = "fixed"
+value = "\"0.0\""
+desc = ""
+
+[properties.enter_force_speed]
+export = true
+type = "fixed"
+value = "\"0.0\""
+desc = ""
+
+[properties._c_Particles]
+export = true
+type = "int"
+value = "0"
+desc = ""
+
+[properties.particle_scene]
+export = true
+type = "PackedScene"
+value = "null"
+desc = ""
+
+[properties.particle_position]
+export = true
+type = "Vector2"
+value = "Vector2()"
+desc = ""
+
+[properties.spawn_particle_on_enter]
+export = true
+type = "bool"
+value = "false"
+desc = ""
+
+[properties._c_Screenshake]
+export = true
+type = "int"
+value = "0"
+desc = ""
+
+[properties.state_screenshake_tick]
+export = true
+type = "int"
+value = "- 1"
+desc = ""
+
+[properties.state_screenshake_dir]
+export = true
+type = "Vector2"
+value = "Vector2()"
+desc = ""
+
+[properties.state_screenshake_length]
+export = true
+type = "float"
+value = "0.25"
+desc = ""
+
+[properties.state_screenshake_amount]
+export = true
+type = "int"
+value = "10"
+desc = ""
+
+[properties._c_TimedParticles]
+export = true
+type = "int"
+value = "0"
+desc = ""
+
+[properties.timed_particle_scene]
+export = true
+type = "PackedScene"
+value = "null"
+desc = ""
+
+[properties.timed_particle_position]
+export = true
+type = "Vector2"
+value = "Vector2()"
+desc = ""
+
+[properties.timed_spawn_particle_tick]
+export = true
+type = "int"
+value = "1"
+desc = ""
+
+[properties._c_Sfx]
+export = true
+type = "int"
+value = "0"
+desc = ""
+
+[properties.enter_sfx]
+export = true
+type = "AudioStream"
+value = "null"
+desc = ""
+
+[properties.enter_sfx_volume]
+export = true
+type = "float"
+value = "- 15.0"
+desc = ""
+
+[properties.sfx]
+export = true
+type = "AudioStream"
+value = "null"
+desc = ""
+
+[properties.sfx_tick]
+export = true
+type = "int"
+value = "1"
+desc = ""
+
+[properties.sfx_volume]
+export = true
+type = "float"
+value = "- 15.0"
+desc = ""
+
+[properties._c_Projectiles]
+export = true
+type = "int"
+value = "0"
+desc = ""
+
+[properties.projectile_scene]
+export = true
+type = "PackedScene"
+desc = ""
+
+[properties.projectile_tick]
+export = true
+type = "int"
+value = "1"
+desc = ""
+
+[properties.projectile_pos_x]
+export = true
+type = "int"
+value = "0"
+desc = ""
+
+[properties.projectile_pos_y]
+export = true
+type = "int"
+value = "0"
+desc = ""
+
+[properties.projectile_local_pos]
+export = true
+type = "bool"
+value = "true"
+desc = ""
+
+[properties.projectile_match_facing]
+export = true
+type = "bool"
+value = "false"
+desc = ""
+
+[properties._c_Flip]
+export = true
+type = "int"
+value = "0"
+desc = ""
+
+[properties.flip_frame]
+export = true
+type = "int"
+value = "- 1"
+desc = ""
+
+[properties.force_same_direction_as_previous_state]
+export = true
+type = "bool"
+value = "false"
+desc = ""
+
+[properties._c_Meta]
+export = true
+type = "int"
+value = "0"
+desc = ""
+
+[properties.host_commands]
+export = true
+type = "Dictionary"
+value = "{"
+desc = ""
+
+[properties.earliest_hitbox]
+export = true
+type = "int"
+value = "0"
+desc = ""
+
+[properties.earliest_hitbox_node]
+type = "Variant"
+value = "null"
+desc = ""
+
+[properties.is_guard_break]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties._c_Auto]
+export = true
+type = "int"
+value = "0"
+desc = ""
+
+[properties.throw_positions]
+export = true
+type = "Dictionary"
+value = "{}"
+desc = ""
+
+[properties.enter_sfx_player]
+type = "Variant"
+desc = ""
+
+[properties.sfx_player]
+type = "Variant"
+desc = ""
+
+[properties.current_tick]
+type = "int"
+value = "- 1"
+desc = ""
+
+[properties.current_real_tick]
+type = "int"
+value = "- 1"
+desc = ""
+
+[properties.start_tick]
+type = "int"
+value = "- 1"
+desc = ""
+
+[properties.last_facing]
+type = "int"
+value = "1"
+desc = ""
+
+[properties.fixed]
+type = "Variant"
+desc = ""
+
+[properties.native]
+type = "Variant"
+desc = ""
+
+[properties.anim_name]
+type = "Variant"
+desc = ""
+
+[properties.property_list]
+type = "PoolStringArray"
+desc = ""
+
+[properties.has_hitboxes]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.current_hurtbox]
+type = "Variant"
+value = "null"
+desc = ""
+
+[properties.host_command_nodes]
+type = "Dictionary"
+value = "{"
+desc = ""
+
+[properties.hitbox_start_frames]
+type = "Dictionary"
+value = "{"
+desc = ""
+
+[properties.hurtbox_state_change_frames]
+type = "Dictionary"
+value = "{"
+desc = ""
+
+[properties.limb_hurtboxes]
+type = "Array"
+value = "[]"
+desc = ""
+
+[properties.all_hitbox_nodes]
+type = "Array"
+value = "[]"
+desc = ""
+
+[properties.frame_methods]
+type = "Array"
+value = "[]"
+desc = ""
+
+[properties.frame_methods_shared]
+type = "Array"
+value = "[]"
+desc = ""
+
+[properties.max_tick]
+type = "int"
+value = "- 1"
+desc = ""
+
+[properties.max_tick_shared]
+type = "int"
+value = "- 1"
+desc = ""
+
+[methods.apply_enter_force]
+desc = ""
+type = "void"
+
+[methods._on_hit_something]
+desc = ""
+type = "void"
+
+    [methods._on_hit_something.params.obj]
+    type = "Variant"
+    value = ""
+    desc = ""
+    _order = 0
+
+    [methods._on_hit_something.params.hitbox]
+    type = "Variant"
+    value = ""
+    desc = ""
+    _order = 1
+
+[methods.get_projectile_pos]
+type = "Variant"
+desc = ""
+
+[methods.get_projectile_data]
+type = "Variant"
+desc = ""
+
+[methods.process_projectile]
+desc = ""
+type = "void"
+
+    [methods.process_projectile.params._projectile]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.get_active_hitboxes]
+type = "Variant"
+desc = ""
+
+[methods.get_active_hurtboxes]
+type = "Variant"
+desc = ""
+
+[methods.is_hurtbox_active]
+type = "Variant"
+desc = ""
+
+    [methods.is_hurtbox_active.params.hurtbox]
+    type = "LimbHurtbox"
+    value = ""
+    desc = ""
+
+[methods._tick_before]
+desc = ""
+type = "void"
+
+[methods.process_feint]
+type = "Variant"
+desc = ""
+
+[methods.spawn_exported_projectile]
+desc = ""
+type = "void"
+
+[methods._tick_shared]
+type = "Variant"
+desc = ""
+
+[methods.process_hitboxes]
+desc = ""
+type = "void"
+
+[methods.process_hurtboxes]
+desc = ""
+type = "void"
+
+[methods.copy_data]
+type = "Variant"
+desc = ""
+
+[methods._copy_to]
+desc = ""
+type = "void"
+
+    [methods._copy_to.params.state]
+    type = "ObjectState"
+    value = ""
+    desc = ""
+
+[methods.copy_to]
+desc = ""
+type = "void"
+
+    [methods.copy_to.params.state]
+    type = "ObjectState"
+    value = ""
+    desc = ""
+
+[methods.copy_hurtbox_states]
+desc = ""
+type = "void"
+
+    [methods.copy_hurtbox_states.params.state]
+    type = "ObjectState"
+    value = ""
+    desc = ""
+
+[methods.activate_hitbox]
+desc = ""
+type = "void"
+
+    [methods.activate_hitbox.params.hitbox]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.terminate_hitboxes]
+desc = ""
+type = "void"
+
+[methods.deactivate_hitbox]
+desc = ""
+type = "void"
+
+    [methods.deactivate_hitbox.params.hitbox]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.init]
+desc = ""
+type = "void"
+
+[methods.get_host_command]
+type = "Variant"
+desc = ""
+
+    [methods.get_host_command.params.command_name]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.update_property_list]
+desc = ""
+type = "void"
+
+[methods.setup_audio]
+desc = ""
+type = "void"
+
+[methods.setup_hitboxes]
+desc = ""
+type = "void"
+
+[methods.setup_hurtboxes]
+desc = ""
+type = "void"
+
+[methods.__on_hit_something]
+desc = ""
+type = "void"
+
+    [methods.__on_hit_something.params.obj]
+    type = "Variant"
+    value = ""
+    desc = ""
+    _order = 0
+
+    [methods.__on_hit_something.params.hitbox]
+    type = "Variant"
+    value = ""
+    desc = ""
+    _order = 1
+
+[methods.__on_got_parried]
+desc = ""
+type = "void"
+
+[methods._got_parried]
+desc = ""
+type = "void"
+
+[methods.spawn_particle_relative]
+type = "Variant"
+desc = ""
+
+    [methods.spawn_particle_relative.params.scene]
+    type = "PackedScene"
+    value = ""
+    desc = ""
+    _order = 0
+
+    [methods.spawn_particle_relative.params.pos]
+    type = "Vector2"
+    value = "Vector2()"
+    desc = ""
+    _order = 1
+
+    [methods.spawn_particle_relative.params.dir]
+    type = "Vector2"
+    value = "Vector2.RIGHT"
+    desc = ""
+    _order = 2
+
+[methods._enter_shared]
+desc = ""
+type = "void"
+
+[methods._exit_shared]
+desc = ""
+type = "void"
+
+[methods.xy_to_dir]
+type = "Variant"
+desc = ""
+
+    [methods.xy_to_dir.params.x]
+    type = "Variant"
+    value = ""
+    desc = ""
+    _order = 0
+
+    [methods.xy_to_dir.params.y]
+    type = "Variant"
+    value = ""
+    desc = ""
+    _order = 1
+
+    [methods.xy_to_dir.params.mul]
+    type = "fixed"
+    value = "\"1.0\""
+    desc = ""
+    _order = 2
+
+    [methods.xy_to_dir.params.div]
+    type = "fixed"
+    value = "\"100.0\""
+    desc = ""
+    _order = 3
+
+[methods.update_sprite_frame]
+type = "Variant"
+desc = ""

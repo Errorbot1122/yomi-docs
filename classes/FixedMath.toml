@@ -1,0 +1,412 @@
+version = "1.9.20"
+updated = "2024-04-04"
+name = "FixedMath"
+inherits = ""
+script_path = "res://lib/tbfg.dll"
+desc = "[raw].. _class_fixed:[/raw]\n"
+category = "Utilities"
+
+[methods.add]
+type = "fixed"
+desc = "Returns a [[class fixed|fixed number string]] of ``a + b``"
+
+    [methods.add.params.a]
+    type = "fixed"
+    _order = 0
+
+    [methods.add.params.b]
+    type = "fixed"
+    _order = 1
+
+[methods.sub]
+type = "fixed"
+desc = "Returns a [[class fixed|fixed number string]] of ``a - b``"
+
+    [methods.sub.params.a]
+    type = "fixed"
+    _order = 0
+
+    [methods.sub.params.b]
+    type = "fixed"
+    _order = 1
+
+[methods.div]
+type = "fixed"
+desc = "Returns a [[class fixed|fixed number string]] of ``a / b``"
+
+    [methods.div.params.a]
+    type = "fixed"
+    _order = 0
+
+    [methods.div.params.b]
+    type = "fixed"
+    _order = 1
+
+[methods.mul]
+type = "fixed"
+desc = "Returns a [[class fixed|fixed number string]] of ``a * b``"
+
+    [methods.mul.params.a]
+    type = "fixed"
+    _order = 0
+
+    [methods.mul.params.b]
+    type = "fixed"
+    _order = 1
+
+[methods.powu]
+type = "fixed"
+desc = "Returns a [[class fixed|fixed number string]] of ``n`` to the power of ``p``.\n\n``p`` must be a positive integer.\n"
+
+    [methods.powu.params.n]
+    type = "fixed"
+    _order = 0
+
+    [methods.powu.params.p]
+    type = "int"
+    _order = 1
+
+[methods.eq]
+type = "bool"
+desc = "Returns ``true`` if ``a`` is equal to ``b``, otherwise returns ``false``"
+
+    [methods.eq.params.a]
+    type = "fixed"
+    _order = 0
+
+    [methods.eq.params.b]
+    type = "fixed"
+    _order = 1
+
+[methods.gt]
+type = "bool"
+desc = "Returns ``true`` if ``a`` greater than ``b``, otherwise returns ``false``."
+
+    [methods.gt.params.a]
+    type = "fixed"
+    _order = 0
+
+    [methods.gt.params.b]
+    type = "fixed"
+    _order = 1
+
+[methods.lt]
+type = "bool"
+desc = "Returns ``true`` if ``a`` less than ``b``, otherwise returns ``false``."
+
+    [methods.lt.params.a]
+    type = "fixed"
+    _order = 0
+
+    [methods.lt.params.b]
+    type = "fixed"
+    _order = 1
+
+[methods.ge]
+type = "bool"
+desc = "Returns a [[class fixed|fixed number string]] of ``a - b``"
+
+    [methods.ge.params.a]
+    type = "fixed"
+    _order = 0
+
+    [methods.ge.params.b]
+    type = "fixed"
+    _order = 1
+
+[methods.le]
+type = "bool"
+desc = "Returns ``true`` if ``a`` less than or equal to ``b``, otherwise returns ``false``"
+
+    [methods.le.params.a]
+    type = "fixed"
+    _order = 0
+
+    [methods.le.params.b]
+    type = "fixed"
+    _order = 1
+
+[methods.round]
+type = "int"
+desc = "Returns ``n`` rounded to the nearest integer number."
+
+    [methods.round.params.n]
+    type = "fixed"
+    _order = 0
+
+[methods.floor]
+type = "int"
+desc = "Returns ``n`` rounded down to the nearest integer number."
+
+    [methods.floor.params.n]
+    type = "fixed"
+    _order = 0
+
+[methods.ceil]
+type = "int"
+desc = "Returns ``n`` rounded up to the nearest integer number."
+
+    [methods.ceil.params.n]
+    type = "fixed"
+    _order = 0
+
+[methods.abs]
+type = "fixed"
+desc = "Returns a [[class fixed|fixed number string]] of the unsigned value of ``n``"
+
+    [methods.abs.params.n]
+    type = "fixed"
+    _order = 0
+
+[methods.sign]
+type = "int"
+desc = "Returns ``-1`` if ``n`` is negative, ``+1`` if ``n`` is positive, and ``0`` if `n` is 0"
+
+    [methods.sign.params.n]
+    type = "fixed"
+    _order = 0
+
+[methods.lerp_string]
+type = "fixed"
+desc = "Returns a [[class fixed|fixed number string]] of some value between ``a`` and ``b``, where ``a`` is returned if ``ratio`` is \"0.0\", ``b`` is returned if ``ratio`` is \"1.0\", and the halfway point in between is returned if ``ratio`` is \"0.5\""
+
+    [methods.lerp_string.params.a]
+    type = "fixed"
+    _order = 0
+
+    [methods.lerp_string.params.b]
+    type = "fixed"
+    _order = 1
+
+    [methods.lerp_string.params.ratio]
+    type = "fixed"
+    _order = 2
+
+[methods.lerp_angle]
+type = "fixed"
+desc = "Returns a [[class fixed|fixed number string]] of some angle between the angle ``a`` and angle ``b``, where ``a`` is returned if ``ratio`` is \"0.0\", ``b`` is returned if ``ratio`` is \"1.0\", and the halfway point in between is returned if ``ratio`` is \"0.5\""
+
+    [methods.lerp_angle.params.a]
+    type = "fixed"
+    _order = 0
+
+    [methods.lerp_angle.params.b]
+    type = "fixed"
+    _order = 1
+
+    [methods.lerp_angle.params.ratio]
+    type = "fixed"
+    _order = 2
+
+[methods.angle_dist]
+type = "fixed"
+desc = "Returns a [[class fixed|fixed number string]] of the difference between two angles."
+
+    [methods.angle_dist.params.a]
+    type = "fixed"
+    _order = 0
+
+    [methods.angle_dist.params.b]
+    type = "fixed"
+    _order = 1
+
+[methods.deg2rad]
+type = "fixed"
+desc = "Returns a [[class fixed|fixed number string]]  rounded down to the nearest integer number."
+
+    [methods.deg2rad.params.degrees]
+    type = "fixed"
+    _order = 0
+
+[methods.vec_to_angle]
+type = "fixed"
+desc = "Returns a [[class fixed|fixed number string]] of the angle pointing towards a specified 2D vector"
+
+    [methods.vec_to_angle.params.x]
+    type = "fixed"
+    _order = 0
+
+    [methods.vec_to_angle.params.y]
+    type = "fixed"
+    _order = 1
+
+[methods.angle_to_vec]
+type = "Dictionary"
+desc = "Returns a [[class Dictionary]] { 'x' : [[class fixed]], 'y' : [[class fixed]] }, representing the normalized vector pointing towards the specified angle"
+
+    [methods.angle_to_vec.params.radians]
+    type = "fixed"
+    _order = 0
+
+[methods.rotate_vec]
+type = "Dictionary"
+desc = "Returns a [[class Dictionary]] { 'x' : [[class fixed]], 'y' : [[class fixed]] } of the vector rotated by ``radians``."
+
+    [methods.rotate_vec.params.x]
+    type = "fixed"
+    _order = 0
+
+    [methods.rotate_vec.params.y]
+    type = "fixed"
+    _order = 1
+
+    [methods.rotate_vec.params.radians]
+    type = "fixed"
+    value = ""
+    _order = 2
+
+[methods.vec_add]
+type = "Dictionary"
+desc = "Returns a [[class Dictionary]] { 'x' : [[class fixed]], 'y' : [[class fixed]] } of the sum of two 2D vectors."
+
+    [methods.vec_add.params.x1]
+    type = "fixed"
+    _order = 0
+
+    [methods.vec_add.params.y1]
+    type = "fixed"
+    _order = 1
+
+    [methods.vec_add.params.x2]
+    type = "fixed"
+    _order = 2
+
+    [methods.vec_add.params.y2]
+    type = "fixed"
+    _order = 3
+
+[methods.vec_sub]
+type = "Dictionary"
+desc = "Returns a [[class Dictionary]] { 'x' : [[class fixed]], 'y' : [[class fixed]] } of ``{x1, y1} - {x2, y2}``"
+
+    [methods.vec_sub.params.x1]
+    type = "fixed"
+    _order = 0
+
+    [methods.vec_sub.params.y1]
+    type = "fixed"
+    _order = 1
+
+    [methods.vec_sub.params.x2]
+    type = "fixed"
+    _order = 2
+
+    [methods.vec_sub.params.y2]
+    type = "fixed"
+    _order = 3
+
+[methods.vec_mul]
+type = "Dictionary"
+desc = "Returns a [[class Dictionary]] { 'x' : [[class fixed]], 'y' : [[class fixed]] } of a 2D Vector multiplied by ``mul``"
+
+    [methods.vec_mul.params.x]
+    type = "fixed"
+    _order = 0
+
+    [methods.vec_mul.params.y]
+    type = "fixed"
+    _order = 1
+
+    [methods.vec_mul.params.mul]
+    type = "fixed"
+    _order = 2
+
+[methods.vec_div]
+type = "Dictionary"
+desc = "Returns a [[class Dictionary]] { 'x' : [[class fixed]], 'y' : [[class fixed]] } of a 2D Vector divided by ``div``"
+
+    [methods.vec_div.params.x]
+    type = "fixed"
+    _order = 0
+
+    [methods.vec_div.params.y]
+    type = "fixed"
+    _order = 1
+
+    [methods.vec_div.params.div]
+    type = "fixed"
+    _order = 2
+
+[methods.vec_round]
+type = "Dictionary"
+desc = "Returns a [[class Dictionary]] { 'x' : [[class fixed]], 'y' : [[class fixed]] } of a 2D Vector divided by ``div``"
+
+    [methods.vec_round.params.x]
+    type = "fixed"
+    _order = 0
+
+    [methods.vec_round.params.y]
+    type = "fixed"
+    _order = 1
+
+[methods.vec_len]
+type = "fixed"
+desc = "Returns a [[class fixed|fixed number string]] of the distance between the specified 2D vector and ``{x:\"0\", y:\"0\"}``"
+
+    [methods.vec_len.params.x]
+    type = "fixed"
+    _order = 0
+
+    [methods.vec_len.params.y]
+    type = "fixed"
+    _order = 1
+
+[methods.vec_len_squared]
+type = "fixed"
+desc = "Returns a [[class fixed|fixed number string]] of ``x*x + y*y``, effectively the length of the vector squared. Useful for more efficiently comparing distances if the exact length is not needed, as this function will skip the square root calculation needed for vector length."
+
+    [methods.vec_len_squared.params.x]
+    type = "fixed"
+    _order = 0
+
+    [methods.vec_len_squared.params.y]
+    type = "fixed"
+    _order = 1
+
+[methods.vec_dist]
+type = "fixed"
+desc = "Returns a [[class fixed|fixed number string]] of the distance between two specified 2D vectors"
+
+    [methods.vec_dist.params.x1]
+    type = "fixed"
+    _order = 0
+
+    [methods.vec_dist.params.y1]
+    type = "fixed"
+    _order = 1
+
+    [methods.vec_dist.params.x2]
+    type = "fixed"
+    _order = 2
+
+    [methods.vec_dist.params.y2]
+    type = "fixed"
+    _order = 3
+
+[methods.normalized_vec]
+type = "Dictionary"
+desc = "Returns a [[class Dictionary]] { 'x' : [[class fixed]], 'y' : [[class fixed]] } of the specified 2D vector normalized (i.e. converted to a distance of 1 from ``{x:\"0\", y:\"0\"}`` towards the same angle)"
+
+    [methods.normalized_vec.params.x]
+    type = "fixed"
+    _order = 0
+
+    [methods.normalized_vec.params.y]
+    type = "fixed"
+    _order = 1
+
+[methods.normalized_vec_times]
+type = "Dictionary"
+desc = "Returns a [[class Dictionary]] { 'x' : [[class fixed]], 'y' : [[class fixed]] } of the specified 2D vector converted to a distance of ``length`` from ``{x:\"0\", y:\"0\"}`` towards the same angle"
+
+    [methods.normalized_vec_times.params.x]
+    type = "fixed"
+    _order = 0
+
+    [methods.normalized_vec_times.params.y]
+    type = "fixed"
+    _order = 1
+
+    [methods.normalized_vec_times.params.length]
+    type = "fixed"
+    _order = 2

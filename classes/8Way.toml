@@ -1,0 +1,299 @@
+version = "1.9.20"
+name = "8Way"
+inherits = "Control"
+script_path = ""
+scene_path = "res://ui/8Way/8Way.tscn"
+desc = ""
+category = "Custom UI"
+
+[signals.data_changed]
+desc = ""
+
+[constants.DIRS]
+type = "Array"
+value = "[\"Neutral\", \"E\", \"NE\", \"SE\", \"N\", \"S\", \"W\", \"NW\", \"SW\"]"
+desc = ""
+
+[constants.DIRS_LEFT]
+type = "Array"
+value = "[\"Neutral\", \"W\", \"NW\", \"SW\", \"N\", \"S\", \"E\", \"NE\", \"SE\"]"
+desc = ""
+
+[properties.consider_facing]
+export = true
+type = "bool"
+value = "true"
+desc = ""
+
+[properties.facing]
+type = "int"
+value = "1"
+desc = ""
+
+[properties.pressed_button]
+type = "Variant"
+value = "null"
+desc = ""
+
+[properties.NW]
+export = true
+type = "bool"
+value = "true"
+desc = ""
+
+[properties.N]
+export = true
+type = "bool"
+value = "true"
+desc = ""
+
+[properties.NE]
+export = true
+type = "bool"
+value = "true"
+desc = ""
+
+[properties.W]
+export = true
+type = "bool"
+value = "true"
+desc = ""
+
+[properties.Neutral]
+export = true
+type = "bool"
+value = "true"
+desc = ""
+
+[properties.E]
+export = true
+type = "bool"
+value = "true"
+desc = ""
+
+[properties.SW]
+export = true
+type = "bool"
+value = "true"
+desc = ""
+
+[properties.S]
+export = true
+type = "bool"
+value = "true"
+desc = ""
+
+[properties.SE]
+export = true
+type = "bool"
+value = "true"
+desc = ""
+
+[methods.set_facing]
+type = "Variant"
+desc = ""
+
+    [methods.set_facing.params.val]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.set_NW]
+desc = ""
+type = "void"
+
+    [methods.set_NW.params.val]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.set_N]
+desc = ""
+type = "void"
+
+    [methods.set_N.params.val]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.set_NE]
+desc = ""
+type = "void"
+
+    [methods.set_NE.params.val]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.set_W]
+desc = ""
+type = "void"
+
+    [methods.set_W.params.val]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.set_Neutral]
+desc = ""
+type = "void"
+
+    [methods.set_Neutral.params.val]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.set_E]
+desc = ""
+type = "void"
+
+    [methods.set_E.params.val]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.set_SW]
+desc = ""
+type = "void"
+
+    [methods.set_SW.params.val]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.set_S]
+desc = ""
+type = "void"
+
+    [methods.set_S.params.val]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.set_SE]
+desc = ""
+type = "void"
+
+    [methods.set_SE.params.val]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.set_dir]
+type = "Variant"
+desc = ""
+
+    [methods.set_dir.params.dir]
+    type = "Variant"
+    value = ""
+    desc = ""
+    _order = 0
+
+    [methods.set_dir.params.force_absolute]
+    type = "bool"
+    value = "false"
+    desc = ""
+    _order = 1
+
+[methods.set_sensible_default]
+type = "Variant"
+desc = ""
+
+    [methods.set_sensible_default.params.attempted_dir]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.set_dir_from_data]
+desc = ""
+type = "void"
+
+    [methods.set_dir_from_data.params.data]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.get_dir]
+type = "Variant"
+desc = ""
+
+[methods.get_buttons]
+type = "Variant"
+desc = ""
+
+[methods.get_value]
+type = "get_vec_int"
+desc = ""
+
+    [methods.get_value.params.dir]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.get_data]
+type = "String"
+desc = ""
+
+[methods.get_vec_int]
+type = "Dictionary"
+desc = ""
+
+    [methods.get_vec_int.params.x]
+    type = "int"
+    value = ""
+    desc = ""
+    _order = 0
+
+    [methods.get_vec_int.params.y]
+    type = "int"
+    value = ""
+    desc = ""
+    _order = 1
+
+[methods.try_hide_section]
+desc = ""
+type = "void"
+
+    [methods.try_hide_section.params.section]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.reverse_dir]
+type = "String"
+desc = ""
+
+    [methods.reverse_dir.params.dir]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.dir_to_facing]
+type = "reverse_dir"
+desc = ""
+
+    [methods.dir_to_facing.params.dir]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods._on_button_pressed]
+desc = ""
+type = "void"
+
+    [methods._on_button_pressed.params.button]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods._ready]
+desc = ""
+type = "void"
+
+[methods.init]
+desc = ""
+type = "void"
+
+[methods._prepare]
+desc = ""
+type = "void"

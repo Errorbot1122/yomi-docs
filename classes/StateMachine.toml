@@ -1,0 +1,244 @@
+version = "1.9.20"
+name = "StateMachine"
+inherits = "Node"
+script_path = "res://framework/FiniteStateMachine/StateMachine.gd"
+desc = ""
+category = "States"
+
+[signals.state_changed]
+desc = ""
+
+    [signals.state_changed.params.states_stack]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[signals.state_exited]
+desc = ""
+
+    [signals.state_exited.params.state]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[constants.STACK_SIZE]
+type = "int"
+value = "32"
+desc = ""
+
+[properties.states_stack]
+type = "Array"
+value = "[]"
+desc = ""
+
+[properties.states_map]
+type = "Dictionary"
+value = "{}"
+desc = ""
+
+[properties.state]
+type = "Variant"
+desc = ""
+
+[properties.queued_states]
+type = "Array"
+value = "[]"
+desc = ""
+
+[properties.queued_data]
+type = "Array"
+value = "[]"
+desc = ""
+
+[properties.initialized]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.starting_state]
+export = true
+type = "String"
+value = "\"\""
+desc = ""
+
+[properties.host_node_path]
+export = true
+type = "NodePath"
+desc = ""
+
+[properties.animation_player_path]
+export = true
+type = "NodePath"
+desc = ""
+
+[properties.animated_sprite_path]
+export = true
+type = "NodePath"
+desc = ""
+
+[properties.animated_sprite]
+type = "Variant"
+desc = ""
+
+[properties.animation_player]
+type = "Variant"
+desc = ""
+
+[properties.is_ready]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.host]
+type = "Variant"
+desc = ""
+
+[methods._ready]
+desc = ""
+type = "void"
+
+[methods._enter_tree]
+desc = ""
+type = "void"
+
+[methods.init]
+type = "Variant"
+desc = ""
+
+    [methods.init.params.st]
+    type = "String"
+    value = "\"\""
+    desc = ""
+    _order = 0
+
+    [methods.init.params.data]
+    type = "Variant"
+    value = "null"
+    desc = ""
+    _order = 1
+
+[methods.auto_transition]
+desc = ""
+type = "void"
+
+    [methods.auto_transition.params._anim_name]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.queue_state]
+desc = ""
+type = "void"
+
+    [methods.queue_state.params.new_state]
+    type = "Variant"
+    value = ""
+    desc = ""
+    _order = 0
+
+    [methods.queue_state.params.data]
+    type = "Variant"
+    value = "null"
+    desc = ""
+    _order = 1
+
+    [methods.queue_state.params.old_state]
+    type = "Variant"
+    value = "state"
+    desc = ""
+    _order = 2
+
+[methods.update]
+desc = ""
+type = "void"
+
+    [methods.update.params.delta]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.tick]
+desc = ""
+type = "void"
+
+[methods.deactivate]
+desc = ""
+type = "void"
+
+[methods.integrate]
+desc = ""
+type = "void"
+
+    [methods.integrate.params.st]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods._change_state]
+type = "Variant"
+desc = ""
+
+    [methods._change_state.params.state_name]
+    type = "String"
+    value = ""
+    desc = ""
+    _order = 0
+
+    [methods._change_state.params.data]
+    type = "Variant"
+    value = "null"
+    desc = ""
+    _order = 1
+
+    [methods._change_state.params.enter]
+    type = "bool"
+    value = "true"
+    desc = ""
+    _order = 2
+
+    [methods._change_state.params.exit]
+    type = "bool"
+    value = "true"
+    desc = ""
+    _order = 3
+
+[methods.try]
+desc = ""
+type = "void"
+
+    [methods.try.params.method]
+    type = "String"
+    value = ""
+    desc = ""
+    _order = 0
+
+    [methods.try.params.args]
+    type = "Array"
+    value = "[]"
+    desc = ""
+    _order = 1
+
+[methods.last_x_states]
+type = "Variant"
+desc = ""
+
+    [methods.last_x_states.params.x]
+    type = "Variant"
+    value = ""
+    desc = ""
+    _order = 0
+
+    [methods.last_x_states.params.names]
+    type = "bool"
+    value = "true"
+    desc = ""
+    _order = 1
+
+[methods.get_state]
+type = "Variant"
+desc = ""
+
+    [methods.get_state.params.state_name]
+    type = "Variant"
+    value = ""
+    desc = ""

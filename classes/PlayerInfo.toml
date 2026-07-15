@@ -1,0 +1,38 @@
+version = "1.9.20"
+name = "PlayerInfo"
+inherits = "Control"
+script_path = "res://ui/PlayerInfo.gd"
+desc = ""
+category = "Custom UI"
+
+[properties.fighter]
+type = "Fighter"
+desc = ""
+
+[properties.player_id]
+type = "int"
+value = "1"
+desc = ""
+
+[properties.under_healthbar]
+type = "bool"
+value = "false"
+desc = ""
+
+[methods.set_fighter]
+desc = ""
+type = "void"
+
+    [methods.set_fighter.params.fighter]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.on_position_changed]
+desc = ""
+type = "void"
+
+    [methods.on_position_changed.params.under_healthbar]
+    type = "Variant"
+    value = ""
+    desc = ""

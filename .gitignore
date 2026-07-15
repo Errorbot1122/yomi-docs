@@ -1,0 +1,8 @@
+__pycache__
+.python-version
+*.bak
+_tmp
+_build
+_tools/_*.py
+_old
+cspell.json

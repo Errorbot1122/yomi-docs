@@ -1,0 +1,78 @@
+version = "1.9.20"
+name = "HorizSlider"
+inherits = "VBoxContainer"
+script_path = ""
+scene_path = "res://ui/HorizSlider/HorizSlider.tscn"
+desc = ""
+category = "Custom UI"
+
+[signals.data_changed]
+desc = ""
+
+[properties.default]
+onready = true
+type = "Node"
+value = "$Direction.value"
+desc = ""
+
+[properties.centered]
+export = true
+type = "bool"
+value = "true"
+desc = ""
+
+[properties.min_value]
+export = true
+type = "int"
+value = "0"
+desc = ""
+
+[properties.max_value]
+export = true
+type = "int"
+value = "100"
+desc = ""
+
+[properties.buffer_value_changed]
+type = "bool"
+value = "false"
+desc = ""
+
+[methods._input]
+desc = ""
+type = "void"
+
+    [methods._input.params.event]
+    type = "InputEvent"
+    value = ""
+    desc = ""
+
+[methods._ready]
+desc = ""
+type = "void"
+
+[methods.on_value_changed]
+desc = ""
+type = "void"
+
+    [methods.on_value_changed.params.value]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods._process]
+desc = ""
+type = "void"
+
+    [methods._process.params._delta]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.get_value]
+type = "int"
+desc = ""
+
+[methods.get_data]
+type = "Dictionary"
+desc = ""

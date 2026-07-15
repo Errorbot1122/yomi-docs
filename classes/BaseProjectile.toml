@@ -1,0 +1,132 @@
+version = "1.9.20"
+updated = "2024-04-04"
+name = "BaseProjectile"
+inherits = "BaseObj"
+script_path = "res://projectile/BaseProjectile.gd"
+scene_path = "res://projectile/BaseProjectile.tscn"
+desc = "Class for any game object that is not a [[class Fighter]].\n\n[b]Note:[/b] Despite its name, objects extending [[class]] do not have to be standard projectiles.  [[class]] is flexible enough and meant to be used for ANY non-[[class Fighter]] game object.\n"
+category = "Game Objects"
+
+[signals.got_parried]
+desc = ""
+
+[properties.immunity_susceptible]
+export = true
+type = "bool"
+value = "true"
+desc = ""
+
+[properties.deletes_other_projectiles]
+export = true
+type = "bool"
+value = "true"
+desc = ""
+
+[properties.fizzle_on_ceiling]
+export = true
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.movable]
+export = true
+type = "bool"
+value = "true"
+desc = ""
+
+[properties.can_be_hit_by_melee]
+export = true
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.hit_cancel_on_hit]
+export = true
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.free_cancel_on_hit]
+export = true
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.apply_hitlag_when_hit_by_melee]
+export = true
+type = "bool"
+value = "true"
+desc = ""
+
+[properties.projectile_immune]
+export = true
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.hitlag_modifier]
+export = true
+type = "fixed"
+value = "\"1.0\""
+desc = ""
+
+[properties.got_parried]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.stopped]
+type = "bool"
+value = "false"
+desc = ""
+
+[methods._ready]
+desc = ""
+type = "void"
+
+[methods.get_opponent]
+type = "get_p2"
+desc = ""
+
+[methods.get_fighter]
+type = "get_p1"
+desc = ""
+
+[methods.disable]
+desc = ""
+type = "void"
+
+[methods.on_got_parried]
+desc = ""
+type = "void"
+
+[methods._process]
+desc = ""
+type = "void"
+
+    [methods._process.params.delta]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.on_hit_ceiling]
+desc = ""
+type = "void"
+
+[methods.can_hit_cancel]
+type = "Variant"
+desc = ""
+
+    [methods.can_hit_cancel.params._fighter]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.hit_by]
+type = "Variant"
+desc = ""
+
+    [methods.hit_by.params.hitbox]
+    type = "Variant"
+    value = ""
+    desc = ""

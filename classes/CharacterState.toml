@@ -1,0 +1,747 @@
+version = "1.9.20"
+name = "CharacterState"
+inherits = "ObjectState"
+script_path = "res://characters/states/CharState.gd"
+desc = ""
+category = "States"
+
+[signals.state_interruptable]
+desc = ""
+
+[signals.state_hit_cancellable]
+desc = ""
+
+[constants.WHIFF_SUPER_GAIN]
+type = "int"
+value = "10"
+desc = ""
+
+[properties._c_Menu]
+export = true
+desc = ""
+type = "void"
+
+[properties.title]
+export = true
+type = "String"
+desc = ""
+
+[properties.show_in_menu]
+export = true
+type = "bool"
+value = "true"
+desc = ""
+
+[properties.type]
+export = true
+type = "ActionType"
+desc = ""
+
+[properties.data_ui_scene]
+export = true
+type = "PackedScene"
+value = "null"
+desc = ""
+
+[properties.button_texture]
+export = true
+type = "Texture"
+value = "null"
+desc = ""
+
+[properties.flip_icon]
+export = true
+type = "bool"
+value = "true"
+desc = ""
+
+[properties.flip_with_facing]
+export = true
+type = "bool"
+value = "false"
+desc = ""
+
+[properties._c_Air_Data]
+export = true
+desc = ""
+type = "void"
+
+[properties.air_type]
+export = true
+type = "AirType"
+value = "AirType.Grounded"
+desc = ""
+
+[properties.uses_air_movement]
+export = true
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.land_cancel]
+export = true
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.landing_recovery]
+export = true
+type = "int"
+value = "- 1"
+desc = ""
+
+[properties.min_land_cancel_frame]
+export = true
+type = "int"
+value = "- 1"
+desc = ""
+
+[properties._c_Interrupt_Data]
+export = true
+desc = ""
+type = "void"
+
+[properties.iasa_at]
+export = true
+type = "int"
+value = "- 1"
+desc = "The tick number (0 being when the state starts) when the player will get their next interrupt turn.\n\nNegative numbers will be converted during [[meth init]] to be that many ticks before [[prop ObjectState.anim_length]], with the default of -1 being the tick this state naturally ends.\n\nHas no effect if [[prop ObjectState.endless]] is [code]true[/code], or [[prop interrupt_into_string]] is empty.\n"
+
+[properties.iasa_on_hit]
+export = true
+type = "int"
+value = "- 1"
+desc = "The tick number (0 being when the state starts) when the player will get their next interrupt turn if one of this state's hitboxes hits something during this state's use.\n\nNegative values have no effect.\n\nHas no effect if [[prop ObjectState.endless]] is [code]true[/code], or [[prop interrupt_into_string]] is empty.\n"
+
+[properties.iasa_on_hit_on_block]
+export = true
+type = "bool"
+value = "true"
+desc = "Whether or not [[prop iasa_on_hit]] has any effect when hitting the opponents block."
+
+[properties.interrupt_frames]
+export = true
+type = "Array"
+value = "[]"
+desc = "Array of tick numbers (0 being when the state starts) when the player will get additional interrupt turns.\n\nHas no effect if [[prop ObjectState.endless]] is [code]true[/code], or [[prop interrupt_into_string]] is empty.\n"
+
+[properties.throw_techable]
+export = true
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.interruptible_on_opponent_turn]
+export = true
+type = "bool"
+value = "false"
+desc = "If [code]true[/code], during this state's use, the player will gain interrupt turns at the same time as the opponent's interrupt turns."
+
+[properties.update_facing_on_exit]
+export = true
+type = "bool"
+value = "true"
+desc = ""
+
+[properties.dynamic_iasa]
+export = true
+type = "bool"
+value = "true"
+desc = "If [code]true[/code], sets [[prop interruptible_on_opponent_turn]] to [code]true[/code] after the first interrupt turn during the use of this state."
+
+[properties.backdash_iasa]
+export = true
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.allow_framecheat]
+export = true
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.next_state_on_hold]
+export = true
+type = "bool"
+value = "true"
+desc = "If [code]true[/code], the player locking in the \"Hold\" button on early turns before this state ends will cause the fighter to transition to [[prop ObjectState.fallback_state]], rather than stay and continue the rest of state.\n\nHas no effect on the opponents turn unless [[prop next_state_on_hold_on_opponent_turn]] is [code]true[/code].\n"
+
+[properties.next_state_on_hold_on_opponent_turn]
+export = true
+type = "bool"
+value = "false"
+desc = "Whether or not [[prop next_state_on_hold]] will also cause a state transition on opponents turns."
+
+[properties.combo_only]
+export = true
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.neutral_only]
+export = true
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.end_feint]
+export = true
+type = "bool"
+value = "true"
+desc = ""
+
+[properties.usable_from_whiff_cancel_if_possible]
+export = true
+type = "bool"
+value = "true"
+desc = ""
+
+[properties.starting_iasa_at]
+type = "int"
+value = "- 1"
+desc = ""
+
+[properties.starting_interrupt_frames]
+type = "Array"
+value = "[]"
+desc = ""
+
+[properties._c_Interrupt_Categories]
+export = true
+desc = ""
+type = "void"
+
+[properties.busy_interrupt_type]
+export = true
+type = "BusyInterrupt"
+value = "BusyInterrupt.Normal"
+desc = ""
+
+[properties.burst_cancellable]
+export = true
+type = "bool"
+value = "true"
+desc = ""
+
+[properties.burstable]
+export = true
+type = "bool"
+value = "true"
+desc = ""
+
+[properties.self_hit_cancellable]
+export = true
+type = "bool"
+value = "true"
+desc = ""
+
+[properties.self_interruptable]
+export = true
+type = "bool"
+value = "true"
+desc = ""
+
+[properties.reversible]
+export = true
+type = "bool"
+value = "true"
+desc = ""
+
+[properties.instant_cancellable]
+export = true
+type = "bool"
+value = "true"
+desc = ""
+
+[properties.force_feintable]
+export = true
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.can_feint_if_possible]
+export = true
+type = "bool"
+value = "true"
+desc = ""
+
+[properties.selectable]
+export = true
+type = "bool"
+value = "true"
+desc = ""
+
+[properties.interrupt_from_string]
+export = true
+type = "String"
+desc = ""
+
+[properties.interrupt_into_string]
+export = true
+type = "String"
+desc = ""
+
+[properties.hit_cancel_into_string]
+export = true
+type = "String"
+desc = ""
+
+[properties.interrupt_exceptions_string]
+export = true
+type = "String"
+desc = ""
+
+[properties.hit_cancel_exceptions_string]
+export = true
+type = "String"
+desc = ""
+
+[properties._c_Stances]
+export = true
+desc = ""
+type = "void"
+
+[properties.allowed_stances_string]
+export = true
+type = "String"
+value = "\"Normal\""
+desc = ""
+
+[properties.change_stance_to]
+export = true
+type = "String"
+value = "\"\""
+desc = ""
+
+[properties._c_Misc]
+export = true
+desc = ""
+type = "void"
+
+[properties.release_opponent_on_startup]
+export = true
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.release_opponent_on_exit]
+export = true
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.initiative_effect]
+export = true
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.initiative_startup_reduction_amount]
+export = true
+type = "int"
+value = "0"
+desc = ""
+
+[properties.apply_pushback]
+export = true
+type = "bool"
+value = "true"
+desc = ""
+
+[properties.beats_backdash]
+export = true
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.no_collision_start_frame]
+export = true
+type = "int"
+value = "- 1"
+desc = ""
+
+[properties.no_collision_end_frame]
+export = true
+type = "int"
+value = "- 1"
+desc = ""
+
+[properties.can_be_counterhit]
+export = true
+type = "bool"
+value = "true"
+desc = ""
+
+[properties.tick_priority]
+export = true
+type = "int"
+value = "0"
+desc = ""
+
+[properties.velocity_forward_meter_gain_multiplier]
+export = true
+type = "fixed"
+value = "\"1.0\""
+desc = ""
+
+[properties.whiff_meter_gain_multiplier]
+export = true
+type = "fixed"
+value = "\"1.0\""
+desc = ""
+
+[properties._c_Super]
+export = true
+desc = ""
+type = "void"
+
+[properties.super_level_]
+export = true
+type = "int"
+value = "0"
+desc = ""
+
+[properties.supers_used_]
+export = true
+type = "int"
+value = "- 1"
+desc = ""
+
+[properties.super_freeze_ticks_]
+export = true
+type = "int"
+value = "15"
+desc = ""
+
+[properties.super_effect_]
+export = true
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.scale_combo_meter_]
+export = true
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.initiative_effect_spawned]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.dash_iasa]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.started_in_air]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.hit_yet]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.hit_anything]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.was_blocked]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.hit_cancelled]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.started_during_combo]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.feinted_last]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.is_brace]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.feinting]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.interrupt_into]
+type = "Array"
+value = "[]"
+desc = ""
+
+[properties.interrupt_from]
+type = "Array"
+value = "[]"
+desc = ""
+
+[properties.interrupt_exceptions]
+type = "Array"
+value = "[]"
+desc = ""
+
+[properties.hit_cancel_into]
+type = "Array"
+value = "[]"
+desc = ""
+
+[properties.hit_cancel_exceptions]
+type = "Array"
+value = "[]"
+desc = ""
+
+[properties.busy_interrupt_into]
+type = "Array"
+value = "[]"
+desc = ""
+
+[properties.allowed_stances]
+type = "Array"
+value = "[]"
+desc = ""
+
+[properties.usable_requirement_nodes]
+type = "Array"
+value = "[]"
+desc = ""
+
+[properties.is_hurt_state]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.start_interruptible_on_opponent_turn]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.initiative_startup_reduction]
+type = "bool"
+value = "false"
+desc = ""
+
+[methods._frame_0_shared]
+desc = ""
+type = "void"
+
+[methods.get_interrupt_into]
+type = "Variant"
+desc = ""
+
+[methods.get_interrupt_from]
+type = "Variant"
+desc = ""
+
+[methods.get_interrupt_exceptions]
+type = "Variant"
+desc = ""
+
+[methods.get_hit_cancel_into]
+type = "Variant"
+desc = ""
+
+[methods.get_hit_cancel_exceptions]
+type = "Variant"
+desc = ""
+
+[methods.get_busy_interrupt_into]
+type = "Variant"
+desc = ""
+
+[methods.get_allowed_stances]
+type = "Variant"
+desc = ""
+
+[methods.init]
+desc = ""
+type = "void"
+
+[methods.get_ui_category]
+type = "Variant"
+desc = ""
+
+[methods.is_usable_with_grounded_check]
+type = "Variant"
+desc = ""
+
+    [methods.is_usable_with_grounded_check.params.force_aerial]
+    type = "bool"
+    value = "false"
+    desc = ""
+    _order = 0
+
+    [methods.is_usable_with_grounded_check.params.force_grounded]
+    type = "bool"
+    value = "false"
+    desc = ""
+    _order = 1
+
+[methods.is_usable]
+type = "Variant"
+desc = ""
+
+[methods.get_velocity_forward_meter_gain_multiplier]
+type = "Variant"
+desc = ""
+
+[methods.get_categories]
+type = "Variant"
+desc = ""
+
+    [methods.get_categories.params.string]
+    type = "String"
+    value = ""
+    desc = ""
+
+[methods._enter_shared]
+desc = ""
+type = "void"
+
+[methods.allowed_in_stance]
+type = "Variant"
+desc = ""
+
+[methods.enable_interrupt]
+type = "Variant"
+desc = ""
+
+    [methods.enable_interrupt.params.check_opponent]
+    type = "bool"
+    value = "true"
+    desc = ""
+    _order = 0
+
+    [methods.enable_interrupt.params.remove_hitlag]
+    type = "bool"
+    value = "false"
+    desc = ""
+    _order = 1
+
+[methods.enable_hit_cancel]
+desc = ""
+type = "void"
+
+    [methods.enable_hit_cancel.params.projectile]
+    type = "bool"
+    value = "false"
+    desc = ""
+
+[methods._on_hit_something]
+desc = ""
+type = "void"
+
+    [methods._on_hit_something.params.obj]
+    type = "Variant"
+    value = ""
+    desc = ""
+    _order = 0
+
+    [methods._on_hit_something.params.hitbox]
+    type = "Variant"
+    value = ""
+    desc = ""
+    _order = 1
+
+[methods._can_hit_cancel]
+type = "Variant"
+desc = ""
+
+    [methods._can_hit_cancel.params.obj]
+    type = "Variant"
+    value = ""
+    desc = ""
+    _order = 0
+
+    [methods._can_hit_cancel.params.hitbox]
+    type = "Variant"
+    value = ""
+    desc = ""
+    _order = 1
+
+[methods.can_hit_cancel]
+type = "Variant"
+desc = ""
+
+[methods.try_hit_cancel]
+desc = ""
+type = "void"
+
+    [methods.try_hit_cancel.params.obj]
+    type = "Variant"
+    value = ""
+    desc = ""
+    _order = 0
+
+    [methods.try_hit_cancel.params.hitbox]
+    type = "Variant"
+    value = ""
+    desc = ""
+    _order = 1
+
+[methods.process_hitboxes]
+desc = ""
+type = "void"
+
+[methods.spawn_exported_projectile]
+desc = ""
+type = "void"
+
+[methods.initiative_effect]
+desc = ""
+type = "void"
+
+[methods._tick_shared]
+type = "Variant"
+desc = ""
+
+[methods._tick_after]
+desc = ""
+type = "void"
+
+[methods.update_parameters]
+desc = ""
+type = "void"
+
+[methods.on_continue]
+desc = ""
+type = "void"
+
+[methods.can_feint]
+type = "Variant"
+desc = ""
+
+[methods.can_interrupt]
+type = "Variant"
+desc = ""
+
+[methods.on_got_hit]
+desc = ""
+type = "void"
+
+[methods.opponent_turn_interrupt]
+desc = ""
+type = "void"
+
+[methods._exit_shared]
+desc = ""
+type = "void"
+
+[methods.update_sprite_frame]
+desc = ""
+type = "void"

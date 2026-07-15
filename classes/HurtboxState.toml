@@ -1,0 +1,87 @@
+version = "1.9.20"
+name = "HurtboxState"
+inherits = "CollisionBox"
+script_path = "res://HurtboxState.gd"
+desc = ""
+category = "Hitboxes"
+
+[properties.start_tick]
+export = true
+type = "int"
+value = "1"
+desc = ""
+
+[properties.active_ticks]
+export = true
+type = "int"
+value = "1"
+desc = ""
+
+[properties.endless]
+export = true
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.started]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.ended]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.current_tick]
+type = "int"
+value = "0"
+desc = ""
+
+[properties.prev_state]
+type = "Variant"
+desc = ""
+
+[methods._ready]
+desc = ""
+type = "void"
+
+[methods.start]
+desc = ""
+type = "void"
+
+    [methods.start.params.host]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.tick]
+desc = ""
+type = "void"
+
+    [methods.tick.params.host]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.copy_to]
+desc = ""
+type = "void"
+
+    [methods.copy_to.params.hurtbox_state]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.end]
+type = "Variant"
+desc = ""
+
+    [methods.end.params.host]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.can_draw_box]
+type = "Variant"
+desc = ""

@@ -1,0 +1,305 @@
+version = "1.9.20"
+name = "HitboxData"
+inherits = ""
+script_path = "res://mechanics/HitboxData.gd"
+desc = ""
+category = "Hitboxes"
+
+[properties.hit_height]
+type = "int"
+desc = ""
+
+[properties.hitstun_ticks]
+type = "int"
+desc = ""
+
+[properties.facing]
+type = "String"
+desc = ""
+
+[properties.knockback]
+type = "String"
+desc = ""
+
+[properties.dir_y]
+type = "String"
+desc = ""
+
+[properties.dir_x]
+type = "String"
+desc = ""
+
+[properties.pos_x]
+type = "int"
+desc = ""
+
+[properties.pos_y]
+type = "int"
+desc = ""
+
+[properties.counter_hit]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.knockdown]
+type = "bool"
+desc = ""
+
+[properties.hitlag_ticks]
+type = "Variant"
+desc = ""
+
+[properties.victim_hitlag]
+type = "Variant"
+desc = ""
+
+[properties.disable_collision]
+type = "Variant"
+desc = ""
+
+[properties.aerial_hit_state]
+type = "Variant"
+desc = ""
+
+[properties.grounded_hit_state]
+type = "Variant"
+desc = ""
+
+[properties.ground_bounce]
+type = "Variant"
+desc = ""
+
+[properties.air_ground_bounce]
+type = "Variant"
+desc = ""
+
+[properties.hits_otg]
+type = "Variant"
+desc = ""
+
+[properties.damage]
+type = "Variant"
+desc = ""
+
+[properties.reversible]
+type = "Variant"
+desc = ""
+
+[properties.name]
+type = "Variant"
+desc = ""
+
+[properties.throw]
+type = "Variant"
+desc = ""
+
+[properties.combo_count]
+type = "int"
+value = "0"
+desc = ""
+
+[properties.knockdown_extends_hitstun]
+type = "bool"
+value = "true"
+desc = ""
+
+[properties.rumble]
+type = "Variant"
+desc = ""
+
+[properties.host]
+type = "Variant"
+desc = ""
+
+[properties.screenshake_frames]
+type = "int"
+value = "0"
+desc = ""
+
+[properties.screenshake_amount]
+type = "int"
+value = "0"
+desc = ""
+
+[properties.minimum_damage]
+type = "int"
+value = "0"
+desc = ""
+
+[properties.sdi_modifier]
+type = "fixed"
+value = "\"1.0\""
+desc = ""
+
+[properties.di_modifier]
+type = "fixed"
+value = "\"1.0\""
+desc = ""
+
+[properties.meter_gain_modifier]
+type = "fixed"
+value = "\"1.0\""
+desc = ""
+
+[properties.increment_combo]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.ignore_armor]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.damage_proration]
+type = "int"
+value = "0"
+desc = ""
+
+[properties.parry_meter_gain]
+type = "int"
+value = "- 1"
+desc = ""
+
+[properties.force_grounded]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.hitbox_type]
+type = "int"
+value = "0"
+desc = ""
+
+[properties.hard_knockdown]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.damage_in_combo]
+type = "int"
+value = "- 1"
+desc = ""
+
+[properties.wall_slam]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.hits_vs_dizzy]
+type = "bool"
+value = "true"
+desc = ""
+
+[properties.is_projectile]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.scale_combo]
+type = "bool"
+value = "true"
+desc = ""
+
+[properties.combo_scaling_amount]
+type = "int"
+value = "1"
+desc = ""
+
+[properties.vacuum]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.hits_vs_standing]
+type = "bool"
+value = "true"
+desc = ""
+
+[properties.send_away_from_center]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.minimum_grounded_frames]
+type = "int"
+value = "- 1"
+desc = ""
+
+[properties.plus_frames]
+type = "int"
+value = "0"
+desc = ""
+
+[properties.chip_damage_modifier]
+type = "fixed"
+value = "\"1.0\""
+desc = ""
+
+[properties.block_pushback_modifier]
+type = "fixed"
+value = "\"1.0\""
+desc = ""
+
+[properties.ground_bounce_knockback_modifier]
+type = "fixed"
+value = "\"1.0\""
+desc = ""
+
+[properties.hits_projectiles]
+type = "bool"
+value = "true"
+desc = ""
+
+[properties.cancellable]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.followup_state]
+type = "String"
+value = "\"\""
+desc = ""
+
+[properties.guard_break]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.block_punishable]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.ignore_projectile_armor]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.looping]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.block_cancel_allowed]
+type = "bool"
+value = "true"
+desc = ""
+
+[methods.get_damage]
+type = "Variant"
+desc = ""
+
+[methods._init]
+desc = ""
+type = "void"
+
+    [methods._init.params.state]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.is_projectile]
+type = "Variant"
+desc = ""

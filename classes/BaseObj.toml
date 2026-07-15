@@ -1,0 +1,1617 @@
+version = "1.9.20"
+updated = "2024-04-04"
+name = "BaseObj"
+inherits = "Node2D"
+script_path = "res://obj/BaseObj.gd"
+scene_path = "res://obj/BaseObj.tscn"
+desc = """
+Class containing functionality that both [[class Fighter]] and [[class BaseProjectile]] use.
+
+[b]Note:[/b] This class is missing functionality that is added by [[class Fighter]] and [[class BaseProjectile]].  Despite its name, all game objects that are not [[class Fighter]]s should extend [[class BaseProjectile]], not [[class BaseObj]] directly.
+"""
+category = "Game Objects"
+
+[signals.object_spawned]
+desc = ""
+
+    [signals.object_spawned.params.object]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[signals.particle_effect_spawned]
+desc = ""
+
+    [signals.particle_effect_spawned.params.particle]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[signals.initialized]
+desc = ""
+
+[signals.got_hit]
+desc = ""
+
+[signals.got_hit_by_fighter]
+desc = ""
+
+[signals.got_hit_by_projectile]
+desc = ""
+
+[signals.hitbox_refreshed]
+desc = ""
+
+    [signals.hitbox_refreshed.params.hitbox]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[signals.global_hitlag]
+desc = ""
+
+    [signals.global_hitlag.params.amount]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[constants.RUMBLE_MODIFIER]
+type = "float"
+value = "4.0"
+desc = ""
+
+[constants.MAX_RUMBLE]
+type = "int"
+value = "10"
+desc = ""
+
+[constants.MIN_VELOCITY]
+type = "fixed"
+value = "\"0.0001\""
+desc = ""
+
+[properties.id]
+export = true
+type = "int"
+value = "1"
+desc = ""
+
+[properties.dummy]
+export = true
+type = "bool"
+value = "false"
+desc = ""
+
+[properties._c_MovementAttributes]
+export = true
+type = "int"
+value = "0"
+desc = ""
+
+[properties.gravity]
+export = true
+type = "String"
+value = "\"0.8\""
+desc = ""
+
+[properties.ground_friction]
+export = true
+type = "String"
+value = "\"2.5\""
+desc = ""
+
+[properties.air_friction]
+export = true
+type = "String"
+value = "\"0.2\""
+desc = ""
+
+[properties.max_ground_speed]
+export = true
+type = "String"
+value = "\"15\""
+desc = ""
+
+[properties.max_air_speed]
+export = true
+type = "String"
+value = "\"10\""
+desc = ""
+
+[properties.max_fall_speed]
+export = true
+type = "String"
+value = "\"15\""
+desc = ""
+
+[properties.extra_state_variables]
+export = true
+type = "String"
+desc = ""
+
+[properties.damages_own_team]
+export = true
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.has_projectile_parry_window]
+export = true
+type = "bool"
+value = "true"
+desc = ""
+
+[properties.always_parriable]
+export = true
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.throw_positions]
+export = true
+type = "Dictionary"
+value = "{}"
+desc = ""
+
+[properties.collision_box]
+onready = true
+type = "Node"
+value = "$CollisionBox"
+desc = ""
+
+[properties.hurtbox]
+onready = true
+type = "Node"
+value = "$Hurtbox"
+desc = ""
+
+[properties.particles]
+onready = true
+type = "Node"
+value = "$\"%Particles\""
+desc = ""
+
+[properties.state_machine]
+onready = true
+type = "Node"
+value = "$StateMachine"
+desc = ""
+
+[properties.sprite]
+onready = true
+type = "Node"
+value = "$\"%Sprite\""
+desc = ""
+
+[properties.flip]
+onready = true
+type = "Node"
+value = "$Flip"
+desc = ""
+
+[properties.debug_label]
+type = "Variant"
+desc = ""
+
+[properties.chara]
+type = "FGObject"
+value = "FGObject.new()"
+desc = ""
+
+[properties.stage_width]
+type = "int"
+value = "0"
+desc = ""
+
+[properties.ceiling_height]
+type = "int"
+value = "0"
+desc = ""
+
+[properties.has_ceiling]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.obj_name]
+type = "String"
+desc = ""
+
+[properties.custom_hitspark]
+type = "Variant"
+desc = ""
+
+[properties.data]
+type = "Variant"
+desc = ""
+
+[properties.obj_data]
+type = "Variant"
+desc = ""
+
+[properties.current_tick]
+type = "int"
+value = "0"
+desc = ""
+
+[properties.game_tick]
+type = "int"
+value = "0"
+desc = ""
+
+[properties.hitlag_ticks]
+type = "int"
+value = "0"
+desc = ""
+
+[properties.combo_count]
+type = "int"
+value = "0"
+desc = ""
+
+[properties.gravity_enabled]
+type = "bool"
+value = "true"
+desc = ""
+
+[properties.last_hit_frame]
+type = "int"
+value = "0"
+desc = ""
+
+[properties.is_ghost]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.spawn_data]
+type = "Variant"
+value = "null"
+desc = ""
+
+[properties.disabled]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.creator_name]
+type = "Variant"
+value = "null"
+desc = ""
+
+[properties.creator]
+type = "Variant"
+value = "null"
+desc = ""
+
+[properties.can_update_sprite]
+type = "bool"
+value = "true"
+desc = ""
+
+[properties.fixed]
+type = "FixedMath"
+value = "FixedMath.new()"
+desc = ""
+
+[properties.native]
+type = "NativeMethods"
+value = "NativeMethods.new()"
+desc = ""
+
+[properties.state_interruptable]
+type = "bool"
+value = "true"
+desc = ""
+
+[properties.state_hit_cancellable]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.invulnerable]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.grounded_attack_immune]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.aerial_attack_immune]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.use_platforms]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.last_object_hit]
+type = "String"
+value = "\"\""
+desc = ""
+
+[properties.default_hurtbox]
+type = "Dictionary"
+value = "{ \"x\":0, \"y\":0, \"width\":0, \"height\":0 }"
+desc = ""
+
+[properties.projectile_invulnerable]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.throw_invulnerable]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.state_variables]
+type = "Array"
+value = "[\"id\", \"grounded_attack_immune\", \"game_tick\", \"match_seed\", \"aerial_attack_immune\", \"last_object_hit\", \"can_update_sprite\", \"last_hit_frame\", \"damages_own_team\", \"ceiling_height\", \"has_ceiling\", \"has_projectile_parry_window\", \"always_parriable\", \"use_platforms\", \"gravity\", \"ground_friction\", \"air_friction\", \"max_ground_speed\", \"max_air_speed\", \"max_fall_speed\", \"projectile_invulnerable\", \"gravity_enabled\", \"default_hurtbox\", \"throw_invulnerable\", \"creator_name\", \"name\", \"obj_name\", \"stage_width\", \"hitlag_ticks\", \"combo_count\", \"invulnerable\", \"current_tick\", \"disabled\", \"state_interruptable\", \"state_hit_cancellable\"]"
+desc = ""
+
+[properties.hitboxes]
+type = "Array"
+value = "[]"
+desc = ""
+
+[properties.previous_state]
+type = "String"
+value = "\"\""
+desc = ""
+
+[properties.fighter_owner]
+type = "Variant"
+desc = ""
+
+[properties.initialized]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.rng]
+type = "BetterRng"
+value = "BetterRng.new()"
+desc = ""
+
+[properties.objs_map]
+type = "Dictionary"
+value = "{}"
+desc = "A list of all objects spawned during a game. Starts off only containing the [[class Fighter]] objects as '[code]P1[/code]' and '[code]P2[/code]', then every other object as '[code]3[/code]', '[code]4[/code]', etc."
+
+[properties.sounds]
+type = "Dictionary"
+value = "{}"
+desc = ""
+
+[properties.logic_rng]
+type = "BetterRng"
+desc = ""
+
+[properties.logic_rng_static]
+type = "BetterRng"
+desc = ""
+
+[properties.logic_rng_seed]
+type = "int"
+value = "0"
+desc = ""
+
+[properties.logic_rng_static_seed]
+type = "int"
+value = "0"
+desc = ""
+
+[methods._enter_tree]
+desc = ""
+type = "void"
+
+[methods.get_p1]
+type = "obj_from_name"
+desc = ""
+
+[methods.get_p2]
+type = "obj_from_name"
+desc = ""
+
+[methods._ready]
+desc = ""
+type = "void"
+
+[methods.global_hitlag]
+desc = ""
+type = "void"
+
+    [methods.global_hitlag.params.amount]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.play_sound]
+type = "Variant"
+desc = ""
+
+    [methods.play_sound.params.sound_name]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.stop_sound]
+type = "Variant"
+desc = ""
+
+    [methods.stop_sound.params.sound_name]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.refresh_hitboxes]
+desc = ""
+type = "void"
+
+[methods.setup_hitbox_names]
+desc = ""
+type = "void"
+
+[methods._on_state_exited]
+desc = ""
+type = "void"
+
+    [methods._on_state_exited.params.state]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.on_got_push_blocked]
+desc = ""
+type = "void"
+
+[methods.get_owner]
+type = "Variant"
+desc = ""
+
+[methods.current_state]
+type = "Variant"
+desc = ""
+
+[methods.is_otg]
+type = "bool"
+desc = ""
+
+[methods.init]
+type = "Variant"
+desc = ""
+
+    [methods.init.params.pos]
+    type = "Variant"
+    value = "null"
+    desc = ""
+
+[methods.reset_hurtbox]
+desc = ""
+type = "void"
+
+[methods.rumble]
+desc = ""
+type = "void"
+
+    [methods.rumble.params.amount]
+    type = "float"
+    value = ""
+    desc = ""
+    _order = 0
+
+    [methods.rumble.params.ticks]
+    type = "int"
+    value = ""
+    desc = ""
+    _order = 1
+
+[methods.set_rumble]
+desc = ""
+type = "void"
+
+    [methods.set_rumble.params.amount]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.change_state]
+desc = ""
+type = "void"
+
+    [methods.change_state.params.state_name]
+    type = "Variant"
+    value = ""
+    desc = ""
+    _order = 0
+
+    [methods.change_state.params.state_data]
+    type = "Variant"
+    value = "null"
+    desc = ""
+    _order = 1
+
+    [methods.change_state.params.enter]
+    type = "bool"
+    value = "true"
+    desc = ""
+    _order = 2
+
+    [methods.change_state.params.exit]
+    type = "bool"
+    value = "true"
+    desc = ""
+    _order = 3
+
+[methods.obj_from_name]
+type = "Variant"
+desc = ""
+
+    [methods.obj_from_name.params.name]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods._on_hit_something]
+type = "Variant"
+desc = ""
+
+    [methods._on_hit_something.params.obj]
+    type = "Variant"
+    value = ""
+    desc = ""
+    _order = 0
+
+    [methods._on_hit_something.params.hitbox]
+    type = "Variant"
+    value = ""
+    desc = ""
+    _order = 1
+
+[methods.hit_fighter_last]
+type = "Variant"
+desc = ""
+
+[methods.can_be_thrown]
+type = "Variant"
+desc = ""
+
+[methods.copy_to]
+desc = "Used for copying property values from an object to its prediction ghost"
+type = "void"
+
+    [methods.copy_to.params.o]
+    type = "BaseObj"
+    value = ""
+    desc = ""
+
+[methods.get_frames]
+type = "Variant"
+desc = ""
+
+[methods.stop_particles]
+desc = ""
+type = "void"
+
+[methods.get_hitbox_x_dir]
+type = "Variant"
+desc = ""
+
+    [methods.get_hitbox_x_dir.params.hitbox]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.get_current_sprite_frame]
+type = "Texture"
+desc = ""
+
+[methods.get_current_sprite_frame_path]
+type = "String"
+desc = ""
+
+[methods.get_current_sprite_frame_number]
+type = "Variant"
+desc = ""
+
+[methods.turn_around]
+desc = ""
+type = "void"
+
+[methods.update_data]
+desc = ""
+type = "void"
+
+[methods.obj_local_pos]
+type = "Dictionary"
+desc = ""
+
+    [methods.obj_local_pos.params.obj]
+    type = "BaseObj"
+    value = ""
+    desc = ""
+
+[methods.obj_local_center]
+type = "Dictionary"
+desc = ""
+
+    [methods.obj_local_center.params.obj]
+    type = "BaseObj"
+    value = ""
+    desc = ""
+
+[methods.get_global_center]
+type = "Variant"
+desc = ""
+
+[methods.get_facing]
+type = "Variant"
+desc = ""
+
+[methods.get_opponent]
+type = "Variant"
+desc = ""
+
+[methods.get_fighter]
+type = "Variant"
+desc = ""
+
+[methods.hash_static_rng]
+desc = ""
+type = "void"
+
+[methods.hash_rng]
+desc = ""
+type = "void"
+
+[methods.obj_distance]
+type = "Variant"
+desc = ""
+
+    [methods.obj_distance.params.obj]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.spawn_object]
+type = "Variant"
+desc = ""
+
+    [methods.spawn_object.params.projectile]
+    type = "PackedScene"
+    value = ""
+    desc = ""
+    _order = 0
+
+    [methods.spawn_object.params.pos_x]
+    type = "int"
+    value = ""
+    desc = ""
+    _order = 1
+
+    [methods.spawn_object.params.pos_y]
+    type = "int"
+    value = ""
+    desc = ""
+    _order = 2
+
+    [methods.spawn_object.params.relative]
+    type = "bool"
+    value = "true"
+    desc = ""
+    _order = 3
+
+    [methods.spawn_object.params.data]
+    type = "Variant"
+    value = "null"
+    desc = ""
+    _order = 4
+
+    [methods.spawn_object.params.local]
+    type = "bool"
+    value = "true"
+    desc = ""
+    _order = 5
+
+[methods.get_hurtbox_center]
+type = "Variant"
+desc = ""
+
+[methods.get_hurtbox_center_float]
+type = "Variant"
+desc = ""
+
+[methods.hurtbox_pos_relative]
+type = "Dictionary"
+desc = ""
+
+[methods.hurtbox_pos_float]
+type = "Vector2"
+desc = ""
+
+[methods.hurtbox_pos_relative_float]
+type = "Vector2"
+desc = ""
+
+[methods.start_throw_invulnerability]
+desc = ""
+type = "void"
+
+[methods.end_throw_invulnerability]
+desc = ""
+type = "void"
+
+[methods.start_projectile_invulnerability]
+desc = ""
+type = "void"
+
+[methods.end_projectile_invulnerability]
+desc = ""
+type = "void"
+
+[methods.start_aerial_attack_invulnerability]
+desc = ""
+type = "void"
+
+[methods.end_aerial_attack_invulnerability]
+desc = ""
+type = "void"
+
+[methods.start_grounded_attack_invulnerability]
+desc = ""
+type = "void"
+
+[methods.end_grounded_attack_invulnerability]
+desc = ""
+type = "void"
+
+[methods.start_invulnerability]
+desc = ""
+type = "void"
+
+[methods.end_invulnerability]
+desc = ""
+type = "void"
+
+[methods.spawn_particle_effect]
+type = "Variant"
+desc = ""
+
+    [methods.spawn_particle_effect.params.particle_effect]
+    type = "PackedScene"
+    value = ""
+    desc = ""
+    _order = 0
+
+    [methods.spawn_particle_effect.params.pos]
+    type = "Vector2"
+    value = ""
+    desc = ""
+    _order = 1
+
+    [methods.spawn_particle_effect.params.dir]
+    type = "Vector2"
+    value = "Vector2.RIGHT"
+    desc = ""
+    _order = 2
+
+[methods.spawn_particle_effect_relative]
+type = "Variant"
+desc = ""
+
+    [methods.spawn_particle_effect_relative.params.particle_effect]
+    type = "PackedScene"
+    value = ""
+    desc = ""
+    _order = 0
+
+    [methods.spawn_particle_effect_relative.params.pos]
+    type = "Vector2"
+    value = "Vector2()"
+    desc = ""
+    _order = 1
+
+    [methods.spawn_particle_effect_relative.params.dir]
+    type = "Vector2"
+    value = "Vector2.RIGHT"
+    desc = ""
+    _order = 2
+
+[methods._spawn_particle_effect]
+type = "Variant"
+desc = ""
+
+    [methods._spawn_particle_effect.params.particle_effect]
+    type = "PackedScene"
+    value = ""
+    desc = ""
+    _order = 0
+
+    [methods._spawn_particle_effect.params.pos]
+    type = "Vector2"
+    value = ""
+    desc = ""
+    _order = 1
+
+    [methods._spawn_particle_effect.params.dir]
+    type = "Vector2"
+    value = "Vector2.RIGHT"
+    desc = ""
+    _order = 2
+
+[methods.get_camera]
+type = "Variant"
+desc = ""
+
+[methods.grab_camera_focus]
+desc = ""
+type = "void"
+
+[methods.release_camera_focus]
+desc = ""
+type = "void"
+
+[methods.screen_bump]
+desc = ""
+type = "void"
+
+    [methods.screen_bump.params.dir]
+    type = "Vector2"
+    value = "Vector2()"
+    desc = ""
+    _order = 0
+
+    [methods.screen_bump.params.screenshake_amount]
+    type = "float"
+    value = "2.0"
+    desc = ""
+    _order = 1
+
+    [methods.screen_bump.params.screenshake_time]
+    type = "float"
+    value = "0.1"
+    desc = ""
+    _order = 2
+
+[methods.update_collision_boxes]
+desc = ""
+type = "void"
+
+[methods.set_facing]
+desc = ""
+type = "void"
+
+    [methods.set_facing.params.facing]
+    type = "int"
+    value = ""
+    desc = ""
+
+[methods.fixed_dot]
+type = "String"
+desc = ""
+
+    [methods.fixed_dot.params.x1]
+    type = "String"
+    value = ""
+    desc = ""
+    _order = 0
+
+    [methods.fixed_dot.params.y1]
+    type = "String"
+    value = ""
+    desc = ""
+    _order = 1
+
+    [methods.fixed_dot.params.x2]
+    type = "String"
+    value = ""
+    desc = ""
+    _order = 2
+
+    [methods.fixed_dot.params.y2]
+    type = "String"
+    value = ""
+    desc = ""
+    _order = 3
+
+[methods.fixed_inverse_lerp]
+type = "String"
+desc = ""
+
+    [methods.fixed_inverse_lerp.params.a]
+    type = "String"
+    value = ""
+    desc = ""
+    _order = 0
+
+    [methods.fixed_inverse_lerp.params.b]
+    type = "String"
+    value = ""
+    desc = ""
+    _order = 1
+
+    [methods.fixed_inverse_lerp.params.v]
+    type = "String"
+    value = ""
+    desc = ""
+    _order = 2
+
+[methods.fixed_map]
+type = "Variant"
+desc = ""
+
+    [methods.fixed_map.params.i_min]
+    type = "String"
+    value = ""
+    desc = ""
+    _order = 0
+
+    [methods.fixed_map.params.i_max]
+    type = "String"
+    value = ""
+    desc = ""
+    _order = 1
+
+    [methods.fixed_map.params.o_min]
+    type = "String"
+    value = ""
+    desc = ""
+    _order = 2
+
+    [methods.fixed_map.params.o_max]
+    type = "String"
+    value = ""
+    desc = ""
+    _order = 3
+
+    [methods.fixed_map.params.v]
+    type = "String"
+    value = ""
+    desc = ""
+    _order = 4
+
+[methods.set_vel]
+desc = ""
+type = "void"
+
+    [methods.set_vel.params.x]
+    type = "Variant"
+    value = ""
+    desc = ""
+    _order = 0
+
+    [methods.set_vel.params.y]
+    type = "Variant"
+    value = ""
+    desc = ""
+    _order = 1
+
+[methods.get_vel]
+type = "Dictionary"
+desc = ""
+
+[methods.get_facing_int]
+type = "Variant"
+desc = ""
+
+[methods.detect]
+desc = ""
+type = "void"
+
+    [methods.detect.params.obj]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.check_params]
+desc = ""
+type = "void"
+
+    [methods.check_params.params.x]
+    type = "Variant"
+    value = ""
+    desc = ""
+    _order = 0
+
+    [methods.check_params.params.y]
+    type = "Variant"
+    value = ""
+    desc = ""
+    _order = 1
+
+[methods.set_x]
+desc = ""
+type = "void"
+
+    [methods.set_x.params.x]
+    type = "int"
+    value = ""
+    desc = ""
+
+[methods.set_y]
+desc = ""
+type = "void"
+
+    [methods.set_y.params.y]
+    type = "int"
+    value = ""
+    desc = ""
+
+[methods.get_center_position_float]
+type = "Vector2"
+desc = ""
+
+[methods.set_pos]
+type = "Variant"
+desc = "Sets an object's position relative to the stage. For setting position relative to the object, see [[meth move_directly]]"
+
+    [methods.set_pos.params.x]
+    type = "Variant"
+    value = ""
+    desc = ""
+    _order = 0
+
+    [methods.set_pos.params.y]
+    type = "Variant"
+    value = ""
+    desc = ""
+    _order = 1
+
+[methods.set_snap_to_ground]
+desc = ""
+type = "void"
+
+    [methods.set_snap_to_ground.params.snap]
+    type = "bool"
+    value = ""
+    desc = ""
+
+[methods.get_snap_to_ground]
+type = "Variant"
+desc = ""
+
+[methods.get_data]
+type = "Variant"
+desc = ""
+
+[methods.get_active_hitboxes]
+type = "Variant"
+desc = ""
+
+[methods.sort_hitboxes]
+type = "Variant"
+desc = ""
+
+    [methods.sort_hitboxes.params.a]
+    type = "Variant"
+    value = ""
+    desc = ""
+    _order = 0
+
+    [methods.sort_hitboxes.params.b]
+    type = "Variant"
+    value = ""
+    desc = ""
+    _order = 1
+
+[methods.apply_force]
+type = "Variant"
+desc = ""
+
+    [methods.apply_force.params.x]
+    type = "Variant"
+    value = ""
+    desc = ""
+    _order = 0
+
+    [methods.apply_force.params.y]
+    type = "Variant"
+    value = ""
+    desc = ""
+    _order = 1
+
+[methods.apply_force_relative]
+type = "Variant"
+desc = ""
+
+    [methods.apply_force_relative.params.x]
+    type = "Variant"
+    value = ""
+    desc = ""
+    _order = 0
+
+    [methods.apply_force_relative.params.y]
+    type = "Variant"
+    value = ""
+    desc = ""
+    _order = 1
+
+[methods.apply_forces]
+desc = ""
+type = "void"
+
+[methods.apply_forces_no_limit]
+desc = ""
+type = "void"
+
+[methods.set_gravity_modifier]
+desc = ""
+type = "void"
+
+    [methods.set_gravity_modifier.params.modifier]
+    type = "String"
+    value = ""
+    desc = ""
+
+[methods.apply_grav_custom]
+desc = ""
+type = "void"
+
+    [methods.apply_grav_custom.params.grav]
+    type = "String"
+    value = ""
+    desc = ""
+    _order = 0
+
+    [methods.apply_grav_custom.params.fall_speed]
+    type = "String"
+    value = ""
+    desc = ""
+    _order = 1
+
+[methods.apply_grav]
+desc = ""
+type = "void"
+
+[methods.apply_fric]
+desc = ""
+type = "void"
+
+[methods.apply_x_fric]
+desc = ""
+type = "void"
+
+    [methods.apply_x_fric.params.fric]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.apply_y_fric]
+desc = ""
+type = "void"
+
+    [methods.apply_y_fric.params.fric]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.limit_speed]
+desc = ""
+type = "void"
+
+    [methods.limit_speed.params.limit]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.limit_x_speed]
+desc = ""
+type = "void"
+
+    [methods.limit_x_speed.params.limit]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.limit_y_speed]
+desc = ""
+type = "void"
+
+    [methods.limit_y_speed.params.limit]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.get_object_dir]
+type = "get_facing_int"
+desc = ""
+
+    [methods.get_object_dir.params.obj]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.get_object_dir_vec]
+type = "Variant"
+desc = ""
+
+    [methods.get_object_dir_vec.params.obj]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.move_directly]
+type = "Variant"
+desc = "Sets an object's position relative to itself. For setting position relative to the stage, see [[meth set_pos]]"
+
+    [methods.move_directly.params.x]
+    type = "Variant"
+    value = ""
+    desc = ""
+    _order = 0
+
+    [methods.move_directly.params.y]
+    type = "Variant"
+    value = ""
+    desc = ""
+    _order = 1
+
+[methods.move_directly_relative]
+type = "Variant"
+desc = "Same as [[meth move_directly]], except relative to the object's facing, positive will always be forward, negative will always be backward"
+
+    [methods.move_directly_relative.params.x]
+    type = "Variant"
+    value = ""
+    desc = ""
+    _order = 0
+
+    [methods.move_directly_relative.params.y]
+    type = "Variant"
+    value = ""
+    desc = ""
+    _order = 1
+
+[methods._process]
+desc = ""
+type = "void"
+
+    [methods._process.params.delta]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.debug_text]
+desc = ""
+type = "void"
+
+[methods.debug_info]
+desc = ""
+type = "void"
+
+    [methods.debug_info.params.data]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.debug_dict]
+type = "Variant"
+desc = ""
+
+    [methods.debug_dict.params.text]
+    type = "Variant"
+    value = ""
+    desc = ""
+    _order = 0
+
+    [methods.debug_dict.params.dict]
+    type = "Variant"
+    value = ""
+    desc = ""
+    _order = 1
+
+[methods.reset_momentum]
+desc = ""
+type = "void"
+
+[methods.is_grounded]
+type = "Variant"
+desc = ""
+
+[methods.set_grounded]
+desc = ""
+type = "void"
+
+    [methods.set_grounded.params.on]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.add_pushback]
+desc = ""
+type = "void"
+
+    [methods.add_pushback.params.pushback]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.reset_pushback]
+desc = ""
+type = "void"
+
+[methods.update_grounded]
+desc = ""
+type = "void"
+
+[methods.on_got_parried]
+desc = ""
+type = "void"
+
+[methods.on_got_blocked]
+desc = ""
+type = "void"
+
+[methods.on_got_parried_by]
+desc = ""
+type = "void"
+
+    [methods.on_got_parried_by.params.who]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.on_got_blocked_by]
+desc = ""
+type = "void"
+
+    [methods.on_got_blocked_by.params.who]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.deactivate_current_hitbox]
+desc = ""
+type = "void"
+
+[methods.deactivate_hitboxes]
+desc = ""
+type = "void"
+
+[methods.hit_by]
+desc = ""
+type = "void"
+
+    [methods.hit_by.params.hitbox]
+    type = "Hitbox"
+    value = ""
+    desc = ""
+
+[methods.get_pos]
+type = "Dictionary"
+desc = ""
+
+[methods.xy_to_dir]
+type = "Variant"
+desc = ""
+
+    [methods.xy_to_dir.params.x]
+    type = "Variant"
+    value = ""
+    desc = ""
+    _order = 0
+
+    [methods.xy_to_dir.params.y]
+    type = "Variant"
+    value = ""
+    desc = ""
+    _order = 1
+
+    [methods.xy_to_dir.params.mul]
+    type = "fixed"
+    value = "\"1.0\""
+    desc = ""
+    _order = 2
+
+    [methods.xy_to_dir.params.div]
+    type = "fixed"
+    value = "\"100.0\""
+    desc = ""
+    _order = 3
+
+[methods.on_state_started]
+desc = ""
+type = "void"
+
+    [methods.on_state_started.params.state]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.on_state_ended]
+desc = ""
+type = "void"
+
+    [methods.on_state_ended.params.state]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.get_collision_box]
+type = "Dictionary"
+desc = ""
+
+[methods.get_pos_visual]
+type = "Vector2"
+desc = ""
+
+[methods.distance_to]
+type = "Variant"
+desc = ""
+
+    [methods.distance_to.params.object]
+    type = "BaseObj"
+    value = ""
+    desc = ""
+
+[methods.tick]
+desc = ""
+type = "void"
+
+[methods.on_hit_ceiling]
+desc = ""
+type = "void"
+
+[methods.state_tick]
+desc = ""
+type = "void"
+
+[methods.fixed_deg_to_rad]
+type = "Variant"
+desc = ""
+
+    [methods.fixed_deg_to_rad.params.n]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.randi_]
+type = "Variant"
+desc = ""
+
+[methods.randi_range]
+type = "Variant"
+desc = ""
+
+    [methods.randi_range.params.a]
+    type = "int"
+    value = ""
+    desc = ""
+    _order = 0
+
+    [methods.randi_range.params.b]
+    type = "int"
+    value = ""
+    desc = ""
+    _order = 1
+
+[methods.randi_percent]
+type = "bool"
+desc = ""
+
+    [methods.randi_percent.params.n]
+    type = "int"
+    value = ""
+    desc = ""
+
+[methods.randi_choice]
+type = "Variant"
+desc = ""
+
+    [methods.randi_choice.params.choices]
+    type = "Array"
+    value = ""
+    desc = ""
+
+[methods.randi_weighted_choice]
+type = "Variant"
+desc = ""
+
+    [methods.randi_weighted_choice.params.choices]
+    type = "Array"
+    value = ""
+    desc = ""
+    _order = 0
+
+    [methods.randi_weighted_choice.params.weights]
+    type = "Array"
+    value = ""
+    desc = ""
+    _order = 1
+
+[methods.randi_static]
+type = "Variant"
+desc = ""
+
+[methods.randi_range_static]
+type = "Variant"
+desc = ""
+
+    [methods.randi_range_static.params.a]
+    type = "int"
+    value = ""
+    desc = ""
+    _order = 0
+
+    [methods.randi_range_static.params.b]
+    type = "int"
+    value = ""
+    desc = ""
+    _order = 1
+
+[methods.randi_percent_static]
+type = "bool"
+desc = ""
+
+    [methods.randi_percent_static.params.n]
+    type = "int"
+    value = ""
+    desc = ""
+
+[methods.randi_choice_static]
+type = "Variant"
+desc = ""
+
+    [methods.randi_choice_static.params.choices]
+    type = "Array"
+    value = ""
+    desc = ""
+
+[methods.randi_weighted_choice_static]
+type = "Variant"
+desc = ""
+
+    [methods.randi_weighted_choice_static.params.choices]
+    type = "Array"
+    value = ""
+    desc = ""
+    _order = 0
+
+    [methods.randi_weighted_choice_static.params.weights]
+    type = "Array"
+    value = ""
+    desc = ""
+    _order = 1
+
+[methods.should_hide_rng]
+type = "bool"
+desc = ""
+
+[methods.tick_after]
+desc = ""
+type = "void"
+
+[methods.previous_state]
+type = "current_state"
+desc = ""
+
+[methods.normal_tick]
+desc = ""
+type = "void"
+
+[methods.get_knockback_force]
+type = "Variant"
+desc = ""
+
+    [methods.get_knockback_force.params.hitbox]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.compare]
+type = "Variant"
+desc = ""
+
+    [methods.compare.params.obj]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods._draw]
+desc = ""
+type = "void"

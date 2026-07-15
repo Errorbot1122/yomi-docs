@@ -1,0 +1,22 @@
+version = "1.9.20"
+name = "ThrowBox"
+inherits = "Hitbox"
+script_path = "res://characters/ThrowBox.gd"
+desc = ""
+category = "Hitboxes"
+
+[properties._c_Throw_Data]
+export = true
+type = "int"
+value = "0"
+desc = ""
+
+[properties.throw_state]
+export = true
+type = "String"
+value = "\"\""
+desc = ""
+
+[methods.activate]
+desc = ""
+type = "void"

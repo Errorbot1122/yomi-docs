@@ -1,0 +1,166 @@
+version = "1.9.20"
+name = "CollisionBox"
+inherits = "Node2D"
+script_path = "res://addons/collision_box/CollisionBox.gd"
+desc = ""
+category = "Hitboxes"
+
+[properties.x]
+export = true
+type = "int"
+value = "0"
+desc = ""
+
+[properties.y]
+export = true
+type = "int"
+value = "0"
+desc = ""
+
+[properties.width]
+export = true
+type = "int"
+value = "20"
+desc = ""
+
+[properties.height]
+export = true
+type = "int"
+value = "20"
+desc = ""
+
+[properties.can_draw]
+export = true
+type = "bool"
+value = "true"
+desc = ""
+
+[properties.editor_selected]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.pos_x]
+type = "int"
+value = "0"
+desc = ""
+
+[properties.pos_y]
+type = "int"
+value = "0"
+desc = ""
+
+[properties.facing]
+type = "String"
+value = "\"Right\""
+desc = ""
+
+[methods.update_position]
+desc = ""
+type = "void"
+
+    [methods.update_position.params.x]
+    type = "int"
+    value = ""
+    desc = ""
+    _order = 0
+
+    [methods.update_position.params.y]
+    type = "int"
+    value = ""
+    desc = ""
+    _order = 1
+
+[methods.x_facing]
+type = "Variant"
+desc = ""
+
+[methods.get_absolute_position]
+type = "Variant"
+desc = ""
+
+[methods.get_aabb]
+type = "Variant"
+desc = ""
+
+[methods.copy_to]
+desc = ""
+type = "void"
+
+    [methods.copy_to.params.box]
+    type = "CollisionBox"
+    value = ""
+    desc = ""
+
+[methods.get_overlap]
+type = "Variant"
+desc = ""
+
+    [methods.get_overlap.params.box]
+    type = "CollisionBox"
+    value = ""
+    desc = ""
+
+[methods.get_overlap_center]
+type = "Variant"
+desc = ""
+
+    [methods.get_overlap_center.params.box]
+    type = "CollisionBox"
+    value = ""
+    desc = ""
+
+[methods.get_center]
+type = "Variant"
+desc = ""
+
+[methods.get_center_float]
+type = "Variant"
+desc = ""
+
+[methods.get_overlap_center_float]
+type = "Variant"
+desc = ""
+
+    [methods.get_overlap_center_float.params.box]
+    type = "CollisionBox"
+    value = ""
+    desc = ""
+
+[methods.overlaps]
+type = "Variant"
+desc = ""
+
+    [methods.overlaps.params.box]
+    type = "CollisionBox"
+    value = ""
+    desc = ""
+
+[methods.get_rect_float]
+type = "Variant"
+desc = ""
+
+[methods.box_draw]
+type = "Variant"
+desc = ""
+
+[methods.can_draw_box]
+type = "Variant"
+desc = ""
+
+[methods._ready]
+desc = ""
+type = "void"
+
+[methods._process]
+desc = ""
+type = "void"
+
+    [methods._process.params.delta]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods._draw]
+type = "Variant"
+desc = ""

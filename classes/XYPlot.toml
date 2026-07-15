@@ -1,0 +1,548 @@
+version = "1.9.20"
+name = "XYPlot"
+inherits = "Container"
+script_path = ""
+scene_path = "res://ui/XYPlot/XYPlot.tscn"
+desc = ""
+category = "Custom UI"
+
+[signals.data_changed]
+desc = ""
+
+[signals.pos_data_changed]
+desc = ""
+
+    [signals.pos_data_changed.params.pos]
+    type = "Variant"
+    value = ""
+    desc = ""
+    _order = 0
+
+    [signals.pos_data_changed.params.change]
+    type = "Variant"
+    value = ""
+    desc = ""
+    _order = 1
+
+[constants.PROPERTY_DEFAULTS]
+type = "Dictionary"
+value = "{"
+desc = ""
+
+[constants.TOP_LABEL_SIZE]
+type = "int"
+value = "11"
+desc = ""
+
+[constants.BOTTOM_LABEL_SIZE]
+type = "int"
+value = "11"
+desc = ""
+
+[constants.LABEL_NEGATIVE_PADDING]
+type = "int"
+value = "3"
+desc = ""
+
+[constants.PLOT_PANEL_BASE_PADDING]
+type = "Vector2"
+value = "Vector2(10, TOP_LABEL_SIZE + BOTTOM_LABEL_SIZE - (LABEL_NEGATIVE_PADDING * 2))"
+desc = ""
+
+[constants.FULL_CIRCLE_SIZE]
+type = "Vector2"
+value = "Vector2(50, 50)"
+desc = ""
+
+[constants.HALF_CIRCLE_SIZE]
+type = "Vector2"
+value = "Vector2(80, 40)"
+desc = ""
+
+[constants.QUARTER_CIRCLE_SIZE]
+type = "Vector2"
+value = "Vector2(45, 45)"
+desc = ""
+
+[constants.FULL_CIRCLE_PADDING]
+type = "Vector2"
+value = "Vector2(0, 0)"
+desc = ""
+
+[constants.HALF_CIRCLE_PADDING]
+type = "Vector2"
+value = "Vector2(0, 5)"
+desc = ""
+
+[constants.QUARTER_CIRCLE_PADDING]
+type = "Vector2"
+value = "Vector2(2.5, 2.5)"
+desc = ""
+
+[constants.PERCENT_MAX]
+type = "int"
+value = "100"
+desc = ""
+
+[constants.SNAP_AMOUNT]
+type = "float"
+value = "0.1"
+desc = ""
+
+[properties.panel]
+onready = true
+type = "Node"
+value = "$PlotPanel"
+desc = ""
+
+[properties.nub]
+onready = true
+type = "Node"
+value = "$PlotPanelNub"
+desc = ""
+
+[properties.x_label]
+onready = true
+type = "Node"
+value = "$XLabel"
+desc = ""
+
+[properties.y_label]
+onready = true
+type = "Node"
+value = "$YLabel"
+desc = ""
+
+[properties.panel_type]
+type = "Variant"
+value = "PanelType.Full"
+desc = ""
+
+[properties.always_max]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.snap]
+type = "bool"
+value = "true"
+desc = ""
+
+[properties.limit_angle]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.normalize_display]
+type = "bool"
+value = "true"
+desc = ""
+
+[properties.left_quarter]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.bottom_half]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.min_length]
+type = "float"
+value = "0.0"
+desc = ""
+
+[properties.limit_range_degrees]
+type = "float"
+value = "90.0"
+desc = ""
+
+[properties.limit_center_degrees]
+type = "float"
+value = "0.0"
+desc = ""
+
+[properties.limit_symmetrical]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.snap_angles]
+type = "int"
+value = "8"
+desc = ""
+
+[properties.snap_align_to_limit_center]
+type = "bool"
+value = "true"
+desc = ""
+
+[properties.snap_radius]
+type = "float"
+value = "0.0"
+desc = ""
+
+[properties.default_value]
+type = "Vector2"
+value = "Vector2(0, 0)"
+desc = ""
+
+[properties.plot_panel_size]
+type = "Vector2"
+value = "Vector2(50, 50)"
+desc = ""
+
+[properties.plot_panel_padding]
+type = "Vector2"
+value = "Vector2(0, 0)"
+desc = ""
+
+[properties.mouse_over]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.mouse_clicked]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.buffer_changed]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.buffer_update]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.value_float]
+type = "Vector2"
+value = "Vector2()"
+desc = ""
+
+[properties.panel_radius]
+type = "Variant"
+value = "plot_panel_size.x"
+desc = ""
+
+[properties.facing]
+type = "int"
+value = "1"
+desc = ""
+
+[methods._get_property_list]
+type = "Variant"
+desc = ""
+
+[methods.property_can_revert]
+type = "bool"
+desc = ""
+
+    [methods.property_can_revert.params.property]
+    type = "String"
+    value = ""
+    desc = ""
+
+[methods.property_get_revert]
+type = "Variant"
+desc = ""
+
+    [methods.property_get_revert.params.property]
+    type = "String"
+    value = ""
+    desc = ""
+
+[methods.set_panel_type]
+desc = ""
+type = "void"
+
+    [methods.set_panel_type.params.val]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.set_always_max]
+desc = ""
+type = "void"
+
+    [methods.set_always_max.params.val]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.set_snap]
+desc = ""
+type = "void"
+
+    [methods.set_snap.params.val]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.set_limit_angle]
+desc = ""
+type = "void"
+
+    [methods.set_limit_angle.params.val]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.set_normalize_display]
+desc = ""
+type = "void"
+
+    [methods.set_normalize_display.params.val]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.set_left_quarter]
+desc = ""
+type = "void"
+
+    [methods.set_left_quarter.params.val]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.set_bottom_half]
+desc = ""
+type = "void"
+
+    [methods.set_bottom_half.params.val]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.set_min_length]
+desc = ""
+type = "void"
+
+    [methods.set_min_length.params.val]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.set_limit_range_degrees]
+desc = ""
+type = "void"
+
+    [methods.set_limit_range_degrees.params.val]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.set_limit_center_degrees]
+desc = ""
+type = "void"
+
+    [methods.set_limit_center_degrees.params.val]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.set_limit_symmetrical]
+desc = ""
+type = "void"
+
+    [methods.set_limit_symmetrical.params.val]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.set_snap_angles]
+desc = ""
+type = "void"
+
+    [methods.set_snap_angles.params.val]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.set_snap_align_to_limit_center]
+desc = ""
+type = "void"
+
+    [methods.set_snap_align_to_limit_center.params.val]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.set_snap_radius]
+desc = ""
+type = "void"
+
+    [methods.set_snap_radius.params.val]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.set_default_value]
+desc = ""
+type = "void"
+
+    [methods.set_default_value.params.val]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods._ready]
+desc = ""
+type = "void"
+
+[methods._process]
+type = "Variant"
+desc = ""
+
+    [methods._process.params._delta]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.update]
+desc = ""
+type = "void"
+
+[methods._rect_for]
+type = "Rect2"
+desc = ""
+
+    [methods._rect_for.params.child]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods._notification]
+desc = ""
+type = "void"
+
+    [methods._notification.params.what]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods._on_update_timer_timeout]
+desc = ""
+type = "void"
+
+[methods._on_plot_mouse_entered]
+desc = ""
+type = "void"
+
+[methods._on_plot_mouse_exited]
+desc = ""
+type = "void"
+
+[methods._on_plot_mouse_input_event]
+desc = ""
+type = "void"
+
+    [methods._on_plot_mouse_input_event.params.event]
+    type = "InputEventMouseButton"
+    value = ""
+    desc = ""
+
+[methods.midpoint]
+type = "Vector2"
+desc = ""
+
+[methods.update_value]
+desc = ""
+type = "void"
+
+    [methods.update_value.params.p]
+    type = "Variant"
+    value = "null"
+    desc = ""
+    _order = 0
+
+    [methods.update_value.params.set_buffer_update]
+    type = "bool"
+    value = "true"
+    desc = ""
+    _order = 1
+
+[methods.get_panel_size]
+type = "Variant"
+desc = ""
+
+[methods.get_panel_padding]
+type = "Variant"
+desc = ""
+
+[methods.set_flash]
+desc = ""
+type = "void"
+
+    [methods.set_flash.params.on]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.reset]
+desc = ""
+type = "void"
+
+[methods.set_facing]
+desc = ""
+type = "void"
+
+    [methods.set_facing.params.val]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.set_label]
+desc = ""
+type = "void"
+
+    [methods.set_label.params.text]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.get_limit_vec]
+type = "Variant"
+desc = ""
+
+[methods.get_limit_center]
+type = "get_limit_vec"
+desc = ""
+
+[methods.get_limit_range]
+type = "deg2rad"
+desc = ""
+
+[methods.get_default_value]
+type = "Variant"
+desc = ""
+
+[methods.get_data]
+type = "as_percentage_int_vec"
+desc = ""
+
+[methods.set_value_float]
+desc = ""
+type = "void"
+
+    [methods.set_value_float.params.value]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods.as_percentage_int_vec]
+type = "Dictionary"
+desc = ""
+
+    [methods.as_percentage_int_vec.params.vec2]
+    type = "Vector2"
+    value = ""
+    desc = ""
+
+[methods.get_value_float]
+type = "Variant"
+desc = ""

@@ -1,0 +1,156 @@
+version = "1.9.20"
+name = "SweptHitbox"
+inherits = "Hitbox"
+script_path = "res://mechanics/SweptHitbox.gd"
+desc = ""
+category = "Hitboxes"
+
+[properties._c_Raycast]
+export = true
+type = "int"
+value = "0"
+desc = ""
+
+[properties.to_x]
+export = true
+type = "int"
+value = "0"
+desc = ""
+
+[properties.to_y]
+export = true
+type = "int"
+value = "0"
+desc = ""
+
+[methods.func_fixed_clamp]
+type = "Variant"
+desc = ""
+
+[methods.func_fixed_max]
+type = "Variant"
+desc = ""
+
+[methods.func_fixed_min]
+type = "Variant"
+desc = ""
+
+[methods._aabb_intersect]
+type = "Variant"
+desc = ""
+
+    [methods._aabb_intersect.params.aabb]
+    type = "Dictionary"
+    value = ""
+    desc = ""
+
+[methods._seg_seg_intersect]
+type = "Variant"
+desc = ""
+
+    [methods._seg_seg_intersect.params.start]
+    type = "int"
+    value = ""
+    desc = ""
+    _order = 0
+
+    [methods._seg_seg_intersect.params.delta]
+    type = "int"
+    value = ""
+    desc = ""
+    _order = 1
+
+    [methods._seg_seg_intersect.params.padding]
+    type = "int"
+    value = ""
+    desc = ""
+    _order = 2
+
+    [methods._seg_seg_intersect.params.n1]
+    type = "int"
+    value = ""
+    desc = ""
+    _order = 3
+
+    [methods._seg_seg_intersect.params.n2]
+    type = "int"
+    value = ""
+    desc = ""
+    _order = 4
+
+[methods._seg_rect_intersect]
+type = "Variant"
+desc = ""
+
+    [methods._seg_rect_intersect.params.box]
+    type = "CollisionBox"
+    value = ""
+    desc = ""
+
+[methods._seg_rect_test]
+type = "Variant"
+desc = ""
+
+    [methods._seg_rect_test.params.box]
+    type = "CollisionBox"
+    value = ""
+    desc = ""
+
+[methods._seg_rect_delta]
+type = "Variant"
+desc = ""
+
+    [methods._seg_rect_delta.params.box]
+    type = "CollisionBox"
+    value = ""
+    desc = ""
+
+[methods.get_sweep_center]
+type = "Variant"
+desc = ""
+
+[methods.get_sweep_center_float]
+type = "Variant"
+desc = ""
+
+[methods.to_x_facing]
+type = "Variant"
+desc = ""
+
+[methods.get_aabb]
+desc = ""
+type = "void"
+
+[methods.overlaps]
+type = "Variant"
+desc = ""
+
+    [methods.overlaps.params.box]
+    type = "CollisionBox"
+    value = ""
+    desc = ""
+
+[methods.box_draw]
+type = "Variant"
+desc = ""
+
+[methods.spawn_whiff_particle]
+desc = ""
+type = "void"
+
+[methods.get_center]
+type = "Variant"
+desc = ""
+
+[methods.get_center_float]
+type = "Variant"
+desc = ""
+
+[methods.get_overlap_center_float]
+type = "Variant"
+desc = ""
+
+    [methods.get_overlap_center_float.params.box]
+    type = "CollisionBox"
+    value = ""
+    desc = ""

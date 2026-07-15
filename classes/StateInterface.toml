@@ -1,0 +1,184 @@
+version = "1.9.20"
+name = "StateInterface"
+inherits = "Node"
+script_path = "res://framework/FiniteStateMachine/StateInterface.gd"
+desc = ""
+category = "States"
+
+[signals.queue_change]
+desc = ""
+
+    [signals.queue_change.params.state]
+    type = "Variant"
+    value = ""
+    desc = ""
+    _order = 0
+
+    [signals.queue_change.params.self_]
+    type = "Variant"
+    value = ""
+    desc = ""
+    _order = 1
+
+[signals.queue_change_with_data]
+desc = ""
+
+    [signals.queue_change_with_data.params.state]
+    type = "Variant"
+    value = ""
+    desc = ""
+    _order = 0
+
+    [signals.queue_change_with_data.params.data]
+    type = "Variant"
+    value = ""
+    desc = ""
+    _order = 1
+
+    [signals.queue_change_with_data.params.self_]
+    type = "Variant"
+    value = ""
+    desc = ""
+    _order = 2
+
+[properties.state_name]
+onready = true
+type = "Variant"
+value = "name"
+desc = ""
+
+[properties.animation]
+type = "String"
+value = "\"\""
+desc = ""
+
+[properties.host]
+type = "Variant"
+desc = ""
+
+[properties.active]
+type = "bool"
+value = "false"
+desc = ""
+
+[properties.data]
+type = "Variant"
+value = "null"
+desc = ""
+
+[properties.initialized]
+type = "bool"
+value = "false"
+desc = ""
+
+[methods.get_animation]
+type = "Variant"
+desc = ""
+
+[methods.queue_state_change]
+type = "Variant"
+desc = ""
+
+    [methods.queue_state_change.params.state]
+    type = "Variant"
+    value = ""
+    desc = ""
+    _order = 0
+
+    [methods.queue_state_change.params.data]
+    type = "Variant"
+    value = "null"
+    desc = ""
+    _order = 1
+
+[methods._previous_state_name]
+type = "Variant"
+desc = ""
+
+[methods._previous_state]
+type = "Variant"
+desc = ""
+
+[methods.init]
+desc = ""
+type = "void"
+
+[methods._enter_tree]
+desc = ""
+type = "void"
+
+[methods._exit_tree]
+desc = ""
+type = "void"
+
+[methods._enter_shared]
+desc = ""
+type = "void"
+
+[methods._update_shared]
+desc = ""
+type = "void"
+
+    [methods._update_shared.params._delta]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods._tick_shared]
+desc = ""
+type = "void"
+
+[methods._integrate_shared]
+desc = ""
+type = "void"
+
+    [methods._integrate_shared.params._state]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods._exit_shared]
+desc = ""
+type = "void"
+
+[methods._enter]
+desc = ""
+type = "void"
+
+[methods._tick_before]
+desc = ""
+type = "void"
+
+[methods._tick]
+desc = ""
+type = "void"
+
+[methods._tick_after]
+desc = ""
+type = "void"
+
+[methods._update]
+desc = ""
+type = "void"
+
+    [methods._update.params._delta]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods._integrate]
+desc = ""
+type = "void"
+
+    [methods._integrate.params._state]
+    type = "Variant"
+    value = ""
+    desc = ""
+
+[methods._exit]
+desc = ""
+type = "void"
+
+[methods._animation_finished]
+desc = ""
+type = "void"
