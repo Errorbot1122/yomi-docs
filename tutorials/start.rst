@@ -331,7 +331,7 @@ Setting up Godot
 
     .. note:: On Linux, you may be required to run ``"$YOMI_GODOT_DIR/linux-351-editor.64"`` in your terminal to get it to accually run.
 
- 2. **Click the** *Import* **button on the sidebar, then navigate to/paste the folder path for your :ref`YOMI Hustle <yverb-yomih>` **decompilation. Finally click the** *Import & Edit* **button.**
+ 2. **Click the** *Import* **button on the sidebar, then navigate to/paste the folder path for your** :ref`YOMI Hustle <yverb-yomih>` **decompilation. Finally click the** *Import & Edit* **button.**
 
     .. image:: /assets/tutorials-start-9.png
        :width: 512

@@ -3,7 +3,7 @@
 <!-- FIXME: add readthedocs link -->
 
 Welcome to the [YOMI Hustle Modding Docs](https://yomi-docs.readthedocs.io/en/latest/) Repository!
-This repo stores all the markdown files and building tools used to generate the [online documentation](ttps://yomi-docs.readthedocs.io/en/latest/).
+This repo stores all the markdown files and building tools used to generate the [online documentation](https://yomi-docs.readthedocs.io/en/latest/).
 
 <!-- TODO: Add version specific branch instructions on contributing -->
 
