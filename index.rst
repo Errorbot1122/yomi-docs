@@ -1,6 +1,11 @@
 YOMI Hustle Modding Docs
 ========================
 
+.. warning:: These docs are currently - vary much - at a *beta stage*, meaning **some pages may not be finished yet!**
+             Please bare with us as we update these pages. 
+
+             If you want to help speed up this process, visit our :ref:`Contributing Guide <ydoc-contributing-guide>` and help by **contributing**!
+
 Welcome to the Unofficial Documentation for *Modding* the game, `Your Only Move is Hustle <https://store.steampowered.com/app/2212330/Your_Only_Move_Is_HUSTLE/>`_!
 
 Check the **Table of Contents** on the *sidebar* to get a glimpse on what you can read.
