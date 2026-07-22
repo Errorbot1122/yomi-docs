@@ -7,7 +7,7 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 project = "YOMIH Modding Docs"
-copyright = "2026, Errorbot1122 [YOMI Hustle Base, IvySly] (CC BY-SA 4.0)"
+copyright = "2026-present, Errorbot1122 and the YOMI Hustle Community (CC BY-SA 4.0)"
 author = "Errorbot1122"
 release = "0.0.1"
 
