@@ -230,8 +230,10 @@ When adding/modifying the ``desc`` field of any *item*, we have an `BBCode <http
 
 Here is a list of ``BBCode``-*like* tags we have access to:
 
-Custom Tags
-"""""""""""
+.. _ydoc-contributing-classes-bbcode-custom:
+
+Our Custom Tags
+"""""""""""""""
 
 .. rst-class:: tag-def-table
 
@@ -519,3 +521,34 @@ To start off, we recommend you reading both the Godot :ref:`doc_content_guidelin
 Then we recommend reading the :ref:`General Documentation Guidelines <ydoc-contributing-docs-guidelines>` as most are applicable here as well.
 
 .. include:: /_snippets/guideline-note.rst
+
+Nested Tags
+^^^^^^^^^^^
+
+Because all :ref:`Class's Reference <ydoc-class-reference>` files are eventually converted into ``.rst`` files, **you cannot nest multiple tags BBCode tags!** 
+*(This only applies to* **formatting** *tags. These tags are:* ``[b]``, ``[i]``, ``[u]``, ``[s]``, ``[img]``, ``[url]``, *and* :ref:`Reference Link <ydoc-contributing-classes-bbcode-custom>` *tags.)*
+
+This is because the `reStructuredText <https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html#:~:text=it%20may%20not%20be%20nested>`_ file specification dose not support nesting multiple formatting indicator *(including directives)* inside each other.
+
+If you accidentally do this, it will **mangle the formatting!**
+
+Bad Example:
+""""""""""""
+
+.. code-block:: rst
+
+   *(Like the :ref:`Article (Documentation) Goals <ydoc-contributing-docs-goals>` )*
+
+**Turns into:**
+
+   *(Like the :ref:`Article (Documentation) Goals <ydoc-contributing-docs-goals>` )*
+
+The corrected version:
+""""""""""""""""""""""
+.. code-block:: rst
+
+   *(Like the* :ref:`Article (Documentation) Goals <ydoc-contributing-docs-goals>` *)*
+
+*Turns into:*
+
+   *(Like the* :ref:`Article (Documentation) Goals <ydoc-contributing-docs-goals>` *)*
