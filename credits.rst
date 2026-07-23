@@ -8,7 +8,7 @@ This page aims to keep track of all artists and contributors that made this proj
 Credits to:
 -----------
 
- * `TriMaydev <https://github.com/TriMay>`_ for creating the `HustleDocs <https://hustledocs.trimaydev.com/#/>`_ source we built our :ref:`Class Reference <_ydoc-class-reference>` off of.
+ * `TriMaydev <https://github.com/TriMay>`_ for creating the `HustleDocs <https://hustledocs.trimaydev.com/#/>`_ source we built our :ref:`Class Reference <ydoc-class-reference>` off of.
  * `@Nuion on Youtube <https://www.youtube.com/@Nuion>`_ for creating the original the setup tutorial the :ref:`ydoc-tutorial-start` tutorial page is based off of.
  * **@ace0fshades** on the *YOMI Modding Discord* for creating a guide for `Modding on Linux <https://discord.com/channels/1042370928195162132/1443816435049693316>`_ partially used on the :ref:`ydoc-tutorial-start` tutorial page.
  * **@ramwould** on the *YOMI Modding Discord* for creating a bunch of helpful Godot Plugins showcased in the :ref:`Getting Started <ydoc-tutorial-setup-plugins>` tutorial page.
@@ -34,16 +34,16 @@ Here is a list of contributors who helped keep this project possible *(sorted al
 Maintainers
 ^^^^^^^^^^^
 
-.. code-block:: txt
+.. code-block:: none
 
    Errorbot1122
 
 Docs Contributors
 ^^^^^^^^^^^^^^^^^
 
-.. code-block:: txt
+.. code-block:: none
 
 Backend (Code) Contributors
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. code-block:: txt
+.. code-block:: none

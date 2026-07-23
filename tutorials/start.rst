@@ -264,9 +264,10 @@ Here is how you can decompile **your** *(yes, YOUR)* install of :ref:`YOMI Hustl
   .. note:: On *Linux,* ``tbfg.dll`` is actually named ``tbfg.so``.
 
   .. warning:: If you forget to do this, the game will crash as soon as you try to run it.
-  
-  .. XXX: Maybe move this to verbiage.rst? im not fully sure on that...
+
   ``tbfg`` *stands for* **Turn Based Fighting Game**.
+
+  .. XXX: Maybe move this to verbiage.rst? im not fully sure on that...
 
 8. **Navigate back to the location of the folder you chose to store the decompiled code of** :ref:`YOMI Hustle <yverb-yomih>` **in. Then open the** ``lib`` **folder in there, and paste** ``tbfg`` **in there.**
 
