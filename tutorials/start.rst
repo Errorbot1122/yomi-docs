@@ -368,14 +368,11 @@ Below are some community recommended Godot plugin that you can install, to make 
 .. Also adding [REDACTED] here soon :D (hehe)
 ..
 
- .. warning:: The below links are currently broken.
-              We are looking for a potential fix, so in the meantime join the `discord <https://discord.gg/yomimodding>`_ and visit the `original guide <https://discord.com/channels/1042370928195162132/1480063313902833685/1480063313902833685>`_.
-
- * :download:`Draggable CollisionBoxes by @ramwould (v1.0.10) <https://cdn.discordapp.com/attachments/1480063313902833685/1513235697547476992/draggable_collisionbox_v1.0.10.zip?ex=6a5fae90&is=6a5e5d10&hm=5400be7b8725a80fe096483232b08b34cbed2e09b281d044599de4a253ceebac&>`  : Adds the ability to visually edit all types of Hitboxes with the mouse.
+ * `Draggable CollisionBoxes by @ramwould <https://github.com/ramwould/draggable_collisionbox/releases>`_ : Adds the ability to visually edit all types of Hitboxes with the mouse.
    *(just like any other Godot-native object)*
- * :download:`StateAnimSync by @ramwould (v1.1.2) <https://cdn.discordapp.com/attachments/1480063313902833685/1497967489437536366/state_anim_sync_v1.1.2.zip?ex=6a5f81f0&is=6a5e3070&hm=29a005137e468b51bd3905a77d5931b60e784cebdf2c35e6e14aa7f733055a4e&>`  : Makes Godot try to display the current states's animation frame onto your character in the editor.
- * :download:`CharStateEditor Fix by @ramwould (v1.3) <https://cdn.discordapp.com/attachments/1480063313902833685/1504703166820651128/CharStateEditor1738_v1.3.zip?ex=6a5f9f47&is=6a5e4dc7&hm=ad8ba7c3c3574782a3deac1fc4d9fc6dd3bb9dfe2fdbeb8963d8dbcf1aa3abd2&>`  : Fixes some bugs with the :ref:`Character State Editor <ydoc-tutorial-state-editor>`.
- * :download:`Limb Tagger Fix by @ramwould (1.2) <https://cdn.discordapp.com/attachments/1480063313902833685/1525292209526669390/limb_finder_1.2b.zip?ex=6a5f60d1&is=6a5e0f51&hm=f4f2725e9fc11ebff056f98b8a16a76894dc7e073f0aef776873eb8924fca360&>`
+ * `StateAnimSync by @ramwould <https://github.com/ramwould/state_anim_sync/releases>`_ : Makes Godot try to display the current states's animation frame onto your character in the editor.
+ * `CharStateEditor Fix by @ramwould <https://github.com/ramwould/helpers/releases>`_ : Fixes some bugs with the :ref:`Character State Editor <ydoc-tutorial-state-editor>`.
+ * `Limb Tagger Fix by @ramwould <https://github.com/ramwould/limb_finder/releases>`_ : Adds the ability to specify locations for auras to be placed at in :ref:`YOMIH's <yverb-yomih>` aura creator.
 
 .. FIXME: UH IDK what this dose :sob:???? ^
 
