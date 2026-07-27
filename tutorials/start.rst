@@ -380,7 +380,7 @@ How to install a plugin
 """""""""""""""""""""""
 
  1. **Download the plugin as a** ``.zip``
- 2. **Move the** ``.zip`` *(* Cut [``Ctrl/Command+X``] *file, then paste* [``Ctrl/Command+P``] *at new location)* **to the** ``addons`` **folder in the :ref:`YOMI Hustle <yverb-yomih>` decompilation.**
+ 2. **Move the** ``.zip`` *(* Cut [``Ctrl/Command+X``] *file, then paste* [``Ctrl/Command+P``] *at new location)* **to the** ``addons`` **folder in the** :ref:`YOMI Hustle <yverb-yomih>` **decompilation.**
  3. **Make a new folder in** ``addons`` **with the same name as the plugin's** ``.zip`` *(Without the ``.zip`` extension)* **and move the** ``.zip`` **in there.**
 
     .. I don't know why but I really like this analogy :)
@@ -420,7 +420,7 @@ Here is a mini tutorial on how to do so:
 1. **Create the helper script.**
 
    First you will need to create a bash script in the editor of your choice.
-   *This script will automatically open the** :ref:`YOMIH <yverb-yomih>` **decompiled project.**
+   *This script will automatically open the* :ref:`YOMIH <yverb-yomih>` *decompiled project.*
 
    Name the file ``yomi-godot.sh``, and paste the following:
 
@@ -509,7 +509,7 @@ Here is a mini tutorial on how to do so:
                To fix this, make sure to make the copy inside of ``~/.local/share/applications/`` instead, then create a *new link* from there.
 
 
-4. *(Super Optional)* **Link your script to the "``PATH``"**
+4. *(Super Optional)* **Link your script to the** "``PATH``".
 
    If you also want to be able to acces yomi-godot from the terminal, create a symbolic link from the script to ``~/.local/bin/`` with the file name ``yomi-godot``.
    *(No extension)*
@@ -518,7 +518,7 @@ Here is a mini tutorial on how to do so:
 
       ln -s "$YOMI_GODOT_DIR/yomi-godot.sh" ~/.local/bin/yomi-godot
 
-   Then reload your terminal.
+   *Then reload your terminal.*
 
    Now you can run the command ``yomi-godot`` from anywhere and it will automatically start ``yomi-godot.sh``
 
