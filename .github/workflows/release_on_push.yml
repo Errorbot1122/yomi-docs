@@ -1,0 +1,80 @@
+name: Release on Push
+
+on:
+  push:
+    branches:
+      - "main"
+
+permissions:
+  contents: write
+
+env:
+  MAIN_PREFIX: "yomi-docs_"
+  CLASS_ZIP_NAME: "classes"
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Prepare Release Metadata
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          SHORT_SHA="${GITHUB_SHA::7}"
+          echo "SHORT_SHA=${SHORT_SHA}" >> $GITHUB_ENV
+
+          if [ "${{ github.event.before }}" != "0000000000000000000000000000000000000000" ] && [ -n "${{ github.event.before }}" ]; then
+            RANGE="${{ github.event.before }}..${{ github.event.after }}"
+          else
+            RANGE="${GITHUB_SHA}"
+          fi
+
+          BODY="# Update ${SHORT_SHA}"$'\n\n'
+          LOG=$(git log --reverse --pretty=format:" - \`%h\` - %s%n    %b" $RANGE 2>/dev/null || git log -1 --pretty=format:" - \`%h\` - %s%n    %b" ${GITHUB_SHA})
+          BODY="${BODY}${LOG}"
+
+          echo "RELEASE_BODY<<EOF" >> $GITHUB_ENV
+          echo "$BODY" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+
+      - name: Package Classes
+        run: |
+          cd classes
+          zip -r "../${{ env.CLASS_ZIP_NAME }}.zip" .
+          cd ..
+          sha256sum "${{ env.CLASS_ZIP_NAME }}.zip" > "${{ env.CLASS_ZIP_NAME }}_sha256.txt"
+
+      - name: Build Sphinx
+        uses: ammaraskar/sphinx-action@7.0.0
+        with:
+          docs-folder: "."
+          pre-build-command: |
+            apt-get update -y && \
+            apt-get install -y zip texlive-latex-recommended texlive-fonts-recommended texlive-latex-extra latexmk
+          build-command: |
+            sphinx-build -b html . _build/html && \
+            cd _build/html && zip -r "../../${{ env.MAIN_PREFIX }}html.zip" . && cd ../.. && \
+            sphinx-build -b epub . _build/epub && \
+            cp _build/epub/*.epub "./${{ env.MAIN_PREFIX }}epub.epub" && \
+            sphinx-build -b latex . _build/latex && \
+            make -C _build/latex && \
+            cp _build/latex/*.pdf "./${{ env.MAIN_PREFIX }}pdf.pdf"
+
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create "${SHORT_SHA}" \
+            --title "Release ${SHORT_SHA}" \
+            --notes "$RELEASE_BODY" \
+            "${{ env.MAIN_PREFIX }}html.zip" \
+            "${{ env.MAIN_PREFIX }}epub.epub" \
+            "${{ env.MAIN_PREFIX }}pdf.pdf" \
+            "${{ env.CLASS_ZIP_NAME }}.zip" \
+            "${{ env.CLASS_ZIP_NAME }}_sha256.txt"
