@@ -73,7 +73,7 @@ In our case :ref:`YOMIH <yverb-yomih>` specifically uses version **3.5.1** of th
 
        Here is an icon for the shortcut you can :download:`download </assets/downloads/yomi-godot.ico>` for the shortcut.
 
-       .. image:: /assets/yomi-godot_display.png
+       .. image:: /assets/yomi-godot-display.png
           :width: 64
 
 **Linux**
