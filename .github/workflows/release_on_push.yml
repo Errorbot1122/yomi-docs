@@ -22,6 +22,12 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: "pip"
+
       - name: Prepare Release Metadata
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -54,23 +60,27 @@ jobs:
           cd ..
           sha256sum "${{ env.CLASS_ZIP_NAME }}.zip" > "${{ env.CLASS_ZIP_NAME }}_sha256.txt"
 
+      - name: Install Sphinx Dependencies
+        run: |
+          set -exuo pipefail
+
+          sudo apt-get update -y
+          sudo apt-get install -y zip texlive-latex-recommended texlive-fonts-recommended texlive-latex-extra latexmk
+          pip install -r requirements.txt
+
       - name: Build Sphinx
-        uses: ammaraskar/sphinx-action@7.0.0
-        with:
-          docs-folder: "."
-          pre-build-command: |
-            set -exuo pipefail && \
-            apt-get update -y && \
-            apt-get install -y zip texlive-latex-recommended texlive-fonts-recommended texlive-latex-extra latexmk
-          build-command: |
-            set -exuo pipefail \
-            sphinx-build -b html . _build/html && \
-            cd _build/html && zip -r "../../${{ env.MAIN_PREFIX }}html.zip" . && cd ../.. && \
-            sphinx-build -b epub . _build/epub && \
-            cp _build/epub/*.epub "./${{ env.MAIN_PREFIX }}epub.epub" && \
-            sphinx-build -b latex . _build/latex && \
-            make -C _build/latex && \
-            cp _build/latex/*.pdf "./${{ env.MAIN_PREFIX }}pdf.pdf"
+        run: |
+          set -exuo pipefail
+
+          sphinx-build -b html . _build/html
+          cd _build/html && zip -r "../../${{ env.MAIN_PREFIX }}html.zip" . && cd ../..
+
+          sphinx-build -b epub . _build/epub
+          cp _build/epub/*.epub "./${{ env.MAIN_PREFIX }}epub.epub"
+
+          sphinx-build -b latex . _build/latex
+          make -C _build/latex
+          cp _build/latex/*.pdf "./${{ env.MAIN_PREFIX }}pdf.pdf"
 
       - name: Create GitHub Release
         env:
