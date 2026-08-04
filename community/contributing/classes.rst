@@ -489,9 +489,7 @@ Richtext BBCode Subset
        | Adds any Unicode character with it's hexadecimal
        | UTF-32.
      - ``Look at this cool face [char=21A6] ( [char=0D26][char=0D4D][char=0D26][char=0D3F] [char=02D9][char=15DC][char=02D9] )``
-     - .. only:: html
-
-          Look at this cool face ↦ ( ദ്ദി ˙ᗜ˙ )
+     - Look at this cool face ↦ ( ദ്ദി ˙ᗜ˙ )
 
    * - | **Miscellaneous Unicode**:
        | A bunch of miscellaneous tags that get
