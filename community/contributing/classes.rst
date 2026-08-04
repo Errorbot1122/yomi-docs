@@ -443,9 +443,11 @@ Richtext BBCode Subset
        | Embed an image onto the page, with optional width
        | and height. 
      - ``[img=96x32]/assets/meme-1.gif[/img]``
-     - .. image:: /assets/meme-1.gif
-          :width: 96px
-          :height: 32px
+     - .. only:: html
+
+          .. image:: /assets/meme-1.gif
+             :width: 96px
+             :height: 32px
 
    * - | **Tables**:
        | Creates a table with a defined number of columns.
