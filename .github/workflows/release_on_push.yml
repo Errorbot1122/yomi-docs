@@ -65,7 +65,7 @@ jobs:
           set -exuo pipefail
 
           sudo apt-get update -y
-          sudo apt-get install -y zip texlive-latex-recommended texlive-fonts-recommended texlive-latex-extra latexmk
+          sudo apt-get install -y zip texlive-latex-recommended texlive-fonts-recommended texlive-latex-extra latexmk texlive-xetex
           pip install -r requirements.txt
 
       - name: Build Sphinx

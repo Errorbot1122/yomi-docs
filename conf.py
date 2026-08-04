@@ -41,6 +41,8 @@ html_context = {
     "conf_py_path": "/",
 }
 
+latex_engine = "xelatex"
+
 rst_prolog = """
 .. role:: badge-export
 .. role:: badge-onready
