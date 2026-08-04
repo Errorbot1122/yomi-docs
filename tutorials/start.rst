@@ -68,13 +68,15 @@ In our case :ref:`YOMIH <yverb-yomih>` specifically uses version **3.5.1** of th
  5. *(Optional)* **Create a shortcut to** ``windows-351-editor-64bit.exe`` **on your** ``Desktop``.
 
     Name it ``YOMI Godot`` if you want.
+    
+    .. only:: html
 
-    .. tip::
+       .. tip::
 
-       Here is an icon for the shortcut you can :download:`download </assets/downloads/yomi-godot.ico>` for the shortcut.
-
-       .. image:: /assets/yomi-godot-display.png
-          :width: 64
+         Here is an icon for the shortcut you can :download:`download </assets/downloads/yomi-godot.ico>` for the shortcut.
+ 
+         .. image:: /assets/yomi-godot-display.png
+             :width: 64
 
 **Linux**
 
@@ -477,13 +479,16 @@ Here is a mini tutorial on how to do so:
       TerminalOptions=
       Type=Application
 
-   .. tip::
 
-      .. image:: /assets/yomi-godot-display.png
-        :width: 64
+   .. only:: html
 
-      If you want it to use the above **custom icon**, :download:`download it here </assets/downloads/yomi-godot.ico>` and place it into the ``yomi-godot`` directory.
-      Then in ``yomi-godot.desktop``, Edit the ``Icon=`` line to be ``Icon=[YOMI_GODOT_DIR]/yomi-godot.ico`` instead.
+      .. tip::
+
+          .. image:: /assets/yomi-godot-display.png
+            :width: 64
+
+          If you want it to use the above **custom icon**, :download:`download it here </assets/downloads/yomi-godot.ico>` and place it into the ``yomi-godot`` directory.
+          Then in ``yomi-godot.desktop``, Edit the ``Icon=`` line to be ``Icon=[YOMI_GODOT_DIR]/yomi-godot.ico`` instead.
 
    Now technically you can just move ``yomi-godot.desktop`` to your **Desktop** and it would work, however, continuing uses a better option.
 
