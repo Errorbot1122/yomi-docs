@@ -26,6 +26,8 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          set -exuo pipefail
+
           SHORT_SHA="${GITHUB_SHA::7}"
           echo "SHORT_SHA=${SHORT_SHA}" >> $GITHUB_ENV
 
@@ -45,6 +47,8 @@ jobs:
 
       - name: Package Classes
         run: |
+          set -exuo pipefail
+
           cd classes
           zip -r "../${{ env.CLASS_ZIP_NAME }}.zip" .
           cd ..
@@ -55,9 +59,11 @@ jobs:
         with:
           docs-folder: "."
           pre-build-command: |
+            set -exuo pipefail && \
             apt-get update -y && \
             apt-get install -y zip texlive-latex-recommended texlive-fonts-recommended texlive-latex-extra latexmk
           build-command: |
+            set -exuo pipefail \
             sphinx-build -b html . _build/html && \
             cd _build/html && zip -r "../../${{ env.MAIN_PREFIX }}html.zip" . && cd ../.. && \
             sphinx-build -b epub . _build/epub && \
