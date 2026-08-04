@@ -72,7 +72,8 @@ jobs:
             texlive-latex-extra \
             latexmk \
             texlive-xetex \
-            fonts-freefont-ttf
+            fonts-freefont-ttf \
+            fonts-freefont-otf
           pip install -r requirements.txt
 
       - name: Build Sphinx
