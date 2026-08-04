@@ -31,7 +31,14 @@ html_css_files = ["godot.css", "custom.css"]
 html_js_files = ["custom.js"]
 html_theme_options = {
     "collapse_navigation": True,
-    "navigation_depth": 10,  # Ensures it reads deep enough into your class structures
+    "navigation_depth": 10,
+}
+html_context = {
+    "display_github": True,
+    "github_user": "Errorbot1122",
+    "github_repo": "yomi-docs",
+    "github_version": "main",
+    "conf_py_path": "/",
 }
 
 rst_prolog = """
