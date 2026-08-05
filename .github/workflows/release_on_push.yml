@@ -67,7 +67,7 @@ jobs:
           sudo apt-get update -y
           sudo apt-get install -y zip \
             texlive-latex-recommended texlive-fonts-recommended texlive-latex-extra latexmk texlive-xetex \
-            fonts-freefont-ttf fonts-freefont-otf fonts-noto-core
+            fonts-freefont-ttf fonts-freefont-otf fonts-noto-core fonts-noto-extra
           pip install -r requirements.txt
 
       - name: Build Sphinx

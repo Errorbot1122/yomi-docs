@@ -42,6 +42,18 @@ html_context = {
 }
 
 latex_engine = "xelatex"
+latex_elements = {
+    "preamble": (
+        r"""
+\usepackage{fontspec}
+\usepackage{ucharclasses}
+
+% Fallback font for Canadian Syllabics (kaomojis)
+\newfontfamily\canadianfont{Noto Sans Canadian Aboriginal}[Scale=MatchLowercase]
+\setTransitionsFor{CanadianSyllabics}{\canadianfont}{\rmfamily}
+"""
+    )
+}
 
 rst_prolog = """
 .. role:: badge-export
