@@ -44,7 +44,7 @@ jobs:
           fi
 
           BODY="# Update ${SHORT_SHA}"$'\n\n'
-          LOG=$(git log --reverse --pretty=format:" - \`%h\` - %s%n    %b" $RANGE 2>/dev/null || git log -1 --pretty=format:" - \`%h\` - %s%n    %b" ${GITHUB_SHA})
+          LOG=$(git log --reverse --pretty=format:" - %h - %s%n    %b" $RANGE 2>/dev/null || git log -1 --pretty=format:" - %h - %s%n    %b" ${GITHUB_SHA})
           BODY="${BODY}${LOG}"
 
           echo "RELEASE_BODY<<EOF" >> $GITHUB_ENV
@@ -89,7 +89,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           gh release create "${SHORT_SHA}" \
-            --title "Release ${SHORT_SHA}" \
+            --title "Update ${SHORT_SHA}" \
             --notes "$RELEASE_BODY" \
             "${{ env.MAIN_PREFIX }}html.zip" \
             "${{ env.MAIN_PREFIX }}epub.epub" \
