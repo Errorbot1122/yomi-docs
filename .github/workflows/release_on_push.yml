@@ -21,7 +21,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          ref: "main" # Always check out the main branch
+          ref: "main"
           fetch-depth: 0
 
       - name: Set up Python
@@ -36,11 +36,9 @@ jobs:
         run: |
           set -exuo pipefail
 
-          # Get the latest short SHA directly from main
           SHORT_SHA=$(git rev-parse --short origin/main)
           echo "SHORT_SHA=${SHORT_SHA}" >> $GITHUB_ENV
 
-          # Determine log range based on event type
           if [ "${{ github.event_name }}" = "push" ] && [ "${{ github.event.before }}" != "0000000000000000000000000000000000000000" ] && [ -n "${{ github.event.before }}" ]; then
             RANGE="${{ github.event.before }}..${{ github.event.after }}"
           else
