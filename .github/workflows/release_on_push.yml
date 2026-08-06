@@ -58,7 +58,7 @@ jobs:
           cd classes
           zip -r "../${{ env.CLASS_ZIP_NAME }}.zip" .
           cd ..
-          sha256sum "${{ env.CLASS_ZIP_NAME }}.zip" > "${{ env.CLASS_ZIP_NAME }}_sha256.txt"
+          sha256sum -b "${{ env.CLASS_ZIP_NAME }}.zip" | head -c -3 > "${{ env.CLASS_ZIP_NAME }}_sha256.txt"
 
       - name: Install Sphinx Dependencies
         run: |
