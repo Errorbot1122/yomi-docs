@@ -21,6 +21,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
+          ref: "main" # Always check out the main branch
           fetch-depth: 0
 
       - name: Set up Python
@@ -35,17 +36,19 @@ jobs:
         run: |
           set -exuo pipefail
 
-          SHORT_SHA="${GITHUB_SHA::7}"
+          # Get the latest short SHA directly from main
+          SHORT_SHA=$(git rev-parse --short origin/main)
           echo "SHORT_SHA=${SHORT_SHA}" >> $GITHUB_ENV
 
-          if [ "${{ github.event.before }}" != "0000000000000000000000000000000000000000" ] && [ -n "${{ github.event.before }}" ]; then
+          # Determine log range based on event type
+          if [ "${{ github.event_name }}" = "push" ] && [ "${{ github.event.before }}" != "0000000000000000000000000000000000000000" ] && [ -n "${{ github.event.before }}" ]; then
             RANGE="${{ github.event.before }}..${{ github.event.after }}"
           else
-            RANGE="${GITHUB_SHA}"
+            RANGE="origin/main"
           fi
 
           BODY="# Update ${SHORT_SHA}"$'\n\n'
-          LOG=$(git log --reverse --pretty=format:" - %h - %s%n    %b" $RANGE 2>/dev/null || git log -1 --pretty=format:" - %h - %s%n    %b" ${GITHUB_SHA})
+          LOG=$(git log --reverse --pretty=format:" - %h - %s%n    %b" $RANGE 2>/devnull || git log -1 --pretty=format:" - %h - %s%n    %b" origin/main)
           BODY="${BODY}${LOG}"
 
           echo "RELEASE_BODY<<EOF" >> $GITHUB_ENV
