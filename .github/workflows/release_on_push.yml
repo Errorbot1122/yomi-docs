@@ -38,8 +38,7 @@ jobs:
           find classes -type f ! -name '.version' -exec sha256sum {} + \
             | sort \
             | sha256sum \
-            | awk '{print $1}'
-            \ > classes/.version_hash
+            | awk '{print $1}' > classes/.version_hash
 
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
