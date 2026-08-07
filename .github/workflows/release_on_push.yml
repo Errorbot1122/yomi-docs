@@ -12,6 +12,7 @@ permissions:
 env:
   MAIN_PREFIX: "yomi-docs_"
   CLASS_ZIP_NAME: "classes"
+  COMMIT_MSG: "chore(classes/.version_hash): [skip ci] auto update hash"
 
 jobs:
   build-and-release:
@@ -30,23 +31,41 @@ jobs:
           python-version: "3.13"
           cache: "pip"
 
+      - name: Generate Classes Hash and Sync Version
+        run: |
+          set -exuo pipefail
+
+          find classes -type f ! -name '.version' -exec sha256sum {} + \
+            | sort \
+            | sha256sum \
+            | awk '{print $1}'
+            \ > classes/.version_hash
+
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add classes/.version
+          git diff --quiet && git diff --staged --quiet \
+            || (git commit -m "${{ env.COMMIT_MSG }}" && git push)
+
       - name: Prepare Release Metadata
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           set -exuo pipefail
 
-          SHORT_SHA=$(git rev-parse --short origin/main)
+          SHORT_SHA=$(git rev-parse --short HEAD)
           echo "SHORT_SHA=${SHORT_SHA}" >> $GITHUB_ENV
 
-          if [ "${{ github.event_name }}" = "push" ] && [ "${{ github.event.before }}" != "0000000000000000000000000000000000000000" ] && [ -n "${{ github.event.before }}" ]; then
-            RANGE="${{ github.event.before }}..${{ github.event.after }}"
+          if [ "${{ github.event_name }}" = "push" ] \
+            && [ "${{ github.event.before }}" != "0000000000000000000000000000000000000000" ] \
+            && [ -n "${{ github.event.before }}" ]; then
+            RANGE="${{ github.event.before }}..HEAD"
           else
-            RANGE="origin/main"
+            RANGE="HEAD"
           fi
 
           BODY="# Update ${SHORT_SHA}"$'\n\n'
-          LOG=$(git log --reverse --pretty=format:" - %h - %s%n    %b" $RANGE 2>/devnull || git log -1 --pretty=format:" - %h - %s%n    %b" origin/main)
+          LOG=$(git log --reverse --pretty=format:" - %h - %s%n    %b" $RANGE 2>/devnull || git log -1 --pretty=format:" - %h - %s%n    %b" HEAD)
           BODY="${BODY}${LOG}"
 
           echo "RELEASE_BODY<<EOF" >> $GITHUB_ENV
@@ -60,7 +79,7 @@ jobs:
           cd classes
           zip -r "../${{ env.CLASS_ZIP_NAME }}.zip" .
           cd ..
-          cat "${{ env.CLASS_ZIP_NAME }}.zip" | sha256sum -b - | head -c -4 > "${{ env.CLASS_ZIP_NAME }}_sha256.txt"
+          cp classes/.version_hash "${{ env.CLASS_ZIP_NAME }}_hash.txt"
 
       - name: Install Sphinx Dependencies
         run: |
@@ -97,4 +116,4 @@ jobs:
             "${{ env.MAIN_PREFIX }}epub.epub" \
             "${{ env.MAIN_PREFIX }}pdf.pdf" \
             "${{ env.CLASS_ZIP_NAME }}.zip" \
-            "${{ env.CLASS_ZIP_NAME }}_sha256.txt"
+            "${{ env.CLASS_ZIP_NAME }}_hash.txt"
