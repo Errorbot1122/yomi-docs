@@ -31,7 +31,7 @@ jobs:
           python-version: "3.13"
           cache: "pip"
 
-      - name: Generate Classes Hash and Sync Version
+      - name: Hash and Sync Classes
         run: |
           set -exuo pipefail
 
